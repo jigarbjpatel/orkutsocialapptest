@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+  <ModulePrefs height="100" title="TalentNow" description="This is test" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com">   	
+  </ModulePrefs>
+  <Content type="url" href="http://www.talentnow.com">
+  </Content>
+  </Module>
