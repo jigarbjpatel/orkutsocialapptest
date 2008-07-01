@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+	<ModulePrefs height="100" title="TalentNow" description="This is test" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com">   	
+	</ModulePrefs>
+	<UserPref name="companycode" display_name="Company Code" required="true" />
+	
+	<Content type="html" view="profile,canvas">
+		<![CDATA[ 
+		  <div>Hello world</div>
+		]]> 
+	</Content>
+</Module>
