@@ -1,12 +1,40 @@
-<?xml version="1.0" encoding="UTF-8" ?> 
+<?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-	<ModulePrefs height="100" title="TalentNow" description="This is test" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com">   	
-	</ModulePrefs>
-	<UserPref name="companycode" display_name="Company Code" required="true" />
-	
-	<Content type="html" view="profile,canvas">
-		<![CDATA[ 
-		  <div>Hello world</div>
-		]]> 
-	</Content>
+ <ModulePrefs title="List Friends Example">
+   <Require feature="opensocial-0.7"/>
+ </ModulePrefs>
+ <Content type="html">
+
+ <![CDATA[
+
+ <script type="text/javascript">
+
+ /**
+  * Request for friend information.
+  */
+  function getData() {    
+    var req = opensocial.newDataRequest();
+    req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
+    req.send(onLoadSelf);
+  };
+
+ /**
+  * Parses the response to the friend information request and generates
+  * html to list the friends along with their display name.
+  *
+  * @param {Object} dataResponse Friend information that was requested.
+  */
+  function onLoadSelf(dataResponse) {
+    var viewer = dataResponse.get('viewer').getData();
+    var html = 'Id: ' + viewer.getId(); 
+
+    document.getElementById('message').innerHTML = html;
+  };
+
+  gadgets.util.registerOnLoadHandler(getData);
+
+  </script>
+  <div id="message"> </div>
+  ]]>
+  </Content>
 </Module>
