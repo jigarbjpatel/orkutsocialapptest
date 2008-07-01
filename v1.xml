@@ -3,7 +3,7 @@
   <ModulePrefs height="100" title="Navigation" description="This is test" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com">
     <Require feature="views" /> 
   </ModulePrefs>
-  <Content type="html" view="home,profile">
+  <Content type="html" view="profile">
   <![CDATA[ 
   <div>Hello world Profile view</div>
   <script type="text/javascript">
