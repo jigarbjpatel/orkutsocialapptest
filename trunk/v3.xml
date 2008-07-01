@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
- <ModulePrefs title="List Friends Example">
+ <ModulePrefs title="List Id Example" description="This is test" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com">
    <Require feature="opensocial-0.7"/>
  </ModulePrefs>
  <Content type="html">
