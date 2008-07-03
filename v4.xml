@@ -128,8 +128,7 @@
 					  if (node.nodeName == "titleurl")
 					  {
 						//if (node.firstChild.nodeName == "#cdata-section") 
-						alert(node.firstChild);
-						if(typeof(node.firstChild) == "undefined")
+						if(node.firstChild == null)
 							var jobTitleUrl = "http://talentnow.com";
 						else
 							var jobTitleUrl = node.firstChild.nodeValue;
