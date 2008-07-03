@@ -125,20 +125,17 @@
 					  {
 						var jobPostedOn = node.firstChild.nodeValue; 
 					  }*/
-					  /*if (node.nodeName == "titleurl")
+					  if (node.nodeName == "titleurl")
 					  {
 						//if (node.firstChild.nodeName == "#cdata-section") 
-						if(typeof(node.firstChild.nodeValue) == 'undefiend')
-							var jobTitleUrl = "";
-						else
-							var jobTitleUrl = node.firstChild.nodeValue;
+						var jobTitleUrl = node.firstChild.nodeValue;
 						 //TODO: Add id of user and name to the url
-					  }*/
+					  }
 					}
 					// Append extracted data to the HTML string
-					 /* html += "<tr><td><a href='"+jobTitleUrl+"'>"+jobTitle+" at "+jobCompany+"</td></tr><tr><td>Location: "+jobLocation+" posted on "+jobPostedOn+"</td></tr>";*/
+					 /* html += "<tr><td><a href='"+jobTitleUrl+"'>"+jobTitle+"</a> at "+jobCompany+"</td></tr><tr><td>Location: "+jobLocation+" posted on "+jobPostedOn+"</td></tr>";*/
 					 /* Temp S*/
-					html += "<tr><td>" + jobTitle +"</td></tr>";
+					html += "<tr><td><a href='" + jobTitleUrl + "'>" + jobTitle +"</a></td></tr>";
 					alert(html);
 					 /* Temp E*/
 				}
