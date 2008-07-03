@@ -71,18 +71,18 @@
 			msg.dismissMessage(loadMessage);
 
 		var responseText = obj.data;
-		alert(responseText.getElementsByTagName("jobs"));
+		
 		//Get the jobs count
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
 		if(typeof(jobCount) != 'undefined')
 				jobCount = parseInt(jobCount,10);
 			else
 				jobCount = -1;
-		
+		alert(jobCount);
 		//Compare the values based on DOM query not straight forward text comparision ????
 		if(parseInt(jobCount,10) == -1)
 		{
-			document.getElementById('searchForm').style.display = "block";
+			document.getElementById('searchForm').style.display = "block";			
 		}
 		else 
 		{
@@ -97,8 +97,10 @@
 			if(startIndex > pageSize) 
 				document.getElementById('prev').style.display = "block";
 			
+			alert(startIndex);
 			//Create html for jobsTable
 			var html = "";
+			/*
 			if(parseInt(jobCount,10) != 0)
 			{
 				var jobList = responseText.getElementsByTagName("job");
@@ -139,7 +141,7 @@
 			{
 				html += "<tr><td>No Records Found.</td></tr>";
 			}
-
+			*/
 			document.getElementById('jobsTable').innerHTML = html;
 			document.getElementById('searchResults').style.display = "block";			
 		}		
