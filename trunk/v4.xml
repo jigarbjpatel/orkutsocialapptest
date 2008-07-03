@@ -52,6 +52,7 @@
 
 	function makeInitialPOSTRequest(userOpenSocialId) 
 	{  
+		alert("in makeInitialPOSTRequest");
 		var params = {};  
 		var postdata = {
 			id : userOpenSocialId,
@@ -69,10 +70,12 @@
 
 	function response(obj) 
 	{
+		alert("in response");
 		if(typeof(loadMessage) != 'undefined')
 			msg.dismissMessage(loadMessage);
 
 		var responseText = obj.data;
+		alert(responseText);
 		//Get the jobs count
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
 		if(typeof(jobCount) != 'undefined')
