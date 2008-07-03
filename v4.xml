@@ -91,10 +91,11 @@
 				startIndex = parseInt(startIndex,10);
 			else
 				startIndex = 0;
+
 			//Based on job count show prev and next
-			if((startIndex + jobCount) < pageSize)
+			if(parseInt((startIndex + jobCount),10) < parseInt(pageSize,10))
 				document.getElementById('next').style.display = "block";
-			if(startIndex > pageSize) 
+			if(parseInt(startIndex,10) > parseInt(pageSize,10)) 
 				document.getElementById('prev').style.display = "block";
 			
 			//Create html for jobsTable
@@ -102,29 +103,43 @@
 			if(parseInt(jobCount,10) != 0)
 			{
 				var jobList = responseText.getElementsByTagName("job");
-				
+				var jobTitle = "";
+				var jobLocation = "";
+				var jobCompany = "";
+				var jobPostedOn = "";
+				var jobTitleUrl = "";
+
 				for (var i = 0; i < jobList.length ; i++) 
 				{ 
-					var nodeList = jobList.item(i).childNodes;				
+					var nodeList = jobList.item(i).childNodes;	
+					jobTitle = "";
+					jobLocation = "";
+					jobCompany = "";
+					jobPostedOn = "";
+					jobTitleUrl = "";
 					for (var j = 0; j < nodeList.length ; j++) 
 					{
 					  var node = nodeList.item(j);
 					  if (node.nodeName == "title") 
 					  {
-						var jobTitle = node.firstChild.nodeValue;						
+						if(node.firstChild != null)
+							jobTitle = node.firstChild.nodeValue;						
 					  }
-					  /*if (node.nodeName == "location") 
+					  if (node.nodeName == "location") 
 					  {
-						var jobLocation = node.firstChild.nodeValue;				
-					  }*/
-					  /*if (node.nodeName == "company") 
+						if(node.firstChild != null)
+							jobLocation = node.firstChild.nodeValue;				
+					  }
+					  if (node.nodeName == "company") 
 					  {
-						var jobCompany = node.firstChild.nodeValue; 
-					  }*/
-					  /*if (node.nodeName == "postedon") 
+						  if(node.firstChild != null)
+							jobCompany = node.firstChild.nodeValue; 
+					  }
+					  if (node.nodeName == "postedon") 
 					  {
-						var jobPostedOn = node.firstChild.nodeValue; 
-					  }*/
+						if(node.firstChild != null)
+							jobPostedOn = node.firstChild.nodeValue; 
+					  }
 					  if (node.nodeName == "titleurl")
 					  {
 						//if (node.firstChild.nodeName == "#cdata-section") 
@@ -138,7 +153,7 @@
 					// Append extracted data to the HTML string
 					 /* html += "<tr><td><a href='"+jobTitleUrl+"'>"+jobTitle+"</a> at "+jobCompany+"</td></tr><tr><td>Location: "+jobLocation+" posted on "+jobPostedOn+"</td></tr>";*/
 					 /* Temp S*/
-					html += "<tr><td><a href='" + jobTitleUrl + "'>" + jobTitle +"</a></td></tr>";
+					html += "<tr><td><a href='" + jobTitleUrl + "'>" + jobTitle +"</a> at " + jobCompany + "</td></tr><tr><td>Location: "+ jobLocation +" posted on "+ jobPostedOn +"</td></tr>";
 					alert(html);
 					 /* Temp E*/
 				}
