@@ -108,10 +108,10 @@
 					for (var j = 0; j < nodeList.length ; j++) 
 					{
 					  var node = nodeList.item(j);
+					  alert(node.innerXml);
 					  if (node.nodeName == "title") 
 					  {
-						var jobTitle = node.firstChild.nodeValue;
-						alert(jobTitle);
+						var jobTitle = node.firstChild.nodeValue;						
 					  }
 					  if (node.nodeName == "location") 
 					  {
@@ -133,7 +133,7 @@
 					  }
 					  // Append extracted data to the HTML string
 					  html += "<tr><td><a href='"+jobTitleUrl+"'>"+jobTitle+" at "+jobCompany+"</td></tr><tr><td>Location: "+jobLocation+" posted on "+jobPostedOn+"</td></tr>";
-						alert(html);
+						
 					}
 				}
 			}
