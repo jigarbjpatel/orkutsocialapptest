@@ -78,7 +78,7 @@
 				jobCount = parseInt(jobCount,10);
 			else
 				jobCount = -1;
-		alert(jobCount);
+		
 		//Compare the values based on DOM query not straight forward text comparision ????
 		if(parseInt(jobCount,10) == -1)
 		{
@@ -97,10 +97,8 @@
 			if(startIndex > pageSize) 
 				document.getElementById('prev').style.display = "block";
 			
-			alert(startIndex);
 			//Create html for jobsTable
-			var html = "";
-			/*
+			var html = "";			
 			if(parseInt(jobCount,10) != 0)
 			{
 				var jobList = responseText.getElementsByTagName("job");
@@ -113,6 +111,7 @@
 					  if (node.nodeName == "title") 
 					  {
 						var jobTitle = node.firstChild.nodeValue;
+						alert(jobTitle);
 					  }
 					  if (node.nodeName == "location") 
 					  {
@@ -134,6 +133,7 @@
 					  }
 					  // Append extracted data to the HTML string
 					  html += "<tr><td><a href='"+jobTitleUrl+"'>"+jobTitle+" at "+jobCompany+"</td></tr><tr><td>Location: "+jobLocation+" posted on "+jobPostedOn+"</td></tr>";
+						alert(html);
 					}
 				}
 			}
@@ -141,7 +141,7 @@
 			{
 				html += "<tr><td>No Records Found.</td></tr>";
 			}
-			*/
+			
 			document.getElementById('jobsTable').innerHTML = html;
 			document.getElementById('searchResults').style.display = "block";			
 		}		
