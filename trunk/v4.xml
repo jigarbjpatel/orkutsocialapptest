@@ -108,14 +108,13 @@
 					for (var j = 0; j < nodeList.length ; j++) 
 					{
 					  var node = nodeList.item(j);
-					  alert(node.innerXml);
 					  if (node.nodeName == "title") 
 					  {
 						var jobTitle = node.firstChild.nodeValue;						
 					  }
 					  if (node.nodeName == "location") 
 					  {
-						var jobLocation = node.firstChild.nodeValue;
+						var jobLocation = node.firstChild.nodeValue;				
 					  }
 					  if (node.nodeName == "company") 
 					  {
@@ -131,10 +130,9 @@
 						 var jobTitleUrl = node.firstChild.nodeValue;
 						 //TODO: Add id of user and name to the url
 					  }
-					  // Append extracted data to the HTML string
-					  html += "<tr><td><a href='"+jobTitleUrl+"'>"+jobTitle+" at "+jobCompany+"</td></tr><tr><td>Location: "+jobLocation+" posted on "+jobPostedOn+"</td></tr>";
-						
 					}
+					// Append extracted data to the HTML string
+					  html += "<tr><td><a href='"+jobTitleUrl+"'>"+jobTitle+" at "+jobCompany+"</td></tr><tr><td>Location: "+jobLocation+" posted on "+jobPostedOn+"</td></tr>";
 				}
 			}
 			else
