@@ -128,8 +128,9 @@
 					  if (node.nodeName == "titleurl")
 					  {
 						//if (node.firstChild.nodeName == "#cdata-section") 
-						if(typeof(node.firstChild) == 'undefined')
-							var jobTitleUrl = "#";
+						alert(node.firstChild);
+						if(typeof(node.firstChild) == "undefined")
+							var jobTitleUrl = "http://talentnow.com";
 						else
 							var jobTitleUrl = node.firstChild.nodeValue;
 						 //TODO: Add id of user and name to the url
