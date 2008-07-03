@@ -15,7 +15,7 @@
 	  <div id="searchResults" style="display:none">
 		<table>
 			<tr>
-				<td align="right"><a id="prev" href="#" onclick="getPrevJobs();" style="display:none">Prev</a> | <a id="next" href="#" onclick="getNextJobs();" style="display:none">Next</a></td>
+				<td align="right"><a id="prev" href="#" onclick="getPrevJobs();" style="display:none">Prev</a> &nbsp; <a id="next" href="#" onclick="getNextJobs();" style="display:none">Next</a></td>
 			</tr>
 			<tr>
 				<td>
@@ -91,6 +91,7 @@
 				startIndex = parseInt(startIndex,10);
 			else
 				startIndex = 0;
+			alert(parseInt((startIndex + jobCount),10));
 
 			//Based on job count show prev and next
 			if(parseInt((startIndex + jobCount),10) < parseInt(pageSize,10))
@@ -151,11 +152,7 @@
 					  }
 					}
 					// Append extracted data to the HTML string
-					 /* html += "<tr><td><a href='"+jobTitleUrl+"'>"+jobTitle+"</a> at "+jobCompany+"</td></tr><tr><td>Location: "+jobLocation+" posted on "+jobPostedOn+"</td></tr>";*/
-					 /* Temp S*/
 					html += "<tr><td><a href='" + jobTitleUrl + "'>" + jobTitle +"</a> at " + jobCompany + "</td></tr><tr><td>Location: "+ jobLocation +" posted on "+ jobPostedOn +"</td></tr>";
-					alert(html);
-					 /* Temp E*/
 				}
 			}
 			else
