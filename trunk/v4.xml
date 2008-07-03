@@ -38,7 +38,6 @@
 
 	function getUserOpenSocialId() 
 	{    
-		alert("in init");
 		var req = opensocial.newDataRequest();
 		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
 		req.send(onGotUserOpenSocialId);
@@ -53,7 +52,6 @@
 
 	function makeInitialPOSTRequest(userOpenSocialId) 
 	{  
-		alert("in makeInitialPOSTRequest");
 		var params = {};  
 		var postdata = {
 			id : userOpenSocialId,
@@ -65,24 +63,22 @@
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		var url = "http://talentnow.com/orkutapp/Default.aspx";  
 		gadgets.io.makeRequest(url, response, params);
-		
-		
 	};
 
 	function response(obj) 
 	{
-		alert("in response");
 		if(typeof(loadMessage) != 'undefined')
 			msg.dismissMessage(loadMessage);
 
 		var responseText = obj.data;
-		alert(responseText);
+		alert(responseText.getElementsByTagName("jobs"));
 		//Get the jobs count
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
 		if(typeof(jobCount) != 'undefined')
 				jobCount = parseInt(jobCount,10);
 			else
 				jobCount = -1;
+		
 		//Compare the values based on DOM query not straight forward text comparision ????
 		if(parseInt(jobCount,10) == -1)
 		{
