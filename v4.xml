@@ -132,6 +132,7 @@
 							var jobTitleUrl = "#";
 						else
 							var jobTitleUrl = node.firstChild.nodeValue;
+						alert(jobTitleUrl);
 						 //TODO: Add id of user and name to the url
 					  }
 					}
