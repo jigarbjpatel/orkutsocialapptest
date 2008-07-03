@@ -9,13 +9,13 @@
  <![CDATA[
  <form name="frmJobs" id="frmJobs" action="" method="POST">
 	  <div id="searchForm" style="display:none">
-		Company Code: <input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="50" />
+		Company Code: <input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" />
 		<a href="#" onclick="getJobs();" >Get Jobs</a>
 	  </div>
 	  <div id="searchResults" style="display:none">
 		<table>
 			<tr>
-				<td align="right"><a id="prev" href="#" onclick="getPrevJobs();" style="display:none">Prev</a> &nbsp; <a id="next" href="#" onclick="getNextJobs();" style="display:none">Next</a></td>
+				<td align="right"><a id="prev" href="#" onclick="getPrevJobs();" style="display:none">&lt;Prev</a> &nbsp; <a id="next" href="#" onclick="getNextJobs();" style="display:none">Next&gt;</a></td>
 			</tr>
 			<tr>
 				<td>
@@ -82,7 +82,8 @@
 		//Compare the values based on DOM query not straight forward text comparision ????
 		if(parseInt(jobCount,10) == -1)
 		{
-			document.getElementById('searchForm').style.display = "block";			
+			document.getElementById('searchForm').style.display = "block";	
+			document.getElementById('searchResults').style.display = "none";
 		}
 		else 
 		{
@@ -91,18 +92,17 @@
 				startIndex = parseInt(startIndex,10);
 			else
 				startIndex = 0;
-			alert(parseInt((startIndex + jobCount),10));
-
-			//Based on job count show prev and next
-			if(parseInt((startIndex + jobCount),10) < parseInt(pageSize,10))
-				document.getElementById('next').style.display = "block";
-			if(parseInt(startIndex,10) > parseInt(pageSize,10)) 
-				document.getElementById('prev').style.display = "block";
 			
 			//Create html for jobsTable
 			var html = "";			
 			if(parseInt(jobCount,10) != 0)
 			{
+				//Based on job count show prev and next
+				if(parseInt((startIndex + pageSize),10) < parseInt(jobCount,10))
+					document.getElementById('next').style.display = "block";
+				if(parseInt(startIndex,10) > parseInt(pageSize,10)) 
+					document.getElementById('prev').style.display = "block";
+				
 				var jobList = responseText.getElementsByTagName("job");
 				var jobTitle = "";
 				var jobLocation = "";
@@ -161,7 +161,8 @@
 			}
 			
 			document.getElementById('jobsTable').innerHTML = html;
-			document.getElementById('searchResults').style.display = "block";			
+			document.getElementById('searchResults').style.display = "block";
+			document.getElementById('searchForm').style.display = "none";
 		}		
 	}
 
@@ -179,6 +180,9 @@
 				si : startIndex,
 				ps : pageSize
 				};  
+			alert(startIndex);
+			alert(pageSize);
+			alert(companyCode);
 			params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 			params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 			params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
