@@ -1,40 +1,223 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
  <ModulePrefs title="List Id Example" description="This is test" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com">
-   <Require feature="opensocial-0.7"/>
+   <Require feature="opensocial-0.7"/>.
+   <Require feature="minimessage"/>
  </ModulePrefs>
  <Content type="html">
 
  <![CDATA[
-
+ <form name="frmJobs" id="frmJobs" action="" method="POST">
+	  <div id="searchForm" style="display:none">
+		Company Code: <input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="50" />
+		<a href="#" onclick="getJobs();" >Get Jobs</a>
+	  </div>
+	  <div id="searchResults" style="display:none">
+		<table>
+			<tr>
+				<td align="right"><a id="prev" href="#" onclick="getPrevJobs();" style="display:none">Prev</a> | <a id="next" href="#" onclick="getNextJobs();" style="display:none">Next</a></td>
+			</tr>
+			<tr>
+				<td>
+					<table id="jobsTable"></table>
+				</td>
+			</tr>
+			<tr>
+				<td align="right"><a href="#" onclick="changeSearhCriteria();" >Change Search Criteria</a></td>
+			</tr>
+		</table>
+	  </div>
+  </form>
  <script type="text/javascript">
+ var msg = new gadgets.MiniMessage(__MODULE_ID__);
+ var loadMessage;
+	var userOpenSocialId = "";
+	var pageSize = 5;
+	var jobCount = 0;
+	var startIndex = 0;
 
- /**
-  * Request for friend information.
-  */
-  function getData() {    
-    var req = opensocial.newDataRequest();
-    req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
-    req.send(onLoadSelf);
-  };
+	function getUserOpenSocialId() 
+	{    
+		var req = opensocial.newDataRequest();
+		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
+		req.send(onGotUserOpenSocialId);
+	};
 
- /**
-  * Parses the response to the friend information request and generates
-  * html to list the friends along with their display name.
-  *
-  * @param {Object} dataResponse Friend information that was requested.
-  */
-  function onLoadSelf(dataResponse) {
-    var viewer = dataResponse.get('viewer').getData();
-    var html = 'Id: ' + viewer.getId(); 
+	function onGotUserOpenSocialId(dataResponse)
+	{
+		var viewer = dataResponse.get('viewer').getData();
+		userOpenSocialId = viewer.getId();
+		makeInitialPOSTRequest(userOpenSocialId) ;		
+	};
 
-    document.getElementById('message').innerHTML = html;
-  };
+	function makeInitialPOSTRequest(userOpenSocialId) 
+	{  
+		var params = {};  
+		var postdata = {
+			id : userOpenSocialId,
+			si : startIndex,
+			ps : pageSize
+			};  
+		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+		var url = "http://talentnow.com/orkut/getJobs.aspx";  
+		gadgets.io.makeRequest(url, response, params);
+		
+		
+	};
 
-  gadgets.util.registerOnLoadHandler(getData);
+	function response(obj) 
+	{
+		if(typeof(loadMessage) != 'undefined')
+			msg.dismissMessage(loadMessage);
+
+		var responseText = obj.data;
+		//Get the jobs count
+		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
+		if(typeof(jobCount) != 'undefined')
+				jobCount = parseInt(jobCount,10);
+			else
+				jobCount = -1;
+		//Compare the values based on DOM query not straight forward text comparision ????
+		if(parseInt(jobCount,10) == -1)
+		{
+			document.getElementById('searchForm').style.display = "block";
+		}
+		else 
+		{
+			startIndex = responseText.getElementsByTagName("jobs").item(0).getAttribute("startIndex");
+			if(typeof(startIndex) != 'undefined')
+				startIndex = parseInt(startIndex,10);
+			else
+				startIndex = 0;
+			//Based on job count show prev and next
+			if((startIndex + jobCount) < pageSize)
+				document.getElementById('next').style.display = "block";
+			if(startIndex > pageSize) 
+				document.getElementById('prev').style.display = "block";
+			
+			//Create html for jobsTable
+			var html = "";
+			if(parseInt(jobCount,10) != 0)
+			{
+				var jobList = responseText.getElementsByTagName("job");
+				for (var i = 0; i < jobList.length ; i++) 
+				{ 
+					var nodeList = jobList.item(i).childNodes;				
+					for (var j = 0; j < nodeList.length ; j++) 
+					{
+					  var node = nodeList.item(j);
+					  if (node.nodeName == "title") 
+					  {
+						var jobTitle = node.firstChild.nodeValue;
+					  }
+					  if (node.nodeName == "location") 
+					  {
+						var jobLocation = node.firstChild.nodeValue;
+					  }
+					  if (node.nodeName == "company") 
+					  {
+						var jobCompany = node.firstChild.nodeValue; 
+					  }
+					  if (node.nodeName == "postedon") 
+					  {
+						var jobPostedOn = node.firstChild.nodeValue; 
+					  }
+					  if (node.nodeName == "titleurl")
+					  {
+						//if (node.firstChild.nodeName == "#cdata-section") 
+						 var jobTitleUrl = node.firstChild.nodeValue;
+						 //TODO: Add id of user and name to the url
+					  }
+					  // Append extracted data to the HTML string
+					  html += "<tr><td><a href='"+jobTitleUrl+"'>"+jobTitle+" at "+jobCompany+"</td></tr><tr><td>Location: "+jobLocation+" posted on "+jobPostedOn+"</td></tr>";
+					}
+				}
+			}
+			else
+			{
+				html += "<tr><td>No Records Found.</td></tr>";
+			}
+
+			document.getElementById('jobsTable').innerHTML = html;
+			document.getElementById('searchResults').style.display = "block";			
+		}		
+	}
+
+	function getJobs()
+	{
+	//TODO: put input validation here
+		if(document.getElementById('txtCompanyCode').value != "")
+		{
+			var companyCode = document.getElementById('txtCompanyCode').value;
+
+			var params = {};  
+			var postdata = {
+				id : userOpenSocialId,
+				cc : companyCode,
+				si : startIndex,
+				ps : pageSize
+				};  
+			params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+			params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+			params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+			var url = "http://talentnow.com/orkut/getJobs.aspx";  
+			gadgets.io.makeRequest(url, response, params);
+			loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+		}
+		else
+		{
+			//TODO: Show some message
+		}
+	}
+	//Show the search Form
+	function changeSearhCriteria()
+	{
+		document.getElementById('searchResults').style.display = "none";
+		document.getElementById('searchForm').style.display = "block";
+	}
+	//Get previous jobs
+	function getPrevJobs()
+	{
+		startIndex = startIndex - pageSize;
+
+		var params = {};  
+		var postdata = {
+			id : userOpenSocialId,
+			si : startIndex,
+			ps : pageSize
+			};  
+		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+		var url = "http://talentnow.com/orkut/getJobs.aspx";  
+		gadgets.io.makeRequest(url, response, params);
+		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+	}
+	//Get next jobs
+	function getNextJobs()
+	{
+		startIndex = startIndex + pageSize;
+	
+		var params = {};  
+		var postdata = {
+			id : userOpenSocialId,
+			si : startIndex,
+			ps : pageSize
+			};  
+		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+		var url = "http://talentnow.com/orkut/getJobs.aspx";  
+		gadgets.io.makeRequest(url, response, params);
+		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+	}
+
+	gadgets.util.registerOnLoadHandler(getUserOpenSocialId);
 
   </script>
-  <div id="message"> </div>
+ 
   ]]>
   </Content>
 </Module>
