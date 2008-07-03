@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
  <ModulePrefs title="GetTalentNowJobs" description="This is test" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com">
-   <Require feature="opensocial-0.7"/>.
+   <Require feature="opensocial-0.7"/>
    <Require feature="minimessage"/>
  </ModulePrefs>
  <Content type="html">
@@ -38,6 +38,7 @@
 
 	function getUserOpenSocialId() 
 	{    
+		alert("in init");
 		var req = opensocial.newDataRequest();
 		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
 		req.send(onGotUserOpenSocialId);
