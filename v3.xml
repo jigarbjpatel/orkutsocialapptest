@@ -61,7 +61,7 @@
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://talentnow.com/orkut/getJobs.aspx";  
+		var url = "http://talentnow.com/orkutapp/Default.aspx";  
 		gadgets.io.makeRequest(url, response, params);
 		
 		
@@ -162,7 +162,7 @@
 			params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 			params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 			params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-			var url = "http://talentnow.com/orkut/getJobs.aspx";  
+			var url = "http://talentnow.com/orkutapp/Default.aspx";   
 			gadgets.io.makeRequest(url, response, params);
 			loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 		}
@@ -191,7 +191,7 @@
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://talentnow.com/orkut/getJobs.aspx";  
+		var url = "http://talentnow.com/orkutapp/Default.aspx";    
 		gadgets.io.makeRequest(url, response, params);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 	}
@@ -209,7 +209,7 @@
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://talentnow.com/orkut/getJobs.aspx";  
+		var url = "http://talentnow.com/orkutapp/Default.aspx";  
 		gadgets.io.makeRequest(url, response, params);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 	}
