@@ -128,7 +128,10 @@
 					  if (node.nodeName == "titleurl")
 					  {
 						//if (node.firstChild.nodeName == "#cdata-section") 
-						var jobTitleUrl = node.firstChild.nodeValue;
+						if(typeof(node.firstChild.nodeValue) == 'undefined')
+							var jobTitleUrl = "#";
+						else
+							var jobTitleUrl = node.firstChild.nodeValue;
 						 //TODO: Add id of user and name to the url
 					  }
 					}
