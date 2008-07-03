@@ -102,6 +102,7 @@
 			if(parseInt(jobCount,10) != 0)
 			{
 				var jobList = responseText.getElementsByTagName("job");
+				
 				for (var i = 0; i < jobList.length ; i++) 
 				{ 
 					var nodeList = jobList.item(i).childNodes;				
@@ -112,27 +113,34 @@
 					  {
 						var jobTitle = node.firstChild.nodeValue;						
 					  }
-					  if (node.nodeName == "location") 
+					  /*if (node.nodeName == "location") 
 					  {
 						var jobLocation = node.firstChild.nodeValue;				
-					  }
-					  if (node.nodeName == "company") 
+					  }*/
+					  /*if (node.nodeName == "company") 
 					  {
 						var jobCompany = node.firstChild.nodeValue; 
-					  }
-					  if (node.nodeName == "postedon") 
+					  }*/
+					  /*if (node.nodeName == "postedon") 
 					  {
 						var jobPostedOn = node.firstChild.nodeValue; 
-					  }
-					  if (node.nodeName == "titleurl")
+					  }*/
+					  /*if (node.nodeName == "titleurl")
 					  {
 						//if (node.firstChild.nodeName == "#cdata-section") 
-						 var jobTitleUrl = node.firstChild.nodeValue;
+						if(typeof(node.firstChild.nodeValue) == 'undefiend')
+							var jobTitleUrl = "";
+						else
+							var jobTitleUrl = node.firstChild.nodeValue;
 						 //TODO: Add id of user and name to the url
-					  }
+					  }*/
 					}
 					// Append extracted data to the HTML string
-					  html += "<tr><td><a href='"+jobTitleUrl+"'>"+jobTitle+" at "+jobCompany+"</td></tr><tr><td>Location: "+jobLocation+" posted on "+jobPostedOn+"</td></tr>";
+					 /* html += "<tr><td><a href='"+jobTitleUrl+"'>"+jobTitle+" at "+jobCompany+"</td></tr><tr><td>Location: "+jobLocation+" posted on "+jobPostedOn+"</td></tr>";*/
+					 /* Temp S*/
+					html += "<tr><td>" + jobTitle +"</td></tr>";
+					alert(html);
+					 /* Temp E*/
 				}
 			}
 			else
