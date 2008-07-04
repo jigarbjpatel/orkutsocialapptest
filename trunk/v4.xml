@@ -8,9 +8,9 @@
 
  <![CDATA[
    <style type="text/css">
-	body {
+	.body {
 		font-size:small;			
-		font-family:Tahoma, Verdana, Arial, Sans-Serif;		
+		font-family:Verdana, Arial, Sans-Serif;		
     }
 	.datePostedon{
 		color:#6f6f6f;
