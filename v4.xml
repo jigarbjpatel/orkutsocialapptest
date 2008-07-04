@@ -20,7 +20,7 @@
 	}
   </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
-	  <div id="searchForm" style="display:none" onkeydown="checkPost(event);">
+	  <div id="searchForm" style="display:none" onkeydown="checkPost(event);" class="body">
 		<table>
 			<tr>
 				<td>Company Code:</td>
@@ -42,7 +42,7 @@
 			</tr>
 		</table>
 	  </div>
-	  <div id="searchResults" style="display:none" >
+	  <div id="searchResults" style="display:none" class="body">
 		<table>
 			<tr>
 				<td align="right"><div id="pager"></div></td>
@@ -144,7 +144,7 @@
 				pageSize = 5;
 
 			companyCode = responseText.getElementsByTagName("jobs").item(0).getAttribute("searchString");
-
+			alert(companyCode);
 			//Create html for jobsTable
 			var html = "";			
 			if(parseInt(jobCount,10) != 0)
@@ -240,6 +240,7 @@
 		{
 			companyCode = trim(document.getElementById('txtCompanyCode').value);
 			pageSize = parseInt(document.frmJobs.selPageSize.value,10);
+			startIndex = 0;			
 			var params = {};  
 			var postdata = {
 				id : userOpenSocialId,
