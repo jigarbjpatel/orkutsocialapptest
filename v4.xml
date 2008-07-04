@@ -79,6 +79,7 @@
 		var viewer = dataResponse.get('viewer').getData();
 		userOpenSocialId = viewer.getId();
 		userOpenSocialName = viewer.getDisplayName();
+		alert(userOpenSocialName);
 		makeInitialPOSTRequest() ;		
 	}
 
@@ -220,6 +221,7 @@
 
 	function getJobs()
 	{
+	alert(userOpenSocialName);
 	//TODO: put input validation here
 		if(trim(document.getElementById('txtCompanyCode').value) != "")
 		{
