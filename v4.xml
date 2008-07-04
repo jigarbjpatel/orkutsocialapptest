@@ -26,14 +26,14 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><a href="#" onclick="getJobs();" >Get Jobs</a></td>
+				<td colspan="2" align="right"><a href="#" onclick="getJobs();" >Get Jobs</a></td>
 			</tr>
 		</table>
 	  </div>
 	  <div id="searchResults" style="display:none">
 		<table>
 			<tr>
-				<td align="right"><a id="prev" href="#" onclick="getPrevJobs();" style="display:none">&lt;Prev</a> &nbsp; <a id="next" href="#" onclick="getNextJobs();" style="display:none">Next&gt;</a></td>
+				<td align="right"><div id="pager"></div></td>
 			</tr>
 			<tr>
 				<td>
@@ -122,10 +122,25 @@
 			if(parseInt(jobCount,10) != 0)
 			{
 				//Based on job count show prev and next
-				if(parseInt((startIndex + pageSize),10) < parseInt(jobCount,10))
-					document.getElementById('next').style.display = "block";
 				if(parseInt(startIndex,10) >= parseInt(pageSize,10)) 
-					document.getElementById('prev').style.display = "block";
+				{
+					document.getElementById('pager').innerHTML = "<a id='prev' href='#' onclick='getPrevJobs();' >&lt;Prev</a>"; 
+				}
+				else
+				{
+					document.getElementById('pager').innerHTML = "&lt;Prev"; 
+				}
+				if(parseInt((startIndex + pageSize),10) < parseInt(jobCount,10))
+				{
+					//display next
+					document.getElementById('pager').innerHTML += " | " + "<a id='next' href='#' onclick='getNextJobs();' >Next&gt;</a>"; 
+				}
+				else
+				{
+					document.getElementById('pager').innerHTML += " | " + "Next&gt;";
+				}
+					
+				
 				
 				var jobList = responseText.getElementsByTagName("job");
 				var jobTitle = "";
@@ -229,7 +244,7 @@
 	function getPrevJobs()
 	{
 		startIndex = startIndex - pageSize;
-
+alert(startIndex);
 		var params = {};  
 		var postdata = {
 			id : userOpenSocialId,
@@ -247,7 +262,7 @@
 	function getNextJobs()
 	{
 		startIndex = startIndex + pageSize;
-	
+alert(startIndex);	
 		var params = {};  
 		var postdata = {
 			id : userOpenSocialId,
