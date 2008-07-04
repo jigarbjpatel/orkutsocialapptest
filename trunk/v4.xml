@@ -51,6 +51,7 @@
 	var msg = new gadgets.MiniMessage(__MODULE_ID__);
 	var loadMessage;
 	var userOpenSocialId = "";
+	var userOpenSocialName = "";
 	var pageSize = 5;
 	var companyCode = "";
 	var jobCount = 0;
@@ -58,9 +59,8 @@
 
 	function checkPost(evt)
 	{
-		key = (evt.which) ? evt.which : evt.keyCode;
-		alert(key);
-		if(key == 13)
+		var key = (evt.which) ? evt.which : evt.keyCode;
+		if(parseInt(key,10) == 13)
 			getJobs();
 	}
 	function trim(str)
@@ -78,6 +78,7 @@
 	{
 		var viewer = dataResponse.get('viewer').getData();
 		userOpenSocialId = viewer.getId();
+		userOpenSocialName = viewer.getDisplayName();
 		makeInitialPOSTRequest() ;		
 	}
 
@@ -85,9 +86,7 @@
 	{  
 		var params = {};  
 		var postdata = {
-			id : userOpenSocialId,
-			si : startIndex,
-			ps : pageSize
+			id : userOpenSocialId						
 			};  
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
@@ -124,6 +123,14 @@
 			else
 				startIndex = 0;
 			
+			pageSize = responseText.getElementsByTagName("jobs").item(0).getAttribute("pageSize");
+			if(typeof(pageSize) != 'undefined')
+				pageSize = parseInt(pageSize,10);
+			else
+				pageSize = 5;
+
+			companyCode = responseText.getElementsByTagName("jobs").item(0).getAttribute("searchString");
+
 			//Create html for jobsTable
 			var html = "";			
 			if(parseInt(jobCount,10) != 0)
@@ -221,6 +228,7 @@
 			var params = {};  
 			var postdata = {
 				id : userOpenSocialId,
+				name : userOpenSocialName,
 				cc : companyCode,
 				si : startIndex,
 				ps : pageSize
@@ -253,8 +261,7 @@
 		var params = {};  
 		var postdata = {
 			id : userOpenSocialId,
-			si : startIndex,
-			ps : pageSize
+			si : startIndex
 			};  
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
@@ -270,8 +277,7 @@
 		var params = {};  
 		var postdata = {
 			id : userOpenSocialId,
-			si : startIndex,
-			ps : pageSize
+			si : startIndex			
 			};  
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
