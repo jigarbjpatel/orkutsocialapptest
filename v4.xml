@@ -7,6 +7,18 @@
  <Content type="html">
 
  <![CDATA[
+   <style type="text/css">
+	body {
+		font-size:small;			
+		font-family:Tahoma, Verdana, Arial, Sans-Serif;		
+    }
+	.datePostedon{
+		color:#6f6f6f;
+	}
+	.companyName{
+		color:green;
+	}
+  </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
 	  <div id="searchForm" style="display:none" onkeydown="checkPost(event);">
 		<table>
@@ -30,7 +42,7 @@
 			</tr>
 		</table>
 	  </div>
-	  <div id="searchResults" style="display:none">
+	  <div id="searchResults" style="display:none" >
 		<table>
 			<tr>
 				<td align="right"><div id="pager"></div></td>
@@ -46,6 +58,7 @@
 		</table>
 	  </div>
   </form>
+
  <script type="text/javascript">
 
 	var msg = new gadgets.MiniMessage(__MODULE_ID__);
@@ -56,6 +69,7 @@
 	var companyCode = "";
 	var jobCount = 0;
 	var startIndex = 0;
+
 
 	function checkPost(evt)
 	{
@@ -78,8 +92,7 @@
 	{
 		var viewer = dataResponse.get('viewer').getData();
 		userOpenSocialId = viewer.getId();
-		userOpenSocialName = viewer.getDisplayName();
-		alert(userOpenSocialName);
+		userOpenSocialName = viewer.getDisplayName();		
 		makeInitialPOSTRequest() ;		
 	}
 
@@ -205,7 +218,7 @@
 					  }
 					}
 					// Append extracted data to the HTML string
-					html += "<tr><td><a href='" + jobTitleUrl + "'>" + jobTitle +"</a> at " + jobCompany + "</td></tr><tr><td>Location: "+ jobLocation +" posted on "+ jobPostedOn +"</td></tr>";
+					html += "<tr><td><a href='" + jobTitleUrl + "'>" + jobTitle +"</a> at " + jobLocation + "</td></tr><tr><td>from <span class='companyName'>"+ jobCompany +"</span> posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
 				}
 			}
 			else
@@ -221,7 +234,7 @@
 
 	function getJobs()
 	{
-	alert(userOpenSocialName);
+	
 	//TODO: put input validation here
 		if(trim(document.getElementById('txtCompanyCode').value) != "")
 		{
@@ -240,6 +253,9 @@
 			params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 			var url = "http://talentnow.com/orkutapp/Default.aspx";   
 			gadgets.io.makeRequest(url, response, params);
+
+			if(typeof(loadMessage) != 'undefined')
+				msg.dismissMessage(loadMessage);
 			loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 		}
 		else
