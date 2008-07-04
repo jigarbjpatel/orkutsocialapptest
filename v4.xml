@@ -12,10 +12,10 @@
 		Company Code: <input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" />
 		<br/>
 		Page Size: <input type="select" name="selPageSize" id="selPageSize">
-						<option value="5">5</option>
-						<option value="10">10</option>
-						<option value="15">15</option>
-						<option value="20">20</option>
+						<option value="5" id="5">5</option>
+						<option value="10" id="10">10</option>
+						<option value="15" id="15">15</option>
+						<option value="20" id="20">20</option>
 					</input>
 		<br/>
 		<a href="#" onclick="getJobs();" >Get Jobs</a>
@@ -41,7 +41,7 @@
 	var msg = new gadgets.MiniMessage(__MODULE_ID__);
 	var loadMessage;
 	var userOpenSocialId = "";
-	var pageSize = document.getElementById('selPageSize').options[document.getElementById('selPageSize').selectedIndex].value;
+	var pageSize = document.getElementById('selPageSize').options[document.getElementById('selPageSize').selectedIndex].text;
 	
 	var jobCount = 0;
 	var startIndex = 0;
@@ -186,7 +186,7 @@
 		if(trim(document.getElementById('txtCompanyCode').value) != "")
 		{
 			var companyCode = trim(document.getElementById('txtCompanyCode').value);
-			pageSize = document.getElementById('selPageSize').options[document.getElementById('selPageSize').selectedIndex].value;
+			pageSize = document.getElementById('selPageSize').options[document.getElementById('selPageSize').selectedIndex].text;
 			var params = {};  
 			var postdata = {
 				id : userOpenSocialId,
