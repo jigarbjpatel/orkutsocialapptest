@@ -4,18 +4,20 @@
    <Require feature="opensocial-0.7"/>
    <Require feature="minimessage"/>
  </ModulePrefs>
- <UserPref name="pageSize" display_name="Page Size" default_value="5" datatype="enum" >
-    <EnumValue value="5" display_value="Five"/>
-    <EnumValue value="10" display_value="Ten"/>
-    <EnumValue value="15" display_value="Fifteen"/>
-    <EnumValue value="20" display_value="Twenty"/>
-  </UserPref> 
  <Content type="html">
 
  <![CDATA[
  <form name="frmJobs" id="frmJobs" action="" method="POST">
 	  <div id="searchForm" style="display:none">
 		Company Code: <input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" />
+		<br/>
+		Page Size: <input type="select" name="selPageSize" id="selPageSize">
+						<option value="5">5</option>
+						<option value="10">10</option>
+						<option value="15">15</option>
+						<option value="20">20</option>
+					</input>
+		<br/>
 		<a href="#" onclick="getJobs();" >Get Jobs</a>
 	  </div>
 	  <div id="searchResults" style="display:none">
@@ -35,13 +37,11 @@
 	  </div>
   </form>
  <script type="text/javascript">
- // Get userprefs
-	var prefs = new gadgets.Prefs();
 
 	var msg = new gadgets.MiniMessage(__MODULE_ID__);
 	var loadMessage;
 	var userOpenSocialId = "";
-	var pageSize = prefs.getString("pageSize");
+	var pageSize = document.getElementById('selPageSize').options[document.getElementById('selPageSize').selectedIndex].value;
 	
 	var jobCount = 0;
 	var startIndex = 0;
@@ -186,7 +186,7 @@
 		if(trim(document.getElementById('txtCompanyCode').value) != "")
 		{
 			var companyCode = trim(document.getElementById('txtCompanyCode').value);
-
+			pageSize = document.getElementById('selPageSize').options[document.getElementById('selPageSize').selectedIndex].value;
 			var params = {};  
 			var postdata = {
 				id : userOpenSocialId,
