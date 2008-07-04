@@ -42,8 +42,7 @@
 	var loadMessage;
 	var userOpenSocialId = "";
 	var pageSize = prefs.getString("pageSize");
-	if(pageSize == null)
-		pageSize = 5;
+	
 	var jobCount = 0;
 	var startIndex = 0;
 
