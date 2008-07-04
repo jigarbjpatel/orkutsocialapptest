@@ -4,6 +4,12 @@
    <Require feature="opensocial-0.7"/>
    <Require feature="minimessage"/>
  </ModulePrefs>
+ <UserPref name="pageSize" display_name="Page Size" default_value="5" datatype="enum" >
+    <EnumValue value="5" />
+    <EnumValue value="10" />
+    <EnumValue value="15" />
+    <EnumValue value="20" />
+  </UserPref> 
  <Content type="html">
 
  <![CDATA[
@@ -29,13 +35,20 @@
 	  </div>
   </form>
  <script type="text/javascript">
- var msg = new gadgets.MiniMessage(__MODULE_ID__);
- var loadMessage;
+ // Get userprefs
+	var prefs = new gadgets.Prefs();
+
+	var msg = new gadgets.MiniMessage(__MODULE_ID__);
+	var loadMessage;
 	var userOpenSocialId = "";
-	var pageSize = 5;
+	var pageSize = prefs.getString("pageSize");
 	var jobCount = 0;
 	var startIndex = 0;
 
+	function trim(str)
+    {
+      return str.replace(/^\s+|\s+$/g, '');
+    }
 	function getUserOpenSocialId() 
 	{    
 		var req = opensocial.newDataRequest();
@@ -169,9 +182,9 @@
 	function getJobs()
 	{
 	//TODO: put input validation here
-		if(document.getElementById('txtCompanyCode').value != "")
+		if(trim(document.getElementById('txtCompanyCode').value) != "")
 		{
-			var companyCode = document.getElementById('txtCompanyCode').value;
+			var companyCode = trim(document.getElementById('txtCompanyCode').value);
 
 			var params = {};  
 			var postdata = {
@@ -180,9 +193,6 @@
 				si : startIndex,
 				ps : pageSize
 				};  
-			alert(startIndex);
-			alert(pageSize);
-			alert(companyCode);
 			params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 			params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 			params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
