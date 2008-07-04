@@ -9,16 +9,26 @@
  <![CDATA[
  <form name="frmJobs" id="frmJobs" action="" method="POST">
 	  <div id="searchForm" style="display:none">
-		Company Code: <input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" />
-		<br/>
-		Page Size: <select name="selPageSize" id="selPageSize">
+		<table>
+			<tr>
+				<td>Company Code:</td>
+				<td><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" /></td>
+			</tr>
+			<tr>
+				<td>Number of jobs you want to see at a time:</td>
+				<td>
+					<select name="selPageSize" id="selPageSize">
 						<option value="5" id="5">5</option>
 						<option value="10" id="10">10</option>
 						<option value="15" id="15">15</option>
 						<option value="20" id="20">20</option>
 					</select>
-		<br/>
-		<a href="#" onclick="getJobs();" >Get Jobs</a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><a href="#" onclick="getJobs();" >Get Jobs</a></td>
+			</tr>
+		</table>
 	  </div>
 	  <div id="searchResults" style="display:none">
 		<table>
@@ -41,8 +51,8 @@
 	var msg = new gadgets.MiniMessage(__MODULE_ID__);
 	var loadMessage;
 	var userOpenSocialId = "";
-	var pageSize = document.frmJobs.selPageSize.value;
-	
+	var pageSize = parstInt(document.frmJobs.selPageSize.value,10);
+	var companyCode = "";
 	var jobCount = 0;
 	var startIndex = 0;
 
@@ -61,10 +71,10 @@
 	{
 		var viewer = dataResponse.get('viewer').getData();
 		userOpenSocialId = viewer.getId();
-		makeInitialPOSTRequest(userOpenSocialId) ;		
+		makeInitialPOSTRequest() ;		
 	};
 
-	function makeInitialPOSTRequest(userOpenSocialId) 
+	function makeInitialPOSTRequest() 
 	{  
 		var params = {};  
 		var postdata = {
@@ -93,9 +103,9 @@
 			else
 				jobCount = -1;
 		
-		//Compare the values based on DOM query not straight forward text comparision ????
 		if(parseInt(jobCount,10) == -1)
 		{
+			//Coming for very first time
 			document.getElementById('searchForm').style.display = "block";	
 			document.getElementById('searchResults').style.display = "none";
 		}
@@ -114,7 +124,7 @@
 				//Based on job count show prev and next
 				if(parseInt((startIndex + pageSize),10) < parseInt(jobCount,10))
 					document.getElementById('next').style.display = "block";
-				if(parseInt(startIndex,10) > parseInt(pageSize,10)) 
+				if(parseInt(startIndex,10) >= parseInt(pageSize,10)) 
 					document.getElementById('prev').style.display = "block";
 				
 				var jobList = responseText.getElementsByTagName("job");
@@ -185,7 +195,7 @@
 	//TODO: put input validation here
 		if(trim(document.getElementById('txtCompanyCode').value) != "")
 		{
-			var companyCode = trim(document.getElementById('txtCompanyCode').value);
+			companyCode = trim(document.getElementById('txtCompanyCode').value);
 			pageSize = document.frmJobs.selPageSize.value;
 			var params = {};  
 			var postdata = {
@@ -204,6 +214,7 @@
 		else
 		{
 			//TODO: Show some message
+			loadMessage = msg.createStaticMessage("Please enter the company code.");
 		}
 	}
 	//Show the search Form
@@ -211,6 +222,8 @@
 	{
 		document.getElementById('searchResults').style.display = "none";
 		document.getElementById('searchForm').style.display = "block";
+		document.getElementById('txtCompanyCode').value = companyCode;
+		document.frmJobs.selPageSize.value = pageSize;
 	}
 	//Get previous jobs
 	function getPrevJobs()
