@@ -4,11 +4,11 @@
    <Require feature="opensocial-0.7"/>
    <Require feature="minimessage"/>
  </ModulePrefs>
- <UserPref name="pageSize" display_name="Page Size" default_value=5 datatype="enum" >
-    <EnumValue value=5 display_value="5"/>
-    <EnumValue value=10 display_value="10"/>
-    <EnumValue value=15 display_value="15"/>
-    <EnumValue value=20 display_value="20"/>
+ <UserPref name="pageSize" display_name="Page Size" default_value="5" datatype="enum" >
+    <EnumValue value="5" display_value="Five"/>
+    <EnumValue value="10" display_value="Ten"/>
+    <EnumValue value="15" display_value="Fifteen"/>
+    <EnumValue value="20" display_value="Twenty"/>
   </UserPref> 
  <Content type="html">
 
