@@ -51,7 +51,7 @@
 	var msg = new gadgets.MiniMessage(__MODULE_ID__);
 	var loadMessage;
 	var userOpenSocialId = "";
-	var pageSize = parstInt(document.frmJobs.selPageSize.value,10);
+	var pageSize = document.frmJobs.selPageSize.value;
 	var companyCode = "";
 	var jobCount = 0;
 	var startIndex = 0;
