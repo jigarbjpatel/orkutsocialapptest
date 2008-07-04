@@ -130,6 +130,9 @@
 				{
 					document.getElementById('pager').innerHTML = "&lt;Prev"; 
 				}
+				alert(parseInt((startIndex + pageSize),10) );
+				alert("pagesize = " + pageSize);
+				alert(parseInt(jobCount,10));
 				if(parseInt((startIndex + pageSize),10) < parseInt(jobCount,10))
 				{
 					//display next
