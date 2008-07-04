@@ -250,10 +250,10 @@
 			else
 			{
 				html += "<tr><td class='fieldLabel'>No Records Found.</td></tr>";
+				document.getElementById('pager').innerHTML = "";
 			}
 			
-			document.getElementById('jobsTable').innerHTML = html;
-			document.getElementById('pager').innerHTML = "";
+			document.getElementById('jobsTable').innerHTML = html;			
 			document.getElementById('searchResults').style.display = "block";
 			document.getElementById('searchForm').style.display = "none";
 		}		
