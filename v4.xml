@@ -41,7 +41,7 @@
 	var msg = new gadgets.MiniMessage(__MODULE_ID__);
 	var loadMessage;
 	var userOpenSocialId = "";
-	var pageSize = document.searchForm.selPageSize.value;
+	var pageSize = document.frmJobs.selPageSize.value;
 	
 	var jobCount = 0;
 	var startIndex = 0;
@@ -186,7 +186,7 @@
 		if(trim(document.getElementById('txtCompanyCode').value) != "")
 		{
 			var companyCode = trim(document.getElementById('txtCompanyCode').value);
-			pageSize = document.searchForm.selPageSize.value;
+			pageSize = document.frmJobs.selPageSize.value;
 			var params = {};  
 			var postdata = {
 				id : userOpenSocialId,
