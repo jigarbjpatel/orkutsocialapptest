@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
  <ModulePrefs title="Get Talent Now Jobs" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com">
-   <Require feature="opensocial-0.7"/>
-   <Require feature="minimessage"/>
+	<Require feature="opensocial-0.7"/>
+	<Require feature="minimessage"/>
 	<Require feature="settitle"/>
  </ModulePrefs>
  <Content type="html">
