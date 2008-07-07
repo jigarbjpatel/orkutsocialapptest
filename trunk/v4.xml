@@ -101,8 +101,7 @@
 	{
 		var key = (evt.which) ? evt.which : evt.keyCode;
 		if(parseInt(key,10) == 13)
-		{
-			alert('hi');
+		{			
 			getJobs();
 		}
 	}
@@ -289,11 +288,15 @@
 			if(typeof(loadMessage) != 'undefined')
 				msg.dismissMessage(loadMessage);
 			loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+			alert('in if part of get jobs');
 		}
 		else
 		{
 			//TODO: Show some message
+			if(typeof(loadMessage) != 'undefined')
+				msg.dismissMessage(loadMessage);
 			loadMessage = msg.createStaticMessage("Please enter the company code.");
+			alert('in else part of get jobs');
 		}
 	}
 	//Show the search Form
