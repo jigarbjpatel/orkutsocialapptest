@@ -75,7 +75,7 @@
 			</tr>
 			<tr>
 				<td>
-					<table id="jobsTable"></table>
+					<div id="jobsTable"></div>
 				</td>
 			</tr>
 			<tr>
@@ -246,13 +246,14 @@
 					// Append extracted data to the HTML string
 					html += "<tr><td  class='TopRow'><a href='" + jobTitleUrl + "'>" + jobTitle +"</a> at " + jobLocation + "</td></tr><tr><td class='BottomRow'>from <span class='companyName'>"+ jobCompany +"</span> posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
 				}
+				html = "<table>" + html + "</table>";
 			}
 			else
 			{
-				html += "<tr><td class='fieldLabel'>No Records Found.</td></tr>";
+				html += "<table><tr><td class='fieldLabel'>No Records Found.</td></tr></table>";
 				document.getElementById('pager').innerHTML = "";
 			}
-			alert(html);
+			
 			document.getElementById('jobsTable').innerHTML = html;			
 			document.getElementById('searchResults').style.display = "block";
 			document.getElementById('searchForm').style.display = "none";
