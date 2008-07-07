@@ -131,7 +131,8 @@
 	{
 		var viewer = dataResponse.get('viewer').getData();
 		userOpenSocialId = viewer.getId();
-		userOpenSocialName = viewer.getDisplayName();		
+		userOpenSocialName = viewer.getDisplayName();	
+		alert(userOpenSocialId);
 		makeInitialPOSTRequest() ;		
 	}
 
@@ -154,7 +155,7 @@
 	{
 		if(typeof(loadMessage) != 'undefined')
 			msg.dismissMessage(loadMessage);
-
+alert(obj);
 		var responseText = obj.data;
 		
 		//Get the jobs count
