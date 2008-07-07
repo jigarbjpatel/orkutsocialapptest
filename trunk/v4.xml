@@ -3,6 +3,8 @@
  <ModulePrefs title="Get Talent Now Jobs" title_ur="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">
 	<Require feature="opensocial-0.7"/>
 	<Require feature="minimessage"/>
+	<Locale lang="en" country="us" />
+
 	<!--<Require feature="settitle"/>-->
  </ModulePrefs>
  <Content type="html">
