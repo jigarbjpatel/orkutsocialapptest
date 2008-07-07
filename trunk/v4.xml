@@ -287,8 +287,7 @@
 
 			if(typeof(loadMessage) != 'undefined')
 				msg.dismissMessage(loadMessage);
-			loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
-			alert('in if part of get jobs');
+			loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");			
 		}
 		else
 		{
@@ -296,7 +295,8 @@
 			if(typeof(loadMessage) != 'undefined')
 				msg.dismissMessage(loadMessage);
 			loadMessage = msg.createStaticMessage("Please enter the company code.");
-			alert('in else part of get jobs');
+			return false;
+
 		}
 	}
 	//Show the search Form
