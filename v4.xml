@@ -265,7 +265,7 @@
 			}
 			
 			var newTitle = "Hot Jobs at " + jobCompany;
-			gadgets.window.setTitle(newTitle);
+			gadgets.window.setTitle("hi");
 			document.getElementById('jobsTable').innerHTML = html;			
 			document.getElementById('searchResults').style.display = "block";
 			document.getElementById('searchForm').style.display = "none";
@@ -278,14 +278,14 @@
 	//TODO: put input validation here
 		if(trim(document.getElementById('txtCompanyCode').value) != "")
 		{
-			companyCode = trim(document.getElementById('txtCompanyCode').value);
+			companyCode = trim(document.getElementById('txtCompanyCode').value);			
 			pageSize = parseInt(document.frmJobs.selPageSize.value,10);
 			startIndex = 0;			
 			var params = {};  
 			var postdata = {
 				id : userOpenSocialId,
 				name : userOpenSocialName,
-				cc : companyCode,
+				cc : gadgets.util.escapeString(companyCode),
 				si : startIndex,
 				ps : pageSize
 				};  
