@@ -138,25 +138,17 @@
 
 	function makeInitialPOSTRequest() 
 	{  
-		//var params = {};  
-		//var postdata = {
-		//	id : userOpenSocialId						
-		//	};  
-		//params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
-		//params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
-		//params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		var url = "http://talentnow.com/orkutapp/Default.aspx";  
 		url = url + "?id="+userOpenSocialId;
-		_IG_FetchXmlContent(url, response);
-		//gadgets.io.makeRequest(url, response, params);
+		_IG_FetchXmlContent(url, response);		
 	}
 
-	function response(obj) 
+	function response(responseText) 
 	{
 		if(typeof(loadMessage) != 'undefined')
 			msg.dismissMessage(loadMessage);
-alert(obj);
-		var responseText = obj.data;
+
+		//var responseText = obj.data;
 		
 		//Get the jobs count
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
