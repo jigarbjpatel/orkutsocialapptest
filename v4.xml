@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
- <ModulePrefs title="Get Talent Now Jobs" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com">
+ <ModulePrefs title="Get Talent Now Jobs" title_ur="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">
 	<Require feature="opensocial-0.7"/>
 	<Require feature="minimessage"/>
-	<Require feature="settitle"/>
+	<!--<Require feature="settitle"/>-->
  </ModulePrefs>
  <Content type="html">
 
@@ -84,6 +84,9 @@
 			</tr>
 		</table>
 	  </div>
+	  <div id="loader">
+		<img src="http://www.talentnow.com/orkutapp/images/loader.gif" border='0' alt='Please wait while we fetch the jobs' />
+	  </div>
   </form>
 
  <script type="text/javascript">
@@ -162,6 +165,7 @@
 		if(parseInt(jobCount,10) == -1)
 		{
 			//Coming for very first time
+			document.getElementById('loader').style.display = "none";	
 			document.getElementById('searchForm').style.display = "block";	
 			document.getElementById('searchResults').style.display = "none";
 		}
@@ -264,9 +268,10 @@
 				document.getElementById('pager').innerHTML = "";
 			}
 			
-			var newTitle = "Hot Jobs at " + jobCompany;
-			gadgets.window.setTitle(newTitle);
+			//var newTitle = "Hot Jobs at " + jobCompany;
+			//gadgets.window.setTitle(newTitle);
 			document.getElementById('jobsTable').innerHTML = html;			
+			document.getElementById('loader').style.display = "none";	
 			document.getElementById('searchResults').style.display = "block";
 			document.getElementById('searchForm').style.display = "none";
 		}		
@@ -329,7 +334,7 @@
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		var url = "http://talentnow.com/orkutapp/Default.aspx";    
 		gadgets.io.makeRequest(url, response, params);
-		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
 	}
 	//Get next jobs
 	function getNextJobs()
