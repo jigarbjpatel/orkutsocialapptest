@@ -263,6 +263,7 @@
 				html += "<table><tr><td class='fieldLabel'>No Records Found.</td></tr></table>";
 				document.getElementById('pager').innerHTML = "";
 			}
+			alert(jobCompany);
 			var newTitle = "Hot Jobs at " + jobCompany;
 			gadgets.window.setTitle(newTitle);
 			document.getElementById('jobsTable').innerHTML = html;			
