@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
- <ModulePrefs title="GetTalentNowJobs" description="This is test" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com">
+ <ModulePrefs title="Get Talent Now Jobs" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com">
    <Require feature="opensocial-0.7"/>
    <Require feature="minimessage"/>
-   <Require feature="dynamic-height"/> 
  </ModulePrefs>
  <Content type="html">
 
@@ -264,9 +263,7 @@
 				document.getElementById('pager').innerHTML = "";
 			}
 			
-			document.getElementById('jobsTable').innerHTML = html;
-			gadgets.window.adjustHeight();
-
+			document.getElementById('jobsTable').innerHTML = html;			
 			document.getElementById('searchResults').style.display = "block";
 			document.getElementById('searchForm').style.display = "none";
 		}		
@@ -298,16 +295,13 @@
 			if(typeof(loadMessage) != 'undefined')
 				msg.dismissMessage(loadMessage);
 			loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
-			gadgets.window.adjustHeight();
-
 		}
 		else
 		{
 			//TODO: Show some message
 			if(typeof(loadMessage) != 'undefined')
 				msg.dismissMessage(loadMessage);
-			loadMessage = msg.createStaticMessage("Please enter the company code.");
-			gadgets.window.adjustHeight();
+			loadMessage = msg.createStaticMessage("Please enter the company code.");			
 		}
 	}
 	//Show the search Form
@@ -333,8 +327,6 @@
 		var url = "http://talentnow.com/orkutapp/Default.aspx";    
 		gadgets.io.makeRequest(url, response, params);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
-		gadgets.window.adjustHeight();
-
 	}
 	//Get next jobs
 	function getNextJobs()
@@ -351,8 +343,6 @@
 		var url = "http://talentnow.com/orkutapp/Default.aspx";  
 		gadgets.io.makeRequest(url, response, params);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
-		gadgets.window.adjustHeight();
-
 	}
 
 	gadgets.util.registerOnLoadHandler(getUserOpenSocialId);
