@@ -295,8 +295,7 @@
 			if(typeof(loadMessage) != 'undefined')
 				msg.dismissMessage(loadMessage);
 			loadMessage = msg.createStaticMessage("Please enter the company code.");
-			return false;
-
+			event.returnValue = false;
 		}
 	}
 	//Show the search Form
