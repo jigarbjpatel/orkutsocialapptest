@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+ <ModulePrefs title="Get Talent Now Jobs" title_ur="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">
+	<Require feature="opensocial-0.7"/>
+	<Require feature="minimessage"/>
+	 <Locale lang="en" country="us" />
+
+	<!--<Require feature="settitle"/>-->
+ </ModulePrefs>
+ <Content type="html">
+
+ <![CDATA[
+   <style type="text/css">
+   .fieldLabel{
+		clear: left;
+		text-align: left;
+		padding-bottom: 5px;
+		color: #666666;
+		vertical-align: top;
+		font-size: 12px;
+		font-weight: normal;		
+		font-family:Verdana, Arial, Sans-Serif;		
+	}
+	.TopRow{
+		clear: left;
+		text-align: left;
+		color: #666666;
+		vertical-align: top;
+		font-size: 12px;
+		font-weight: normal;		
+		font-family:Verdana, Arial, Sans-Serif;		
+	}
+	.BottomRow{
+		clear: left;
+		text-align: left;
+		padding-bottom: 5px;
+		color: #666666;
+		vertical-align: top;
+		font-size: 12px;
+		font-weight: normal;		
+		font-family:Verdana, Arial, Sans-Serif;		
+	}
+
+	.datePostedon{
+		color:#6f6f6f;
+	}
+	.companyName{
+		color:green;
+	}
+  </style>
+ <form name="frmJobs" id="frmJobs" action="" method="POST">
+	  <div id="searchForm" style="display:none" onkeydown="checkPost(event);">
+		<table>
+			<tr>
+				<td class="fieldLabel">Company Code:</td>
+				<td class="fieldLabel"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" /></td>
+			</tr>
+			<tr>
+				<td class="fieldLabel">Number of jobs you want to see at a time:</td>
+				<td class="fieldLabel">
+					<select name="selPageSize" id="selPageSize">
+						<option value="5" id="5">5</option>
+						<option value="10" id="10">10</option>
+						<option value="15" id="15">15</option>
+						<option value="20" id="20">20</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right" class="fieldLabel"><a href="#" >Get Jobs</a></td>
+			</tr>
+		</table>
+	  </div>
+	  <div id="searchResults" style="display:none">
+		<table>
+			<tr>
+				<td align="right"><div id="pager" class='fieldLabel'></div></td>
+			</tr>
+			<tr>
+				<td>
+					<div id="jobsTable"></div>
+				</td>
+			</tr>
+			<tr>
+				<td align="right"  class="fieldLabel"><a href="#" onclick="changeSearhCriteria();" >Change Search Criteria</a></td>
+			</tr>
+		</table>
+	  </div>
+	
+  </form>
+
+ <script type="text/javascript">
+
+	var msg = new _IG_MiniMessage(__MODULE_ID__);
+	var loadMessage;
+	var userOpenSocialId = "";
+	var userOpenSocialName = "";
+	var pageSize = 5;
+	var companyCode = "";
+	var jobCount = 0;
+	var startIndex = 0;
+
+
+	function checkPost(evt)
+	{
+		var key = (evt.which) ? evt.which : evt.keyCode;
+		if(parseInt(key,10) == 13)
+		{		
+			if(evt.which)
+			{
+				evt.preventDefault();
+			}
+			else
+			{
+				event.returnValue = false;			
+			}
+		}
+	}
+	function trim(str)
+    {
+      return str.replace(/^\s+|\s+$/g, '');
+    }
+	function getUserOpenSocialId() 
+	{    
+		var req = opensocial.newDataRequest();
+		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
+		req.send(onGotUserOpenSocialId);
+	}
+
+	function onGotUserOpenSocialId(dataResponse)
+	{
+		var viewer = dataResponse.get('viewer').getData();
+		userOpenSocialId = viewer.getId();
+		userOpenSocialName = viewer.getDisplayName();		
+		makeInitialPOSTRequest() ;		
+	}
+
+	function makeInitialPOSTRequest() 
+	{  
+		//var params = {};  
+		//var postdata = {
+		//	id : userOpenSocialId						
+		//	};  
+		//params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+		//params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+		//params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+		var url = "http://talentnow.com/orkutapp/Default.aspx";  
+		url = url + "?id="+userOpenSocialId;
+		_IG_FetchXmlContent(url, response);
+		//gadgets.io.makeRequest(url, response, params);
+	}
+
+	function response(obj) 
+	{
+		if(typeof(loadMessage) != 'undefined')
+			msg.dismissMessage(loadMessage);
+
+		var responseText = obj.data;
+		
+		//Get the jobs count
+		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
+		if(typeof(jobCount) != 'undefined')
+				jobCount = parseInt(jobCount,10);
+			else
+				jobCount = -1;
+		
+		if(parseInt(jobCount,10) == -1)
+		{
+			//Coming for very first time
+			document.getElementById('loader').style.display = "none";	
+			document.getElementById('searchForm').style.display = "block";	
+			document.getElementById('searchResults').style.display = "none";
+		}
+		else 
+		{
+			startIndex = responseText.getElementsByTagName("jobs").item(0).getAttribute("startIndex");
+			if(typeof(startIndex) != 'undefined')
+				startIndex = parseInt(startIndex,10);
+			else
+				startIndex = 0;
+			
+			pageSize = responseText.getElementsByTagName("jobs").item(0).getAttribute("pageSize");
+			if(typeof(pageSize) != 'undefined')
+				pageSize = parseInt(pageSize,10);
+			else
+				pageSize = 5;
+
+			companyCode = responseText.getElementsByTagName("jobs").item(0).getAttribute("searchString");
+			
+			//Create html for jobsTable
+			var html = "";			
+			if(parseInt(jobCount,10) != 0)
+			{
+				//Based on job count show prev and next
+				if(parseInt(startIndex,10) >= parseInt(pageSize,10)) 
+				{
+					document.getElementById('pager').innerHTML = "<a id='prev' href='#' onclick='getPrevJobs();' >&lt;Prev</a>"; 
+				}
+				else
+				{
+					document.getElementById('pager').innerHTML = "&lt;Prev"; 
+				}
+				
+				if((parseInt(startIndex,10) + parseInt(pageSize,10)) < parseInt(jobCount,10))
+				{
+					//display next
+					document.getElementById('pager').innerHTML += " | " + "<a id='next' href='#' onclick='getNextJobs();' >Next&gt;</a>"; 
+				}
+				else
+				{
+					document.getElementById('pager').innerHTML += " | " + "Next&gt;";
+				}
+					
+				var jobList = responseText.getElementsByTagName("job");
+				var jobTitle = "";
+				var jobLocation = "";
+				var jobCompany = "";
+				var jobPostedOn = "";
+				var jobTitleUrl = "";
+
+				for (var i = 0; i < jobList.length ; i++) 
+				{ 
+					var nodeList = jobList.item(i).childNodes;	
+					jobTitle = "";
+					jobLocation = "";
+					jobCompany = "";
+					jobPostedOn = "";
+					jobTitleUrl = "";
+					for (var j = 0; j < nodeList.length ; j++) 
+					{
+					  var node = nodeList.item(j);
+					  if (node.nodeName == "title") 
+					  {
+						if(node.firstChild != null)
+							jobTitle = node.firstChild.nodeValue;						
+					  }
+					  if (node.nodeName == "location") 
+					  {
+						if(node.firstChild != null)
+							jobLocation = node.firstChild.nodeValue;				
+					  }
+					  if (node.nodeName == "company") 
+					  {
+						  if(node.firstChild != null)
+							jobCompany = node.firstChild.nodeValue; 
+					  }
+					  if (node.nodeName == "postedon") 
+					  {
+						if(node.firstChild != null)
+							jobPostedOn = node.firstChild.nodeValue; 
+					  }
+					  if (node.nodeName == "titleurl")
+					  {
+						//if (node.firstChild.nodeName == "#cdata-section") 
+						if(node.firstChild == null)
+							var jobTitleUrl = "http://talentnow.com";
+						else
+							var jobTitleUrl = node.firstChild.nodeValue;
+						 //TODO: Add id of user and name to the url
+					  }
+					}
+					// Append extracted data to the HTML string
+					html += "<tr><td  class='TopRow'><a href='" + jobTitleUrl + "' target='_blank'>" + jobTitle +"</a> at " + jobLocation + "</td></tr><tr><td class='BottomRow'>from <span class='companyName'>"+ jobCompany +"</span> posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
+				}
+				html = "<table>" + html + "</table>";
+			}
+			else
+			{
+				html += "<table><tr><td class='fieldLabel'>No Records Found.</td></tr></table>";
+				document.getElementById('pager').innerHTML = "";
+			}
+			
+			//var newTitle = "Hot Jobs at " + jobCompany;
+			//gadgets.window.setTitle(newTitle);
+			document.getElementById('jobsTable').innerHTML = html;			
+			document.getElementById('loader').style.display = "none";	
+			document.getElementById('searchResults').style.display = "block";
+			document.getElementById('searchForm').style.display = "none";
+		}		
+	}
+
+	
+	//Show the search Form
+	function changeSearhCriteria()
+	{
+		document.getElementById('searchResults').style.display = "none";
+		document.getElementById('searchForm').style.display = "block";
+		document.getElementById('txtCompanyCode').value = companyCode;
+		document.frmJobs.selPageSize.value = pageSize;
+	}
+
+
+	_IG_RegisterOnloadHandler(getUserOpenSocialId);
+
+
+  </script>
+ 
+  ]]>
+  </Content>
+</Module>
