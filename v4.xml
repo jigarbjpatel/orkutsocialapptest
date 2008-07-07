@@ -3,6 +3,7 @@
  <ModulePrefs title="Get Talent Now Jobs" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com">
    <Require feature="opensocial-0.7"/>
    <Require feature="minimessage"/>
+	<Require feature="settitle"/>
  </ModulePrefs>
  <Content type="html">
 
@@ -262,7 +263,8 @@
 				html += "<table><tr><td class='fieldLabel'>No Records Found.</td></tr></table>";
 				document.getElementById('pager').innerHTML = "";
 			}
-			
+			var newTitle = "Hot Jobs at " + jobCompany;
+			gadgets.window.setTitle(newTitle);
 			document.getElementById('jobsTable').innerHTML = html;			
 			document.getElementById('searchResults').style.display = "block";
 			document.getElementById('searchForm').style.display = "none";
