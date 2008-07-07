@@ -102,7 +102,7 @@
 		var key = (evt.which) ? evt.which : evt.keyCode;
 		if(parseInt(key,10) == 13)
 		{			
-			getJobs();
+			event.returnValue = false;			
 		}
 	}
 	function trim(str)
@@ -287,15 +287,14 @@
 
 			if(typeof(loadMessage) != 'undefined')
 				msg.dismissMessage(loadMessage);
-			loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");			
+			loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 		}
 		else
 		{
 			//TODO: Show some message
 			if(typeof(loadMessage) != 'undefined')
 				msg.dismissMessage(loadMessage);
-			loadMessage = msg.createStaticMessage("Please enter the company code.");
-			event.returnValue = false;
+			loadMessage = msg.createStaticMessage("Please enter the company code.");			
 		}
 	}
 	//Show the search Form
