@@ -101,8 +101,15 @@
 	{
 		var key = (evt.which) ? evt.which : evt.keyCode;
 		if(parseInt(key,10) == 13)
-		{			
-			event.returnValue = false;			
+		{		
+			if(evt.which)
+			{
+				evt.preventDefault();
+			}
+			else
+			{
+				event.returnValue = false;			
+			}
 		}
 	}
 	function trim(str)
