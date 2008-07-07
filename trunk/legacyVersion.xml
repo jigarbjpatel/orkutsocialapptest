@@ -99,7 +99,7 @@
 	var companyCode = "";
 	var jobCount = 0;
 	var startIndex = 0;
-
+var url = "http://talentnow.com/orkutapp/Default_Legacy.aspx";  
 
 	function checkPost(evt)
 	{
@@ -138,7 +138,6 @@
 
 	function makeInitialPOSTRequest() 
 	{  
-		var url = "http://talentnow.com/orkutapp/Default.aspx";  
 		url = url + "?id="+userOpenSocialId;
 		_IG_FetchXmlContent(url, response);		
 	}
