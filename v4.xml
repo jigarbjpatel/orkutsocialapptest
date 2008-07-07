@@ -101,7 +101,10 @@
 	{
 		var key = (evt.which) ? evt.which : evt.keyCode;
 		if(parseInt(key,10) == 13)
+		{
+			alert('hi');
 			getJobs();
+		}
 	}
 	function trim(str)
     {
@@ -244,7 +247,7 @@
 					  }
 					}
 					// Append extracted data to the HTML string
-					html += "<tr><td  class='TopRow'><a href='" + jobTitleUrl + "'>" + jobTitle +"</a> at " + jobLocation + "</td></tr><tr><td class='BottomRow'>from <span class='companyName'>"+ jobCompany +"</span> posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
+					html += "<tr><td  class='TopRow'><a href='" + jobTitleUrl + "' target='_blank'>" + jobTitle +"</a> at " + jobLocation + "</td></tr><tr><td class='BottomRow'>from <span class='companyName'>"+ jobCompany +"</span> posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
 				}
 				html = "<table>" + html + "</table>";
 			}
