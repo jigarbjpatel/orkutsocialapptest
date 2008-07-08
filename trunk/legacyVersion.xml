@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
- <ModulePrefs title="Work with me at __UP_cc__" title_ur="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">
-	<UserPref name="cc" display_name="Company Code" required="true" />
-	<Require feature="minimessage"/>
-	<Locale lang="en" country="us" />
+ <ModulePrefs title="Work with me at __UP_cc__" title_url="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">
+	<UserPref name="cc" display_name="Company Code" required="true"></UserPref>
+	<!--<Require feature="minimessage"/>
+	<Locale lang="en" country="us" />-->
  </ModulePrefs>
  <Content type="html">
 
@@ -46,7 +46,7 @@
 		color:green;
 	}
   </style>
- <form name="frmJobs" id="frmJobs" action="" method="POST">
+ <form name="frmJobs" id="frmJobs" action="">
 	  <div id="searchResults">
 		<table>
 			<tr>
@@ -66,17 +66,18 @@
 
  <script type="text/javascript">
 
-	var msg = new _IG_MiniMessage(__MODULE_ID__);
-	var loadMessage;
+	//var msg = new _IG_MiniMessage(__MODULE_ID__);
+	//var loadMessage;
 	var pageSize = 5;
 	var companyCode = "";
 	var jobCount = 0;
-	var prefs = new _IG_Prefs();
-	var url = "http://talentnow.com/orkutapp/Default_Legacy.aspx";  
+	
+	var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
 
 	function onload()
 	{
-		alert(prefs);
+		var prefs = new _IG_Prefs();
+		alert(prefs.getString("cc"));
 		companyCode = prefs.getString("cc");
 		url += "?cc="+companyCode;
 		_IG_FetchXmlContent(url, response);	
@@ -84,9 +85,10 @@
 
 	function response(responseText) 
 	{
+	/*
 		if(typeof(loadMessage) != 'undefined')
 			msg.dismissMessage(loadMessage);
-
+*/
 		//var responseText = obj.data;
 		//alert(responseText);
 		//Get the jobs count
@@ -215,7 +217,7 @@
 		startIndex = startIndex - pageSize;
 		url += "?cc="+companyCode+"&si="+startIndex;
 		_IG_FetchXmlContent(url, response);
-		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
+		//loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
 	}
 	//Get next jobs
 	function getNextJobs()
@@ -223,7 +225,7 @@
 		startIndex = startIndex + pageSize;
 		url += "?cc="+companyCode+"&si="+startIndex;
 		_IG_FetchXmlContent(url, response);
-		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+//		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 	}
 
 	_IG_RegisterOnloadHandler(onload);
