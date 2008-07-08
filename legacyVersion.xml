@@ -72,23 +72,22 @@
 	var companyCode = "";
 	var jobCount = 0;
 	
-	var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
 
 	function initialCode()
 	{
 		var prefs = new _IG_Prefs();
 		companyCode = prefs.getString("companyId");
-		url += "?cc="+companyCode;		
-				alert(url);
+		var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
+		url += "?cc="+companyCode;						
 		_IG_FetchXmlContent(url, response);	
 	}
 
 	function response(responseText) 
 	{
-	/*
+	
 		if(typeof(loadMessage) != 'undefined')
 			msg.dismissMessage(loadMessage);
-*/
+
 		//var responseText = obj.data;
 		//alert(responseText);
 
@@ -218,19 +217,19 @@
 	{
 		alert("in prevJobs");
 		startIndex = startIndex - pageSize;
+		var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
 		url += "?cc="+companyCode+"&si="+startIndex;
-				alert(url);
 		_IG_FetchXmlContent(url, response);
-		//loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
+		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
 	}
 	//Get next jobs
 	function getNextJobs()
 	{
 		startIndex = startIndex + pageSize;
+		var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
 		url += "?cc="+companyCode+"&si="+startIndex;
-		alert(url);
 		_IG_FetchXmlContent(url, response);
-//		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 	}
 
 	_IG_RegisterOnloadHandler(initialCode);
