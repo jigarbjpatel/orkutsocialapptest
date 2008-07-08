@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
- <ModulePrefs title="Work with me at __UP_companyId__" title_url="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">	
+ <ModulePrefs title="Work with me at __UP_companyId__ " title_url="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">	
 	<Require feature="minimessage"/>
 	<Locale lang="en" country="us" />
  </ModulePrefs>
