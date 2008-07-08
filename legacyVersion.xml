@@ -79,6 +79,7 @@
 		var prefs = new _IG_Prefs();
 		companyCode = prefs.getString("companyId");
 		url += "?cc="+companyCode;		
+				alert(url);
 		_IG_FetchXmlContent(url, response);	
 	}
 
@@ -218,15 +219,16 @@
 		alert("in prevJobs");
 		startIndex = startIndex - pageSize;
 		url += "?cc="+companyCode+"&si="+startIndex;
+				alert(url);
 		_IG_FetchXmlContent(url, response);
 		//loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
 	}
 	//Get next jobs
 	function getNextJobs()
 	{
-	alert("in nextJobs");
 		startIndex = startIndex + pageSize;
 		url += "?cc="+companyCode+"&si="+startIndex;
+		alert(url);
 		_IG_FetchXmlContent(url, response);
 //		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 	}
