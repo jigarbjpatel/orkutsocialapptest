@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
- <ModulePrefs title="Work with me at __UP_cc__" title_url="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">
-	<UserPref name="companyId" display_name="Company Code" required="true"></UserPref>
-	<!--<Require feature="minimessage"/>
-	<Locale lang="en" country="us" />-->
+ <ModulePrefs title="Work with me at __UP_cc__" title_url="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">	
+	<Require feature="minimessage"/>
+	<Locale lang="en" country="us" />
  </ModulePrefs>
+ <UserPref name="companyId" display_name="Company Code" required="true"></UserPref>
  <Content type="html">
 
  <![CDATA[
@@ -66,8 +66,8 @@
 
  <script type="text/javascript">
 
-	//var msg = new _IG_MiniMessage(__MODULE_ID__);
-	//var loadMessage;
+	var msg = new _IG_MiniMessage(__MODULE_ID__);
+	var loadMessage;
 	var pageSize = 5;
 	var companyCode = "";
 	var jobCount = 0;
@@ -76,26 +76,22 @@
 
 	function initialCode()
 	{
-		alert("in onload");
 		var prefs = new _IG_Prefs();
 		companyCode = prefs.getString("companyId");
-		url += "?cc="+companyCode;
-		alert(url);
+		url += "?cc="+companyCode;		
 		_IG_FetchXmlContent(url, response);	
 	}
 
 	function response(responseText) 
 	{
-		alert("in response");
-	
 	/*
 		if(typeof(loadMessage) != 'undefined')
 			msg.dismissMessage(loadMessage);
 */
 		//var responseText = obj.data;
 		//alert(responseText);
-		//Get the jobs count
-	/*
+
+		//Get the jobs count	
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
 		if(typeof(jobCount) != 'undefined')
 				jobCount = parseInt(jobCount,10);
@@ -213,9 +209,9 @@
 			document.getElementById('jobsTable').innerHTML = html;								
 		}	
 		document.getElementById('loader').style.display = "none";	
-		*/
+		
 	}
-/*
+
 	//Get previous jobs
 	function getPrevJobs()
 	{
@@ -234,7 +230,7 @@
 		_IG_FetchXmlContent(url, response);
 //		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 	}
-*/
+
 	_IG_RegisterOnloadHandler(initialCode);
 
 
