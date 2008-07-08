@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
  <ModulePrefs title="Work with me at __UP_cc__" title_ur="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">
-	<UserPref name="cc" display_name="Comapny Code" required="true" />
+	<UserPref name="cc" display_name="Company Code" required="true" />
 	<Require feature="minimessage"/>
 	<Locale lang="en" country="us" />
  </ModulePrefs>
@@ -76,6 +76,7 @@
 
 	function onload()
 	{
+		alert(prefs);
 		companyCode = prefs.getString("cc");
 		url += "?cc="+companyCode;
 		_IG_FetchXmlContent(url, response);	
@@ -87,7 +88,7 @@
 			msg.dismissMessage(loadMessage);
 
 		//var responseText = obj.data;
-		alert(responseText);
+		//alert(responseText);
 		//Get the jobs count
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
 		if(typeof(jobCount) != 'undefined')
