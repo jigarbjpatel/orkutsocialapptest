@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
  <ModulePrefs title="Work with me at __UP_cc__" title_url="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">
-	<UserPref name="cc" display_name="Company Code" required="true"></UserPref>
+	<UserPref name="companyId" display_name="Company Code" required="true"></UserPref>
 	<!--<Require feature="minimessage"/>
 	<Locale lang="en" country="us" />-->
  </ModulePrefs>
@@ -76,15 +76,17 @@
 
 	function onload()
 	{
+		alert("in onload");
 		var prefs = new _IG_Prefs();
-		alert(prefs.getString("cc"));
-		companyCode = prefs.getString("cc");
+		alert(prefs.getString("companyId"));
+		companyCode = prefs.getString("companyId");
 		url += "?cc="+companyCode;
 		_IG_FetchXmlContent(url, response);	
 	}
 
 	function response(responseText) 
 	{
+	alert("in response");
 	/*
 		if(typeof(loadMessage) != 'undefined')
 			msg.dismissMessage(loadMessage);
@@ -214,6 +216,7 @@
 	//Get previous jobs
 	function getPrevJobs()
 	{
+		alert("in prevJobs");
 		startIndex = startIndex - pageSize;
 		url += "?cc="+companyCode+"&si="+startIndex;
 		_IG_FetchXmlContent(url, response);
@@ -222,6 +225,7 @@
 	//Get next jobs
 	function getNextJobs()
 	{
+	alert("in nextJobs");
 		startIndex = startIndex + pageSize;
 		url += "?cc="+companyCode+"&si="+startIndex;
 		_IG_FetchXmlContent(url, response);
