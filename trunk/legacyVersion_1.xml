@@ -32,7 +32,7 @@
 	function initialCode()
 	{
 		alert("in onload");
-		var prefs = new _IG_Prefs();
+		var prefs = new _IG_Prefs(__MODULE_ID__);
 		companyCode = prefs.getString("companyId");
 		url += "?cc="+companyCode;
 		alert(url);
