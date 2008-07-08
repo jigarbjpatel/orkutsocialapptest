@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
- <ModulePrefs title="Work with me at my company" title_url="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">
-	<UserPref name="companyId" display_name="Company Code" required="true"></UserPref>	
+ <ModulePrefs title="Work with me at my company" title_url="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">		
  </ModulePrefs>
+ <UserPref name="companyId" display_name="Company Code" required="true"></UserPref>
  <Content type="html">
 
  <![CDATA[
@@ -28,21 +28,17 @@
  <script type="text/javascript">
 	var companyCode = "";
 	var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
-	var prefs = new _IG_Prefs(__MODULE_ID__);
+	var prefs = new _IG_Prefs();
 
 	function initialCode()
 	{
-		//alert("in onload");
-		
 		companyCode = prefs.getString("companyId");
 		url += "?cc="+companyCode;
-		alert(url);
 		_IG_FetchXmlContent(url, response);	
 	}
 
 	function response(responseText) 
 	{
-		alert("in response");
 		document.getElementById('loader').style.display = "none";			
 	}
 
