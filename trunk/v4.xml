@@ -125,13 +125,13 @@
 	function getUserOpenSocialId() 
 	{    
 		var req = opensocial.newDataRequest();
-		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
+		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.OWNER), 'owner');
 		req.send(onGotUserOpenSocialId);
 	}
 
 	function onGotUserOpenSocialId(dataResponse)
 	{
-		var viewer = dataResponse.get('viewer').getData();
+		var viewer = dataResponse.get('owner').getData();
 		userOpenSocialId = viewer.getId();
 		userOpenSocialName = viewer.getDisplayName();		
 		makeInitialPOSTRequest() ;		
