@@ -76,7 +76,7 @@
 
 	function initialCode()
 	{
-		alert(window.location.href);
+		document.write(window.location.href);
 		var prefs = new _IG_Prefs();
 		companyCode = prefs.getString("companyId");
 		referrerId = prefs.getString("employeeId");
