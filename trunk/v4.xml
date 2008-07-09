@@ -80,7 +80,11 @@
 				<td>
 					<div id="jobsTable"></div>
 				</td>
-			</tr>
+			</tr>			
+		</table>
+	  </div>
+	   <div id="changeSettings" style="display:none">
+		<table>
 			<tr>
 				<td align="right"  class="fieldLabel"><a href="#" onclick="changeSearhCriteria();" >Change Search Criteria</a></td>
 			</tr>
@@ -101,7 +105,7 @@
 	var companyCode = "";
 	var jobCount = 0;
 	var startIndex = 0;
-
+	var viewerId = "";
 
 	function checkPost(evt)
 	{
@@ -126,14 +130,17 @@
 	{    
 		var req = opensocial.newDataRequest();
 		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.OWNER), 'owner');
+		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
 		req.send(onGotUserOpenSocialId);
 	}
 
 	function onGotUserOpenSocialId(dataResponse)
 	{
-		var viewer = dataResponse.get('owner').getData();
-		userOpenSocialId = viewer.getId();
-		userOpenSocialName = viewer.getDisplayName();		
+		var owner = dataResponse.get('owner').getData();
+		userOpenSocialId = owner.getId();
+		userOpenSocialName = owner.getDisplayName();	
+		var viewer = dataResponse.get('viewer').getData();
+		viewerId = viewer.getId();
 		makeInitialPOSTRequest() ;		
 	}
 
@@ -170,6 +177,7 @@
 			document.getElementById('loader').style.display = "none";	
 			document.getElementById('searchForm').style.display = "block";	
 			document.getElementById('searchResults').style.display = "none";
+			document.getElementById('changeSettings').style.display = "none";
 		}
 		else 
 		{
@@ -212,6 +220,7 @@
 				}
 					
 				var jobList = responseText.getElementsByTagName("job");
+				var jobPostingCode = "";
 				var jobTitle = "";
 				var jobLocation = "";
 				var jobCompany = "";
@@ -221,6 +230,7 @@
 				for (var i = 0; i < jobList.length ; i++) 
 				{ 
 					var nodeList = jobList.item(i).childNodes;	
+					jobPostingCode = jobList.item(i).getAttribute("id");
 					jobTitle = "";
 					jobLocation = "";
 					jobCompany = "";
@@ -253,7 +263,7 @@
 					  {
 						//if (node.firstChild.nodeName == "#cdata-section") 
 						if(node.firstChild == null)
-							var jobTitleUrl = "http://talentnow.com";
+							var jobTitleUrl = "http://talentnow.com/public/viewalljobs.aspx?jpc="+jobPostingCode+"&rid="+userOpenSocialId;
 						else
 							var jobTitleUrl = node.firstChild.nodeValue;
 						 //TODO: Add id of user and name to the url
@@ -266,7 +276,7 @@
 			}
 			else
 			{
-				html += "<table><tr><td class='fieldLabel'>No Records Found.</td></tr></table>";
+				html += "<table><tr><td class='fieldLabel'>No jobs found.</td></tr></table>";
 				document.getElementById('pager').innerHTML = "";
 			}
 			
@@ -274,7 +284,11 @@
 			//gadgets.window.setTitle(newTitle);
 			document.getElementById('jobsTable').innerHTML = html;			
 			document.getElementById('loader').style.display = "none";	
-			document.getElementById('searchResults').style.display = "block";
+			document.getElementById('searchResults').style.display = "block";			
+			if(viewerId == userOpenSocialId)
+			{
+				document.getElementById('changeSettings').style.display = "block";
+			}	
 			document.getElementById('searchForm').style.display = "none";
 		}		
 	}
@@ -291,7 +305,7 @@
 			var params = {};  
 			var postdata = {
 				id : userOpenSocialId,
-				name : userOpenSocialName,
+				name : gadgets.util.escapeString(userOpenSocialName),
 				cc : gadgets.util.escapeString(companyCode),
 				si : startIndex,
 				ps : pageSize
