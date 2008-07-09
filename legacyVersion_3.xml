@@ -4,8 +4,6 @@
 	<Require feature="minimessage"/>
 	<Locale lang="en" country="us" />
  </ModulePrefs>
- <UserPref name="companyId" display_name="Company Code" required="true"></UserPref>
-  <UserPref name="employeeId" display_name="Employee Id"></UserPref>
  <Content type="html">
 
  <![CDATA[
@@ -48,7 +46,33 @@
 	}
   </style>
  <form name="frmJobs" id="frmJobs" action="">
-	  <div id="searchResults">
+	  <div id="searchForm" style="display:none" onkeydown="checkPost(event);">
+		<table>
+			<tr>
+				<td class="fieldLabel">Company Code<span style="color:red">*</span>:</td>
+				<td class="fieldLabel"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" /></td>
+			</tr>
+			<tr>
+				<td class="fieldLabel">Your Name:</td>
+				<td class="fieldLabel"><input type="text" id="txtEmployeeName" name="txtEmployeeName" maxlength="50" /></td>
+			</tr>
+			<tr>
+				<td class="fieldLabel">Number of jobs you want to see at a time:</td>
+				<td class="fieldLabel">
+					<select name="selPageSize" id="selPageSize">
+						<option value="5" id="5">5</option>
+						<option value="10" id="10">10</option>
+						<option value="15" id="15">15</option>
+						<option value="20" id="20">20</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right" class="fieldLabel"><a href="#" onclick="getJobs();" >Get Jobs</a></td>
+			</tr>
+		</table>
+	  </div>
+	  <div id="searchResults" style="display:none">
 		<table>
 			<tr>
 				<td align="right"><div id="pager" class='fieldLabel'></div></td>
@@ -57,6 +81,13 @@
 				<td>
 					<div id="jobsTable"></div>
 				</td>
+			</tr>			
+		</table>
+	  </div>
+	  <div id="changeSettings" style="display:none">
+		<table>
+			<tr>
+				<td align="right"  class="fieldLabel"><a href="#" onclick="changeSearhCriteria();" >Change Search Criteria</a></td>
 			</tr>
 		</table>
 	  </div>
@@ -72,16 +103,37 @@
 	var pageSize = 5;
 	var companyCode = "";
 	var jobCount = 0;
+	var startIndex = 0;
 	var referrerId = "";
+	
+	function checkPost(evt)
+	{
+		var key = (evt.which) ? evt.which : evt.keyCode;
+		if(parseInt(key,10) == 13)
+		{		
+			if(evt.which)
+			{
+				evt.preventDefault();
+			}
+			else
+			{
+				event.returnValue = false;			
+			}
+		}
+	}
+	function trim(str)
+    {
+      return str.replace(/^\s+|\s+$/g, '');
+    }
 
 	function initialCode()
 	{
-		document.write(window.location.href);
-		var prefs = new _IG_Prefs();
-		companyCode = prefs.getString("companyId");
-		referrerId = prefs.getString("employeeId");
+		ownerid = "";
+		var clientUrl = window.location.href;
+		referrerId = clientUrl.substring(clientUrl.indexOf("&gadgetOwner=") + 13,clientUrl.indexOf("&gadgetViewer"));
+		alert(referrerId);
 		var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
-		url += "?cc="+companyCode;						
+		url += "?id="+referrerId;						
 		_IG_FetchXmlContent(url, response);	
 	}
 
@@ -101,10 +153,9 @@
 		if(parseInt(jobCount,10) == -1)
 		{
 			// No search crriteria specified
-			html += "<table><tr><td class='fieldLabel'>Please specify company code given to you by your HR in application settings.</td></tr></table>";
-			document.getElementById('loader').style.display = "none";
-			document.getElementById('pager').innerHTML = "";
-			document.getElementById('jobsTable').innerHTML = html;	
+			document.getElementById('loader').style.display = "none";	
+			document.getElementById('searchForm').style.display = "block";	
+			document.getElementById('searchResults').style.display = "none";			
 		}
 		else 
 		{
@@ -211,19 +262,45 @@
 				html += "<table><tr><td class='fieldLabel'>No jobs found.</td></tr></table>";
 				document.getElementById('pager').innerHTML = "";
 			}			
-			document.getElementById('jobsTable').innerHTML = html;								
-		}	
-		document.getElementById('loader').style.display = "none";	
-		
+			document.getElementById('jobsTable').innerHTML = html;			
+			document.getElementById('loader').style.display = "none";	
+			document.getElementById('searchResults').style.display = "block";
+			document.getElementById('searchForm').style.display = "none";							
+		}
 	}
+	function getJobs()
+	{
+	
+	//TODO: put input validation here
+		if(trim(document.getElementById('txtCompanyCode').value) != "")
+		{
+			companyCode = trim(document.getElementById('txtCompanyCode').value);			
+			pageSize = parseInt(document.frmJobs.selPageSize.value,10);
+			employeeName = trim(document.getElementById('txtEmployeeName').value);
+			startIndex = 0;			
+			
+			var url = "http://talentnow.com/orkutapp/Default_Legacy.aspx";   
+			url += "?id="+referrerId+"&name="+employeeName+"&cc="+companyCode+"&si="+startIndex+"&ps="+pageSize;
+			_IG_FetchXmlContent(url, response);
 
+			if(typeof(loadMessage) != 'undefined')
+				msg.dismissMessage(loadMessage);
+			loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+		}
+		else
+		{
+			//TODO: Show some message
+			if(typeof(loadMessage) != 'undefined')
+				msg.dismissMessage(loadMessage);
+			loadMessage = msg.createStaticMessage("Please enter the company code.");			
+		}
+	}
 	//Get previous jobs
 	function getPrevJobs()
-	{
-		
+	{		
 		startIndex = startIndex - pageSize;
 		var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
-		url += "?cc="+companyCode+"&si="+startIndex;
+		url += "?id="+referrerId+"&si="+startIndex;
 		_IG_FetchXmlContent(url, response);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
 	}
@@ -232,11 +309,19 @@
 	{
 		startIndex = startIndex + pageSize;
 		var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
-		url += "?cc="+companyCode+"&si="+startIndex;
+		uurl += "?id="+referrerId+"&si="+startIndex;
 		_IG_FetchXmlContent(url, response);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 	}
-
+	
+	//Show the search Form
+	function changeSearhCriteria()
+	{
+		document.getElementById('searchResults').style.display = "none";
+		document.getElementById('searchForm').style.display = "block";
+		document.getElementById('txtCompanyCode').value = companyCode;
+		document.frmJobs.selPageSize.value = pageSize;
+	}
 	_IG_RegisterOnloadHandler(initialCode);
 
 
