@@ -326,6 +326,7 @@
 		document.getElementById('changeSettings').style.display = "none";
 		document.getElementById('searchForm').style.display = "block";
 		document.getElementById('txtCompanyCode').value = companyCode;
+		document.getElementById('txtEmployeeName').value = employeeName;
 		document.frmJobs.selPageSize.value = pageSize;
 	}
 	_IG_RegisterOnloadHandler(initialCode);
