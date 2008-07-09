@@ -105,7 +105,8 @@
 	var jobCount = 0;
 	var startIndex = 0;
 	var referrerId = "";
-	
+	var viewerId = "";
+
 	function checkPost(evt)
 	{
 		var key = (evt.which) ? evt.which : evt.keyCode;
@@ -131,6 +132,7 @@
 		ownerid = "";
 		var clientUrl = window.location.href;
 		referrerId = clientUrl.substring(clientUrl.indexOf("&gadgetOwner=") + 13,clientUrl.indexOf("&gadgetViewer"));		
+		viewerId = clientUrl.substring(clientUrl.indexOf("&gadgetViewer=") + 14,clientUrl.indexOf("&view-params"));		
 		var url = "http://www.talentnow.com/orkutapp/GetMyJobs.aspx";  
 		url += "?id="+referrerId;						
 		_IG_FetchXmlContent(url, response);	
@@ -154,6 +156,7 @@
 			// No search crriteria specified
 			document.getElementById('loader').style.display = "none";	
 			document.getElementById('searchForm').style.display = "block";	
+			document.getElementById('changeSettings').style.display = "none";
 			document.getElementById('searchResults').style.display = "none";			
 		}
 		else 
@@ -264,6 +267,10 @@
 			document.getElementById('jobsTable').innerHTML = html;			
 			document.getElementById('loader').style.display = "none";	
 			document.getElementById('searchResults').style.display = "block";
+			if(viewerId == referrerId)
+			{
+				document.getElementById('changeSettings').style.display = "block";
+			}			
 			document.getElementById('searchForm').style.display = "none";							
 		}
 	}
@@ -318,6 +325,7 @@
 	function changeSearhCriteria()
 	{
 		document.getElementById('searchResults').style.display = "none";
+		document.getElementById('changeSettings').style.display = "none";
 		document.getElementById('searchForm').style.display = "block";
 		document.getElementById('txtCompanyCode').value = companyCode;
 		document.frmJobs.selPageSize.value = pageSize;
