@@ -140,7 +140,7 @@
 
 	function response(responseText) 
 	{
-	
+	alert(responseText);
 		if(typeof(loadMessage) != 'undefined')
 			msg.dismissMessage(loadMessage);
 
