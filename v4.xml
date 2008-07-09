@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
- <ModulePrefs title="Get Talent Now Jobs" title_ur="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">
+ <ModulePrefs title="Wanna work with me?" title_ur="http://www.talentnow.com" description="Want to work at my company? Check out some cool job openings at our company!" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">
 	<Require feature="opensocial-0.7"/>
 	<Require feature="minimessage"/>
 	<Locale lang="en" country="us" />
@@ -12,6 +12,16 @@
  <![CDATA[
    <style type="text/css">
    .fieldLabel{
+		clear: left;
+		text-align: left;
+		padding-bottom: 5px;
+		color: black;
+		vertical-align: top;
+		font-size: 12px;
+		font-weight: normal;		
+		font-family:Verdana, Arial, Sans-Serif;		
+	}
+	.generalText{
 		clear: left;
 		text-align: left;
 		padding-bottom: 5px;
@@ -40,7 +50,14 @@
 		font-weight: normal;		
 		font-family:Verdana, Arial, Sans-Serif;		
 	}
-
+	.helpText{
+		text-align: left;
+		padding-bottom: 5px;
+		color: #666666;
+		font-size: 10px;
+		font-weight: normal;		
+		font-family:Verdana, Arial, Sans-Serif;		
+	}
 	.datePostedon{
 		color:#6f6f6f;
 	}
@@ -52,12 +69,22 @@
 	  <div id="searchForm" style="display:none" onkeydown="checkPost(event);">
 		<table>
 			<tr>
+				<td colspan="2" align="right" class="helpText">Please enter the company code given to you by your company</td>
+			</tr>
+			<tr>
 				<td class="fieldLabel">Company Code:</td>
-				<td class="fieldLabel"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" /></td>
+				<td class="generalText"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right" class="helpText">Please enter your full name or employee id so your company can identify you for referral incentives per company policy.</td>
+			</tr>
+			<tr>
+				<td class="fieldLabel">Full Name:</td>
+				<td class="generalText"><input type="text" id="txtEmployeeName" name="txtEmployeeName" maxlength="50" /></td>
 			</tr>
 			<tr>
 				<td class="fieldLabel">Number of jobs you want to see at a time:</td>
-				<td class="fieldLabel">
+				<td class="generalText">
 					<select name="selPageSize" id="selPageSize">
 						<option value="5" id="5">5</option>
 						<option value="10" id="10">10</option>
@@ -67,14 +94,14 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="right" class="fieldLabel"><a href="#" onclick="getJobs();" >Get Jobs</a></td>
+				<td colspan="2" align="right" class="generalText"><a href="#" onclick="getJobs();" >Get Jobs</a></td>
 			</tr>
 		</table>
 	  </div>
 	  <div id="searchResults" style="display:none">
 		<table>
 			<tr>
-				<td align="right"><div id="pager" class='fieldLabel'></div></td>
+				<td align="right"><div id="pager" class='generalText'></div></td>
 			</tr>
 			<tr>
 				<td>
@@ -86,7 +113,7 @@
 	   <div id="changeSettings" style="display:none">
 		<table>
 			<tr>
-				<td align="right"  class="fieldLabel"><a href="#" onclick="changeSearhCriteria();" >Change Search Criteria</a></td>
+				<td align="right"  class="generalText"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
 			</tr>
 		</table>
 	  </div>
@@ -106,6 +133,7 @@
 	var jobCount = 0;
 	var startIndex = 0;
 	var viewerId = "";
+	var employeeName = "";
 
 	function checkPost(evt)
 	{
@@ -276,7 +304,7 @@
 			}
 			else
 			{
-				html += "<table><tr><td class='fieldLabel'>No jobs found.</td></tr></table>";
+				html += "<table><tr><td class='generalText'>No jobs found.</td></tr></table>";
 				document.getElementById('pager').innerHTML = "";
 			}
 			
@@ -301,11 +329,12 @@
 		{
 			companyCode = trim(document.getElementById('txtCompanyCode').value);			
 			pageSize = parseInt(document.frmJobs.selPageSize.value,10);
+			employeeName = trim(document.getElementById('txtEmployeeName').value);
 			startIndex = 0;			
 			var params = {};  
 			var postdata = {
 				id : userOpenSocialId,
-				name : gadgets.util.escapeString(userOpenSocialName),
+				name : gadgets.util.escapeString(employeeName),
 				cc : gadgets.util.escapeString(companyCode),
 				si : startIndex,
 				ps : pageSize
@@ -332,8 +361,10 @@
 	function changeSearhCriteria()
 	{
 		document.getElementById('searchResults').style.display = "none";
+		document.getElementById('changeSettings').style.display = "none";
 		document.getElementById('searchForm').style.display = "block";
 		document.getElementById('txtCompanyCode').value = companyCode;
+		document.getElementById('txtEmployeeName').value = employeeName;
 		document.frmJobs.selPageSize.value = pageSize;
 	}
 	//Get previous jobs
