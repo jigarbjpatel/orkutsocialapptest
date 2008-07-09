@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+ <ModulePrefs title="Work with me at my company" title_url="http://www.talentnow.com" description="Genuine Jobs, Genuine People" author="Jigar BJ Patel" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/images/logo.gif">	
+	<Require feature="minimessage"/>
+	<Locale lang="en" country="us" />
+ </ModulePrefs>
+ <UserPref name="companyId" display_name="Company Code" required="true"></UserPref>
+  <UserPref name="employeeId" display_name="Employee Id"></UserPref>
+ <Content type="html">
+
+ <![CDATA[
+   <style type="text/css">
+   .fieldLabel{
+		clear: left;
+		text-align: left;
+		padding-bottom: 5px;
+		color: #666666;
+		vertical-align: top;
+		font-size: 12px;
+		font-weight: normal;		
+		font-family:Verdana, Arial, Sans-Serif;		
+	}
+	.TopRow{
+		clear: left;
+		text-align: left;
+		color: #666666;
+		vertical-align: top;
+		font-size: 12px;
+		font-weight: normal;		
+		font-family:Verdana, Arial, Sans-Serif;		
+	}
+	.BottomRow{
+		clear: left;
+		text-align: left;
+		padding-bottom: 5px;
+		color: #666666;
+		vertical-align: top;
+		font-size: 12px;
+		font-weight: normal;		
+		font-family:Verdana, Arial, Sans-Serif;		
+	}
+
+	.datePostedon{
+		color:#6f6f6f;
+	}
+	.companyName{
+		color:green;
+	}
+  </style>
+ <form name="frmJobs" id="frmJobs" action="">
+	  <div id="searchResults">
+		<table>
+			<tr>
+				<td align="right"><div id="pager" class='fieldLabel'></div></td>
+			</tr>
+			<tr>
+				<td>
+					<div id="jobsTable"></div>
+				</td>
+			</tr>
+		</table>
+	  </div>
+	  <div id="loader">
+		<img src="http://www.talentnow.com/orkutapp/images/loader.gif" border='0' alt='Please wait while we fetch the jobs' />
+	  </div>
+  </form>
+
+ <script type="text/javascript">
+
+	var msg = new _IG_MiniMessage(__MODULE_ID__);
+	var loadMessage;
+	var pageSize = 5;
+	var companyCode = "";
+	var jobCount = 0;
+	var referrerId = "";
+
+	function initialCode()
+	{
+		alert(window.parent.location.href);
+		var prefs = new _IG_Prefs();
+		companyCode = prefs.getString("companyId");
+		referrerId = prefs.getString("employeeId");
+		var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
+		url += "?cc="+companyCode;						
+		_IG_FetchXmlContent(url, response);	
+	}
+
+	function response(responseText) 
+	{
+	
+		if(typeof(loadMessage) != 'undefined')
+			msg.dismissMessage(loadMessage);
+
+		//Get the jobs count	
+		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
+		if(typeof(jobCount) != 'undefined')
+				jobCount = parseInt(jobCount,10);
+			else
+				jobCount = -1;
+		
+		if(parseInt(jobCount,10) == -1)
+		{
+			// No search crriteria specified
+			html += "<table><tr><td class='fieldLabel'>Please specify company code given to you by your HR in application settings.</td></tr></table>";
+			document.getElementById('loader').style.display = "none";
+			document.getElementById('pager').innerHTML = "";
+			document.getElementById('jobsTable').innerHTML = html;	
+		}
+		else 
+		{
+			startIndex = responseText.getElementsByTagName("jobs").item(0).getAttribute("startIndex");
+			if(typeof(startIndex) != 'undefined')
+				startIndex = parseInt(startIndex,10);
+			else
+				startIndex = 0;
+			
+			pageSize = responseText.getElementsByTagName("jobs").item(0).getAttribute("pageSize");
+			if(typeof(pageSize) != 'undefined')
+				pageSize = parseInt(pageSize,10);
+			else
+				pageSize = 5;
+
+			companyCode = responseText.getElementsByTagName("jobs").item(0).getAttribute("searchString");
+			
+			//Create html for jobsTable
+			var html = "";			
+			if(parseInt(jobCount,10) != 0)
+			{
+				//Based on job count show prev and next
+				if(parseInt(startIndex,10) >= parseInt(pageSize,10)) 
+				{
+					document.getElementById('pager').innerHTML = "<a id='prev' href='#' onclick='getPrevJobs();' >&lt;Prev</a>"; 
+				}
+				else
+				{
+					document.getElementById('pager').innerHTML = "&lt;Prev"; 
+				}
+				
+				if((parseInt(startIndex,10) + parseInt(pageSize,10)) < parseInt(jobCount,10))
+				{
+					//display next
+					document.getElementById('pager').innerHTML += " | " + "<a id='next' href='#' onclick='getNextJobs();' >Next&gt;</a>"; 
+				}
+				else
+				{
+					document.getElementById('pager').innerHTML += " | " + "Next&gt;";
+				}
+					
+				var jobList = responseText.getElementsByTagName("job");
+				var jobPostingCode = "";
+				var jobTitle = "";
+				var jobLocation = "";
+				var jobCompany = "";
+				var jobPostedOn = "";
+				var jobTitleUrl = "";
+
+				for (var i = 0; i < jobList.length ; i++) 
+				{ 
+					var nodeList = jobList.item(i).childNodes;	
+					jobPostingCode = jobList.item(i).getAttribute("id");
+					jobTitle = "";
+					jobLocation = "";
+					jobCompany = "";
+					jobPostedOn = "";
+					jobTitleUrl = "";
+
+					for (var j = 0; j < nodeList.length ; j++) 
+					{
+					  var node = nodeList.item(j);
+					  if (node.nodeName == "title") 
+					  {
+						if(node.firstChild != null)
+							jobTitle = node.firstChild.nodeValue;						
+					  }
+					  if (node.nodeName == "location") 
+					  {
+						if(node.firstChild != null)
+							jobLocation = node.firstChild.nodeValue;				
+					  }
+					  if (node.nodeName == "company") 
+					  {
+						  if(node.firstChild != null)
+							jobCompany = node.firstChild.nodeValue; 
+					  }
+					  if (node.nodeName == "postedon") 
+					  {
+						if(node.firstChild != null)
+							jobPostedOn = node.firstChild.nodeValue; 
+					  }
+					  if (node.nodeName == "titleurl")
+					  {
+						
+						if(node.firstChild == null)
+						{							
+							var jobTitleUrl = "http://talentnow.com/public/viewalljobs.aspx?jpc="+jobPostingCode+"&rid="+referrerId;
+						}
+						else
+						{
+							var jobTitleUrl = node.firstChild.nodeValue;
+						}
+						 
+					  }
+					}
+					// Append extracted data to the HTML string
+					html += "<tr><td  class='TopRow'><a href='" + jobTitleUrl + "' target='_blank'>" + jobTitle +"</a> at " + jobLocation + "</td></tr><tr><td class='BottomRow'>from <span class='companyName'>"+ jobCompany +"</span> posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
+				}
+				html = "<table>" + html + "</table>";
+			}
+			else
+			{
+				html += "<table><tr><td class='fieldLabel'>No jobs found.</td></tr></table>";
+				document.getElementById('pager').innerHTML = "";
+			}			
+			document.getElementById('jobsTable').innerHTML = html;								
+		}	
+		document.getElementById('loader').style.display = "none";	
+		
+	}
+
+	//Get previous jobs
+	function getPrevJobs()
+	{
+		
+		startIndex = startIndex - pageSize;
+		var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
+		url += "?cc="+companyCode+"&si="+startIndex;
+		_IG_FetchXmlContent(url, response);
+		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
+	}
+	//Get next jobs
+	function getNextJobs()
+	{
+		startIndex = startIndex + pageSize;
+		var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
+		url += "?cc="+companyCode+"&si="+startIndex;
+		_IG_FetchXmlContent(url, response);
+		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+	}
+
+	_IG_RegisterOnloadHandler(initialCode);
+
+
+  </script>
+ 
+  ]]>
+  </Content>
+</Module>
