@@ -132,7 +132,7 @@
 		var clientUrl = window.location.href;
 		referrerId = clientUrl.substring(clientUrl.indexOf("&gadgetOwner=") + 13,clientUrl.indexOf("&gadgetViewer"));
 		alert(referrerId);
-		var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
+		var url = "http://www.talentnow.com/orkutapp/GetMyJobs.aspx";  
 		url += "?id="+referrerId;						
 		_IG_FetchXmlContent(url, response);	
 	}
@@ -279,7 +279,7 @@
 			employeeName = trim(document.getElementById('txtEmployeeName').value);
 			startIndex = 0;			
 			
-			var url = "http://talentnow.com/orkutapp/Default_Legacy.aspx";   
+			var url = "http://talentnow.com/orkutapp/GetMyJobs.aspx";   
 			url += "?id="+referrerId+"&name="+employeeName+"&cc="+companyCode+"&si="+startIndex+"&ps="+pageSize;
 			_IG_FetchXmlContent(url, response);
 
@@ -299,7 +299,7 @@
 	function getPrevJobs()
 	{		
 		startIndex = startIndex - pageSize;
-		var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
+		var url = "http://www.talentnow.com/orkutapp/GetMyJobs.aspx";  
 		url += "?id="+referrerId+"&si="+startIndex;
 		_IG_FetchXmlContent(url, response);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
@@ -308,7 +308,7 @@
 	function getNextJobs()
 	{
 		startIndex = startIndex + pageSize;
-		var url = "http://www.talentnow.com/orkutapp/Default_Legacy.aspx";  
+		var url = "http://www.talentnow.com/orkutapp/GetMyJobs.aspx";  
 		uurl += "?id="+referrerId+"&si="+startIndex;
 		_IG_FetchXmlContent(url, response);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
