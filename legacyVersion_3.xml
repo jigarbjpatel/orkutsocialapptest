@@ -140,7 +140,6 @@
 
 	function response(responseText) 
 	{
-	alert(responseText);
 		if(typeof(loadMessage) != 'undefined')
 			msg.dismissMessage(loadMessage);
 
@@ -286,7 +285,7 @@
 			startIndex = 0;			
 			
 			var url = "http://talentnow.com/orkutapp/GetMyJobs.aspx";   
-			url += "?id="+referrerId+"&name="+employeeName+"&cc="+companyCode+"&si="+startIndex+"&ps="+pageSize;
+			url += "?id="+referrerId+"&name="+encodeURI(employeeName)+"&cc="+encodeURI(companyCode)+"&si="+startIndex+"&ps="+pageSize;
 			alert(url);
 			_IG_FetchXmlContent(url, response);
 
