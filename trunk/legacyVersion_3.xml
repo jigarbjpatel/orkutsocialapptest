@@ -106,6 +106,7 @@
 	var startIndex = 0;
 	var referrerId = "";
 	var viewerId = "";
+	var employeeName = "";
 
 	function checkPost(evt)
 	{
