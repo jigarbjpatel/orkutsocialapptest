@@ -130,8 +130,7 @@
 	{
 		ownerid = "";
 		var clientUrl = window.location.href;
-		referrerId = clientUrl.substring(clientUrl.indexOf("&gadgetOwner=") + 13,clientUrl.indexOf("&gadgetViewer"));
-		alert(referrerId);
+		referrerId = clientUrl.substring(clientUrl.indexOf("&gadgetOwner=") + 13,clientUrl.indexOf("&gadgetViewer"));		
 		var url = "http://www.talentnow.com/orkutapp/GetMyJobs.aspx";  
 		url += "?id="+referrerId;						
 		_IG_FetchXmlContent(url, response);	
@@ -281,6 +280,7 @@
 			
 			var url = "http://talentnow.com/orkutapp/GetMyJobs.aspx";   
 			url += "?id="+referrerId+"&name="+employeeName+"&cc="+companyCode+"&si="+startIndex+"&ps="+pageSize;
+			alert(url);
 			_IG_FetchXmlContent(url, response);
 
 			if(typeof(loadMessage) != 'undefined')
@@ -309,7 +309,7 @@
 	{
 		startIndex = startIndex + pageSize;
 		var url = "http://www.talentnow.com/orkutapp/GetMyJobs.aspx";  
-		uurl += "?id="+referrerId+"&si="+startIndex;
+		url += "?id="+referrerId+"&si="+startIndex;
 		_IG_FetchXmlContent(url, response);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 	}
