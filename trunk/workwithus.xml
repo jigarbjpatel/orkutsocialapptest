@@ -64,6 +64,11 @@
 	.companyName{
 		color:green;
 	}
+	.tablib_selected { color: #FF0000; }
+	.tablib_unselected { color: #660099; }
+	.tablib_table { font-size:20px; }
+	.tablib_emptyTab { padding:2px 5px; }
+	.tablib_spacerTab { padding:0px 5px; }
   </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
 	<div id="workWithMe" style="display:none">
