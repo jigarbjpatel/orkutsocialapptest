@@ -210,7 +210,7 @@
 		if(tabId == "Work with my friends")
 		{//Get all the friends
 			var req = opensocial.newDataRequest();
-			req.add(req.newFetchPersonRequest(opensocial.DataRequest.Group.OWNER_FRIENDS), 'ownerFriends');
+			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS), 'ownerFriends');
 			req.send(onLoadFriends);
 		}
 	}
