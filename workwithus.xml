@@ -67,49 +67,50 @@
   </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
 	<div id="workWithMe" style="display:none">
-	  <div id="searchForm" style="display:none" onkeydown="checkPost(event);">
-		<table>
-			<tr>
-				<td colspan="2" align="right" class="helpText">Please enter the company code given to you by your company</td>
-			</tr>
-			<tr>
-				<td class="fieldLabel">Company Code:</td>
-				<td class="generalText"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" /></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right" class="helpText">Please enter your full name or employee id so your company can identify you for referral incentives per company policy.</td>
-			</tr>
-			<tr>
-				<td class="fieldLabel">Full Name:</td>
-				<td class="generalText"><input type="text" id="txtEmployeeName" name="txtEmployeeName" maxlength="50" /></td>
-			</tr>
-			<tr>
-				<td class="fieldLabel">Number of jobs you want to see at a time:</td>
-				<td class="generalText">
-					<select name="selPageSize" id="selPageSize">
-						<option value="5" id="5">5</option>
-						<option value="10" id="10">10</option>
-						<option value="15" id="15">15</option>
-						<option value="20" id="20">20</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right" class="generalText"><a href="#" onclick="getJobs();" >Get Jobs</a></td>
-			</tr>
-		</table>
-	  </div>
-	  <div id="searchResults" style="display:none">
-		<table>
-			<tr>
-				<td align="right"><div id="pager" class='generalText'></div></td>
-			</tr>
-			<tr>
-				<td>
-					<div id="jobsTable"></div>
-				</td>
-			</tr>			
-		</table>
+		<div id="searchForm" style="display:none" onkeydown="checkPost(event);">
+			<table>
+				<tr>
+					<td colspan="2" align="right" class="helpText">Please enter the company code given to you by your company</td>
+				</tr>
+				<tr>
+					<td class="fieldLabel">Company Code:</td>
+					<td class="generalText"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" /></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right" class="helpText">Please enter your full name or employee id so your company can identify you for referral incentives per company policy.</td>
+				</tr>
+				<tr>
+					<td class="fieldLabel">Full Name:</td>
+					<td class="generalText"><input type="text" id="txtEmployeeName" name="txtEmployeeName" maxlength="50" /></td>
+				</tr>
+				<tr>
+					<td class="fieldLabel">Number of jobs you want to see at a time:</td>
+					<td class="generalText">
+						<select name="selPageSize" id="selPageSize">
+							<option value="5" id="5">5</option>
+							<option value="10" id="10">10</option>
+							<option value="15" id="15">15</option>
+							<option value="20" id="20">20</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right" class="generalText"><a href="#" onclick="getJobs();" >Get Jobs</a></td>
+				</tr>
+			</table>
+		</div>
+		<div id="searchResults" style="display:none">
+			<table>
+				<tr>
+					<td align="right"><div id="pager" class='generalText'></div></td>
+				</tr>
+				<tr>
+					<td>
+						<div id="jobsTable"></div>
+					</td>
+				</tr>			
+			</table>		
+		</div>
 		<div id="changeSettings" style="display:none">
 			<table>
 				<tr>
@@ -117,19 +118,14 @@
 				</tr>
 			</table>
 		</div>
-	  </div>
-	   <div id="loader">
-		<img src="http://www.talentnow.com/orkutapp/images/loader.gif" border='0' alt='Please wait while we fetch the jobs' />
-	  </div>
+		<div id="loader">
+			<img src="http://www.talentnow.com/orkutapp/images/loader.gif" border='0' alt='Please wait while we fetch the jobs' />
+		</div>
 	</div>
 
 	<div id="workWithMyFriends" style="display:none">
 	  <div id="friends" style="display:none">
-		<table>
-			<tr>
-				<td>Friend List will come here</td>
-			</tr>
-		</table>
+		
 	  </div>
 	</div>
 	 
@@ -211,13 +207,23 @@
 	}
 	function callback(tabId)
 	{
-		if(tabId == "Work with me")
-		{
+		if(tabId == "Work with my friends")
+		{//Get all the friends
+			var req = opensocial.newDataRequest();
+			req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.OWNER_FRIENDS), 'ownerFriends');
+			req.send(onLoadFriends);
 		}
-		else
-		{
-			
-		}
+	}
+	function onLoadFriends(dataResponse)
+	{
+		var ownerFriends = dataResponse.get('ownerFriends').getData();
+		html += ':<br><ul>';
+		ownerFriends.each(function(person){
+			html += '<li>' + person.getDisplayName() + '</li>';
+			});
+		html += '</ul>';
+		document.getElementById('friends').innerHTML = html;
+		document.getElementById('friends').style.display = "block";
 	}
 	function response(obj) 
 	{
