@@ -222,12 +222,15 @@
 	{
 	
 		var ownerFriends = dataResponse.get('ownerFriends').getData();
-		var html = '<ul>';
+		var html = '<table>';
 		ownerFriends.each(function(person){		
 			if(person.getDisplayName() != "")
-				html += '<li>' + person.getDisplayName() + '</li>';
+			{
+				alert(person.getField(opensocial.Person.Field.PROFILE_URL));
+				html += '<tr><td>'+ person.getDisplayName() + '</td></tr>';
+			}
 			});
-		html += '</ul>';
+		html += '</table>';
 		document.getElementById('friends').innerHTML = html;
 		document.getElementById('friends').style.display = "block";
 	}
