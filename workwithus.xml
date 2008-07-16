@@ -207,7 +207,7 @@
 	}
 	function callback(tabId)
 	{
-		alert(tabId);
+	
 		if(tabId == "workWithMyFriends")
 		{//Get all the friends
 			var req = opensocial.newDataRequest();
@@ -217,7 +217,7 @@
 	}
 	function onLoadFriends(dataResponse)
 	{
-	alert(dataResponse.get('ownerFriends').getData());
+	
 		var ownerFriends = dataResponse.get('ownerFriends').getData();
 		var html = '<ul>';
 		ownerFriends.each(function(person){
@@ -371,6 +371,7 @@
 		if(trim(document.getElementById('txtCompanyCode').value) != "")
 		{
 			companyCode = trim(document.getElementById('txtCompanyCode').value);			
+			alert(document.getElementById('selPageSize'));
 			pageSize = parseInt(document.frmJobs.selPageSize.value,10);
 			employeeName = trim(document.getElementById('txtEmployeeName').value);
 			startIndex = 0;			
