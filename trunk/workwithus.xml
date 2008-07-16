@@ -64,8 +64,11 @@
 	.companyName{
 		color:green;
 	}
-	.tablib_selected { color: #FF0000; }
-	.tablib_unselected { color: #660099; }
+	.tablib_selected { 
+	color: #FF0000; 
+	width: 100px;
+	}
+	.tablib_unselected { color: #660099; width: 100px;}
 	.tablib_table { font-size:20px; }
 	.tablib_emptyTab { padding:2px 5px; }
 	.tablib_spacerTab { padding:0px 5px; }
