@@ -208,7 +208,7 @@
 	function callback(tabId)
 	{
 		alert(tabId);
-		if(tabId == "Work with my friends")
+		if(tabId == "workWithMyFriends")
 		{//Get all the friends
 			var req = opensocial.newDataRequest();
 			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS),'ownerFriends'); 
