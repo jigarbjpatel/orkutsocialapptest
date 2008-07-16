@@ -191,6 +191,17 @@
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		var url = "http://talentnow.com/orkutapp/Default.aspx";  
 		gadgets.io.makeRequest(url, response, params);
+		//Add tabs only once
+		tabs.addTab("Work with me", {            
+				contentContainer: document.getElementById("searchResults"),
+		        callback: callback,            
+				tooltip: "Check out job openings at my company"          
+		        });
+			tabs.addTab("Work with my friends", {            
+				contentContainer: document.getElementById("friends"),
+		        callback: callback,            
+				tooltip: "Check out job openings at my friend's company"          
+		        });
 	}
 
 	function response(obj) 
@@ -326,16 +337,7 @@
 				document.getElementById('changeSettings').style.display = "block";
 			}	
 			document.getElementById('searchForm').style.display = "none";
-			tabs.addTab("Work with me", {            
-				contentContainer: document.getElementById("searchResults"),
-		        callback: callback,            
-				tooltip: "Check out job openings at my company"          
-		        });
-			tabs.addTab("Work with my friends", {            
-				contentContainer: document.getElementById("friends"),
-		        callback: callback,            
-				tooltip: "Check out job openings at my friend's company"          
-		        });
+			
 		}		
 	}
 	function callback(tabId)
