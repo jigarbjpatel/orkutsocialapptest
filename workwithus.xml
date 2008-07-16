@@ -212,7 +212,9 @@
 		if(tabId == "workWithMyFriends")
 		{//Get all the friends
 			var req = opensocial.newDataRequest();
-			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS,"Installed"),'ownerFriends'); 
+			var req_params = {}; 
+			req_params[opensocial.DataRequest.PeopleRequestFields.FILTER] = opensocial.DataRequest.FilterType.HAS_APP;
+			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS,req_params),'ownerFriends'); 
 			req.send(onLoadFriends);
 		}
 	}
