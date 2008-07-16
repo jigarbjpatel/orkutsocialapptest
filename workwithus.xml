@@ -214,7 +214,8 @@
 			var req = opensocial.newDataRequest();
 			var req_params = {}; 
 			req_params[opensocial.DataRequest.PeopleRequestFields.FILTER] = opensocial.DataRequest.FilterType.HAS_APP;
-			req_params[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] = opensocial.Person.Field.PROFILE_URL;
+			req_params[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] = [opensocial.Person.Field.PROFILE_URL];
+
 			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS,req_params),'ownerFriends'); 
 			req.send(onLoadFriends);
 		}
