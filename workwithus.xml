@@ -66,6 +66,7 @@
 	}
   </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
+	<div id="workWithMe" style="display:none">
 	  <div id="searchForm" style="display:none" onkeydown="checkPost(event);">
 		<table>
 			<tr>
@@ -117,7 +118,12 @@
 			</table>
 		</div>
 	  </div>
-	  
+	   <div id="loader">
+		<img src="http://www.talentnow.com/orkutapp/images/loader.gif" border='0' alt='Please wait while we fetch the jobs' />
+	  </div>
+	</div>
+
+	<div id="workWithMyFriends" style="display:none">
 	  <div id="friends" style="display:none">
 		<table>
 			<tr>
@@ -125,9 +131,8 @@
 			</tr>
 		</table>
 	  </div>
-	  <div id="loader">
-		<img src="http://www.talentnow.com/orkutapp/images/loader.gif" border='0' alt='Please wait while we fetch the jobs' />
-	  </div>
+	</div>
+	 
   </form>
 
  <script type="text/javascript">
@@ -194,17 +199,26 @@
 		gadgets.io.makeRequest(url, response, params);
 		//Add tabs only once
 		tabs.addTab("Work with me", {            
-				contentContainer: document.getElementById("searchResults"),
+				contentContainer: document.getElementById("workWithMe"),
 		        callback: callback,            
 				tooltip: "Check out job openings at my company"          
 		        });
-			tabs.addTab("Work with my friends", {            
-				contentContainer: document.getElementById("friends"),
-		        callback: callback,            
-				tooltip: "Check out job openings at my friend's company"          
-		        });
+		tabs.addTab("Work with my friends", {            
+			contentContainer: document.getElementById("workWithMyFriends"),
+			callback: callback,            
+			tooltip: "Check out job openings at my friend's company"          
+			});
 	}
-
+	function callback(tabId)
+	{
+		if(tabId == "Work with me")
+		{
+		}
+		else
+		{
+			
+		}
+	}
 	function response(obj) 
 	{
 		if(typeof(loadMessage) != 'undefined')
@@ -341,10 +355,7 @@
 			
 		}		
 	}
-	function callback(tabId)
-	{
 	
-	}
 	function getJobs()
 	{
 	
