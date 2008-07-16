@@ -228,8 +228,11 @@
 		ownerFriends.each(function(person){		
 			if(person.getDisplayName() != "")
 			{
-				alert(person.getField(opensocial.Person.Field.PROFILE_URL));
-				html += '<tr><td>'+ person.getDisplayName() + '</td></tr>';
+				var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
+				var profile = person.getField(opensocial.Person.Field.PROFILE_URL);
+				html += '<tr><td><a href="' + profile + '" target="_top" style="float:left">' +
+						  '<img src="' + thumb + '"/>' +
+                  '</a></tr></td>';
 			}
 			});
 		html += '</table>';
