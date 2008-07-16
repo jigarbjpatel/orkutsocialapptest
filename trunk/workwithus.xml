@@ -210,14 +210,15 @@
 		if(tabId == "Work with my friends")
 		{//Get all the friends
 			var req = opensocial.newDataRequest();
-			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS), 'ownerFriends');
+			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS),'ownerFriends'); 
 			req.send(onLoadFriends);
 		}
 	}
 	function onLoadFriends(dataResponse)
 	{
+	alert(dataResponse.get('ownerFriends').getData());
 		var ownerFriends = dataResponse.get('ownerFriends').getData();
-		html += ':<br><ul>';
+		var html = '<ul>';
 		ownerFriends.each(function(person){
 			html += '<li>' + person.getDisplayName() + '</li>';
 			});
