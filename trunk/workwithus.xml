@@ -222,7 +222,8 @@
 		var ownerFriends = dataResponse.get('ownerFriends').getData();
 		var html = '<ul>';
 		ownerFriends.each(function(person){
-			html += '<li>' + person.getDisplayName() + '</li>';
+			if(person.getDisplayName() != null)
+				html += '<li>' + person.getDisplayName() + '</li>';
 			});
 		html += '</ul>';
 		document.getElementById('friends').innerHTML = html;
