@@ -109,14 +109,15 @@
 				</td>
 			</tr>			
 		</table>
+		<div id="changeSettings" style="display:none">
+			<table>
+				<tr>
+					<td align="right"  class="generalText"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
+				</tr>
+			</table>
+		</div>
 	  </div>
-	   <div id="changeSettings" style="display:none">
-		<table>
-			<tr>
-				<td align="right"  class="generalText"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
-			</tr>
-		</table>
-	  </div>
+	  
 	  <div id="friends" style="display:none">
 		<table>
 			<tr>
