@@ -64,8 +64,8 @@
 	.companyName{
 		color:green;
 	}
-	.tablib_selected { 	color: #FF0000; width: 150px;}
-	.tablib_unselected { color: #660099; width: 150px;}
+	.tablib_selected { 	width: 150px;}
+	.tablib_unselected { width: 150px;}
 	.tablib_table { font-size:12px; }
 	.tablib_emptyTab { padding:2px 5px; }
 	.tablib_spacerTab { padding:0px 5px; }
@@ -223,6 +223,7 @@
 
 			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS,req_params),'ownerFriends'); 
 			req.send(onLoadFriends);
+			document.getElementById('loader').style.display = "block";	
 		}
 	}
 	function onLoadFriends(dataResponse)
@@ -242,6 +243,7 @@
 			});
 		html += '</table>';
 		document.getElementById('friends').innerHTML = html;
+		document.getElementById('loader').style.display = "none";	
 		document.getElementById('friends').style.display = "block";
 	}
 	function response(obj) 
