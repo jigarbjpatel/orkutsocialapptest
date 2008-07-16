@@ -207,6 +207,7 @@
 	}
 	function callback(tabId)
 	{
+		alert(tabId);
 		if(tabId == "Work with my friends")
 		{//Get all the friends
 			var req = opensocial.newDataRequest();
