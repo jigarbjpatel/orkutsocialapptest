@@ -137,7 +137,7 @@
 	var tabs = new gadgets.TabSet(__MODULE_ID__, "Work with me");
 	var loadMessage;
 	var ownerId = "";
-	var userOpenSocialName = "";
+	var ownerName = "";
 	var pageSize = 5;
 	var companyCode = "";
 	var jobCount = 0;
@@ -176,7 +176,7 @@
 	{
 		var owner = dataResponse.get('owner').getData();
 		ownerId = owner.getId();
-		userOpenSocialName = owner.getDisplayName();	
+		ownerName = owner.getDisplayName();	
 		var viewer = dataResponse.get('viewer').getData();
 		viewerId = viewer.getId();
 		makeInitialPOSTRequest() ;		
@@ -232,7 +232,7 @@
 				var profile = person.getField(opensocial.Person.Field.PROFILE_URL);
 				html += '<tr><td><a href="' + profile + '" target="_top" style="float:left">' +
 						  '<img src="' + thumb + '"/>' +
-                  '</a></tr></td>';
+                  '</a><br/>'+ person.getDisplayName() +'</td></tr>';
 			}
 			});
 		html += '</table>';
