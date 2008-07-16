@@ -132,6 +132,7 @@
  <script type="text/javascript">
 
 	var msg = new gadgets.MiniMessage(__MODULE_ID__);
+	var tabs = new gadgets.TabSet(__MODULE_ID__, "Work with me");
 	var loadMessage;
 	var ownerId = "";
 	var userOpenSocialName = "";
