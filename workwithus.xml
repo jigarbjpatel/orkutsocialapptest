@@ -338,7 +338,10 @@
 		        });
 		}		
 	}
-
+	function callback(tabId)
+	{
+	
+	}
 	function getJobs()
 	{
 	
