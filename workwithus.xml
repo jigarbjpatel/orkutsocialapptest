@@ -204,6 +204,7 @@
 			callback: callback,            
 			tooltip: "Check out job openings at my friend's company"          
 			});
+		tabs.alignTabs("left");
 	}
 	function callback(tabId)
 	{
@@ -211,7 +212,7 @@
 		if(tabId == "workWithMyFriends")
 		{//Get all the friends
 			var req = opensocial.newDataRequest();
-			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS),'ownerFriends'); 
+			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS,"Installed"),'ownerFriends'); 
 			req.send(onLoadFriends);
 		}
 	}
