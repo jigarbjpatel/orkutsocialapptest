@@ -255,14 +255,12 @@
 		//Request the following three app fields
 		var fields = ["company"];
 		req.add(req.newFetchPersonAppDataRequest(personId, fields), "person_data");
+		
 		req.send(function(data){
-		var mydata = data.get("person_data");
-
-		alert(mydata.getData()[personId]);
-//			var mydata = data.get("person_data").getData()[personId];
-
-			alert( mydata["company"] );
-		});
+			var mydata = data.get("person_data");
+			mydata = mydata.getData()[personId];
+			alert(mydata["company"]);
+			});
 
 	}
 	
