@@ -234,36 +234,51 @@
 	function onLoadFriends(dataResponse)
 	{	
 		var ownerFriends = dataResponse.get('ownerFriends').getData();
+		var friendsWhoHaveInstalledApp = "";
+
 		var html = '<table>';
 		ownerFriends.each(function(person){		
 			if(person.getDisplayName() != "")
 			{
 				var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
 				var profile = person.getField(opensocial.Person.Field.PROFILE_URL);
-				html += '<tr><td class="generalText"><a href="' + profile + '" target="_top" style="float:left">' +
+				html += '<tr><td id="' + person.getId() + '" class="generalText"><a href="' + profile + '" target="_top" style="float:left">' +
 						  '<img src="' + thumb + '"/>' +
                   '</a><br/>'+ person.getDisplayName() +'</td></tr>';
-				getAppData(person.getId());				
+				if(friendsWhoHaveInstalledApp == "")
+					friendsWhoHaveInstalledApp += person.getId();
+				else
+					friendsWhoHaveInstalledApp += "," + person.getId();
 			}
-			});
+		});
 		html += '</table>';
+			
+		alert(friendsWhoHaveInstalledApp);
+		//Get company names of the friends who have installed this app		
+		var params = {};  
+		var postdata = {
+			ids : friendsWhoHaveInstalledApp
+			};  
+		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+		var url = "http://talentnow.com/orkutapp/Default.aspx";  
+		gadgets.io.makeRequest(url, gotCompanyNames, params);
+		
+
+
 		document.getElementById('friends').innerHTML = html;
 	}
-	function getAppData(personId)
-	{
-		var req = opensocial.newDataRequest();
-		//Request the following three app fields
-		var fields = ["company"];
-		req.add(req.newFetchPersonAppDataRequest(personId, fields), "person_data");
-		
-		req.send(function(data){
-			var mydata = data.get("person_data");
-			mydata = mydata.getData()[personId];
-			alert(mydata["company"]);
-			});
-
-	}
 	
+	function gotCompanyNames(obj)
+	{
+		var responseText = obj.data;
+		var userList = responseText.getElementsByTagName("user");
+		for (var i = 0; i < userList.length ; i++) 
+		{ 
+			document.getElementById(userList.item(i).getAttribute("id")).innerHTML += " working at " + userList.item(i).getAttribute("companyName");
+		}
+	}
 
 	function response(obj) 
 	{
@@ -384,10 +399,7 @@
 				html = "<table>" + html + "</table>";
 				//Set the header
 				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td class='generalText'>Jobs at " + jobCompany + "</td></tr></table>";
-				var req = opensocial.newDataRequest();				
-				req.add(req.newUpdatePersonAppDataRequest("VIEWER", "company", jobCompany),"status");
-				req.send(handlePopulateMyAppData);
-
+				
 			}
 			else
 			{
@@ -409,12 +421,7 @@
 			
 		}		
 	}
-	function handlePopulateMyAppData(data) {
-	
-	var error = data.get("status").hadError();
-	if(error)
-		alert(data.get("status"));
-};
+	function handlePopulateMyAppData(data) {};
 
 	function getJobs()
 	{
