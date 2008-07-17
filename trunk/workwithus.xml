@@ -246,27 +246,33 @@
 						  '<img src="' + thumb + '"/>' +
                   '</a><br/>'+ person.getDisplayName() +'</td></tr>';
 				if(friendsWhoHaveInstalledApp == "")
-					friendsWhoHaveInstalledApp += person.getId();
+					friendsWhoHaveInstalledApp += "'" + person.getId() + "'";
 				else
-					friendsWhoHaveInstalledApp += "," + person.getId();
+					friendsWhoHaveInstalledApp += "," + "'" + person.getId() + "'";
 			}
 		});
 		html += '</table>';
-
 			
 		alert(friendsWhoHaveInstalledApp);
-		//Get company names of the friends who have installed this app		
-		var params = {};  
-		var postdata = {
-			ids : friendsWhoHaveInstalledApp
-			};  
-		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
-		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
-		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://talentnow.com/orkutapp/Default.aspx";  
-		document.getElementById('friends').innerHTML = html;
-		gadgets.io.makeRequest(url, gotCompanyNames, params);
-	
+		if(friendsWhoHaveInstalledApp != "")
+		{
+			//Get company names of the friends who have installed this app		
+			var params = {};  
+			var postdata = {
+				ids : friendsWhoHaveInstalledApp
+				};  
+			params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+			params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+			params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+			var url = "http://talentnow.com/orkutapp/Default.aspx";  
+			document.getElementById('friends').innerHTML = html;
+			gadgets.io.makeRequest(url, gotCompanyNames, params);
+		}
+		else
+		{
+			//Write some text saying no friends have this app installed
+			document.getElementById('friends').innerHTML  = "<table><tr><td class='generalText'>Sorry, could not find jobs.</td></tr></table>";
+		}
 	}
 	
 	function gotCompanyNames(obj)
@@ -397,8 +403,7 @@
 				}
 				html = "<table>" + html + "</table>";
 				//Set the header
-				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td class='generalText'>Jobs at " + jobCompany + "</td></tr></table>";
-				
+				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td class='generalText'>Jobs at " + jobCompany + "</td></tr></table>";				
 			}
 			else
 			{
@@ -416,8 +421,7 @@
 			{
 				document.getElementById('changeSettings').style.display = "block";
 			}	
-			document.getElementById('searchForm').style.display = "none";
-			
+			document.getElementById('searchForm').style.display = "none";			
 		}		
 	}
 	function handlePopulateMyAppData(data) {};
