@@ -240,7 +240,7 @@
 			{
 				var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
 				var profile = person.getField(opensocial.Person.Field.PROFILE_URL);
-				html += '<tr><td class=''generalText''><a href="' + profile + '" target="_top" style="float:left">' +
+				html += '<tr><td class="generalText"><a href="' + profile + '" target="_top" style="float:left">' +
 						  '<img src="' + thumb + '"/>' +
                   '</a><br/>'+ person.getDisplayName() +'</td></tr>';
 				getAppData(person.getId());				
