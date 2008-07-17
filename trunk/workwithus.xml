@@ -253,12 +253,12 @@
 	{
 		var req = opensocial.newDataRequest();
 		//Request the following three app fields
-		var fields = [ "company"];
+		var fields = ["company"];
 		req.add(req.newFetchPersonAppDataRequest(personId, fields), "person_data");
 		req.send(function(data){
 		var mydata = data.get("person_data");
 
-		alert(mydata.getData()[personId]);
+		alert(mydata.getData()[me.getId()]);
 //			var mydata = data.get("person_data").getData()[personId];
 
 			alert( mydata["company"] );
@@ -387,6 +387,7 @@
 				//Set the header
 				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td class='generalText'>Jobs at " + jobCompany + "</td></tr></table>";
 				var req = opensocial.newDataRequest();
+				alert(ownerId);
 				req.add(req.newUpdatePersonAppDataRequest(ownerId, "company", jobCompany));
 				req.send(handlePopulateMyAppData);
 
