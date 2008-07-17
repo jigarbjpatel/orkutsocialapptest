@@ -256,7 +256,9 @@
 		var fields = [ "company"];
 		req.add(req.newFetchPersonAppDataRequest(personId, fields), "person_data");
 		req.send(function(data){
+		alert(data.get("person_data").getData());
 			var mydata = data.get("person_data").getData()[personId];
+			alert(personId);
 			alert( mydata["company"] );
 		});
 
