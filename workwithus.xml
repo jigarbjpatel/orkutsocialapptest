@@ -135,7 +135,7 @@
 	</div>
 
 	<div id="workWithMyFriends" style="display:none">
-	  <div id="friends" style="display:none">
+	  <div id="friends">
 		
 	  </div>
 	</div>
@@ -219,24 +219,20 @@
 		tabs.alignTabs("left");
 	}
 	function callback(tabId)
-	{
-	
+	{	
 		if(tabId == "workWithMyFriends")
-		{//Get all the friends
-		document.getElementById('loader').style.display = "block";	
+		{//Get all the friends		
 			var req = opensocial.newDataRequest();
 			var req_params = {}; 
 			req_params[opensocial.DataRequest.PeopleRequestFields.FILTER] = opensocial.DataRequest.FilterType.HAS_APP;
 			req_params[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] = [opensocial.Person.Field.PROFILE_URL];
-
 			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS,req_params),'ownerFriends'); 
 			req.send(onLoadFriends);
-			
 		}
+
 	}
 	function onLoadFriends(dataResponse)
-	{
-	
+	{	
 		var ownerFriends = dataResponse.get('ownerFriends').getData();
 		var html = '<table>';
 		ownerFriends.each(function(person){		
@@ -251,8 +247,6 @@
 			});
 		html += '</table>';
 		document.getElementById('friends').innerHTML = html;
-		document.getElementById('loader').style.display = "none";	
-		document.getElementById('friends').style.display = "block";
 	}
 	function response(obj) 
 	{
