@@ -240,14 +240,44 @@
 			{
 				var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
 				var profile = person.getField(opensocial.Person.Field.PROFILE_URL);
-				html += '<tr><td><a href="' + profile + '" target="_top" style="float:left">' +
+				html += '<tr><td class=''generalText''><a href="' + profile + '" target="_top" style="float:left">' +
 						  '<img src="' + thumb + '"/>' +
                   '</a><br/>'+ person.getDisplayName() +'</td></tr>';
+				getAppData(person.getId());				
 			}
 			});
 		html += '</table>';
 		document.getElementById('friends').innerHTML = html;
 	}
+	function getAppData(personId)
+	{
+		var req = opensocial.newDataRequest();
+		//Request the following three app fields
+		var fields = [ "company"];
+		req.add(req.newFetchPersonAppDataRequest(personId, fields), "person_data");
+		req.send(function(data){
+			var mydata = data.get("person_data").getData()[personId];
+			alert( mydata["company"] );
+		});
+
+	}
+	function handleAppData(data)
+	{
+		var mydata = data.get("person_data");
+
+		if (mydata.hadError())
+		{
+		//console.log(mydata.getError());
+		return;
+		}
+		
+		//Data is indexed by user id, and represents an object where keys 
+		 //correspond with the app data fields.
+		 var mydata = mydata.getData()[personId];
+		 mydata["company"] 
+
+   };
+
 	function response(obj) 
 	{
 		if(typeof(loadMessage) != 'undefined')
@@ -367,6 +397,10 @@
 				html = "<table>" + html + "</table>";
 				//Set the header
 				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td class='generalText'>Jobs at " + jobCompany + "</td></tr></table>";
+				var req = opensocial.newDataRequest();
+				req.add(req.newUpdatePersonAppDataRequest("OWNER", "company", jobCompany));
+				req.send(handlePopulateMyAppData, "update_appdata");
+
 			}
 			else
 			{
@@ -388,7 +422,13 @@
 			
 		}		
 	}
-	
+	function handlePopulateMyAppData(data) {
+		 if (data.hadError()) {
+		   //Handle the error
+		   //console.log(data.getError());
+		 }
+   };
+
 	function getJobs()
 	{
 	
