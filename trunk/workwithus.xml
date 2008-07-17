@@ -256,9 +256,11 @@
 		var fields = [ "company"];
 		req.add(req.newFetchPersonAppDataRequest(personId, fields), "person_data");
 		req.send(function(data){
-		alert(data.get("person_data").getData());
-			var mydata = data.get("person_data").getData()[personId];
-			alert(personId);
+		var mydata = data.get("person_data");
+
+		alert(mydata.getData()[personId]);
+//			var mydata = data.get("person_data").getData()[personId];
+
 			alert( mydata["company"] );
 		});
 
@@ -276,9 +278,9 @@
 		//Data is indexed by user id, and represents an object where keys 
 		 //correspond with the app data fields.
 		 var mydata = mydata.getData()[personId];
-		 mydata["company"] 
+		
 
-   };
+   }
 
 	function response(obj) 
 	{
