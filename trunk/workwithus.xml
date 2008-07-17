@@ -258,7 +258,7 @@
 		req.send(function(data){
 		var mydata = data.get("person_data");
 
-		alert(mydata.getData()[me.getId()]);
+		alert(mydata.getData()[personId]);
 //			var mydata = data.get("person_data").getData()[personId];
 
 			alert( mydata["company"] );
