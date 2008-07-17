@@ -105,9 +105,7 @@
 	.tablib_spacerTab, .tablib_emptyTab {
 		border-bottom: 1px solid #86A1C4;
 	}
-	.tablib_emptyTab {
-		width: 125px;
-	}
+	
   </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
 	<div id="workWithMe" style="display:none">
@@ -257,9 +255,10 @@
 	}
 	function callback(tabId)
 	{
-	document.getElementById('loader').style.display = "block";	
+	
 		if(tabId == "workWithMyFriends")
 		{//Get all the friends
+		document.getElementById('loader').style.display = "block";	
 			var req = opensocial.newDataRequest();
 			var req_params = {}; 
 			req_params[opensocial.DataRequest.PeopleRequestFields.FILTER] = opensocial.DataRequest.FilterType.HAS_APP;
