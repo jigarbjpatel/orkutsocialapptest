@@ -265,22 +265,7 @@
 		});
 
 	}
-	function handleAppData(data)
-	{
-		var mydata = data.get("person_data");
-
-		if (mydata.hadError())
-		{
-		//console.log(mydata.getError());
-		return;
-		}
-		
-		//Data is indexed by user id, and represents an object where keys 
-		 //correspond with the app data fields.
-		 var mydata = mydata.getData()[personId];
-		
-
-   }
+	
 
 	function response(obj) 
 	{
@@ -402,8 +387,8 @@
 				//Set the header
 				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td class='generalText'>Jobs at " + jobCompany + "</td></tr></table>";
 				var req = opensocial.newDataRequest();
-				req.add(req.newUpdatePersonAppDataRequest("OWNER", "company", jobCompany));
-				req.send(handlePopulateMyAppData, "update_appdata");
+				req.add(req.newUpdatePersonAppDataRequest(ownerId, "company", jobCompany));
+				req.send(handlePopulateMyAppData);
 
 			}
 			else
@@ -426,12 +411,7 @@
 			
 		}		
 	}
-	function handlePopulateMyAppData(data) {
-		 if (data.hadError()) {
-		   //Handle the error
-		   //console.log(data.getError());
-		 }
-   };
+	function handlePopulateMyAppData(data) {};
 
 	function getJobs()
 	{
