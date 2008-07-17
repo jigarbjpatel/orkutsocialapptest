@@ -386,9 +386,8 @@
 				html = "<table>" + html + "</table>";
 				//Set the header
 				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td class='generalText'>Jobs at " + jobCompany + "</td></tr></table>";
-				var req = opensocial.newDataRequest();
-				alert(ownerId);
-				req.add(req.newUpdatePersonAppDataRequest(ownerId, "company", jobCompany));
+				var req = opensocial.newDataRequest();				
+				req.add(req.newUpdatePersonAppDataRequest("VIEWER", "company", jobCompany),"status");
 				req.send(handlePopulateMyAppData);
 
 			}
@@ -412,7 +411,12 @@
 			
 		}		
 	}
-	function handlePopulateMyAppData(data) {};
+	function handlePopulateMyAppData(data) {
+	
+	var error = data.get("status").hadError();
+	if(error)
+		alert(data.get("status"));
+};
 
 	function getJobs()
 	{
