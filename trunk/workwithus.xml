@@ -252,6 +252,7 @@
 			}
 		});
 		html += '</table>';
+
 			
 		alert(friendsWhoHaveInstalledApp);
 		//Get company names of the friends who have installed this app		
@@ -263,11 +264,9 @@
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		var url = "http://talentnow.com/orkutapp/Default.aspx";  
-		gadgets.io.makeRequest(url, gotCompanyNames, params);
-		
-
-
 		document.getElementById('friends').innerHTML = html;
+		gadgets.io.makeRequest(url, gotCompanyNames, params);
+	
 	}
 	
 	function gotCompanyNames(obj)
