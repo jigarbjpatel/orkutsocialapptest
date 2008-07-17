@@ -368,8 +368,8 @@
 					html += "<tr><td  class='TopRow'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td class='BottomRow'>at <span class='jobLocation'>" + jobLocation + "</span> posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
 				}
 				html = "<table>" + html + "</table>";
-				alert(jobCompany);
-				document.getElementById('jobsTableHeader').innnerHTML = "<table><tr><td>Jobs at " + jobCompany + "</td></tr></table>";
+				//Set the header
+				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td>Jobs at " + jobCompany + "</td></tr></table>";
 			}
 			else
 			{
