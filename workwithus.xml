@@ -64,11 +64,50 @@
 	.jobLocation{
 		color:green;
 	}
-	.tablib_selected { 	width: 150px;}
-	.tablib_unselected { width: 150px;}
-	.tablib_table { font-size:12px; }
-	.tablib_emptyTab { padding:2px 5px; }
-	.tablib_spacerTab { padding:0px 5px; }
+	.tablib_extension_left_selected, .tablib_extension_left_unselected {
+		height: 23px;
+		width: 6px;
+		float: left;
+	}
+	.tablib_extension_left_selected {
+		background-image: url(http://opensocial-resources.googlecode.com/svn/samples/orkut_ui/img/tabsel_l.gif);
+	}
+	.tablib_extension_left_unselected {
+		background-image: url(http://opensocial-resources.googlecode.com/svn/samples/orkut_ui/img/tabnotsel_l.gif);
+	}
+	.tablib_selected, .tablib_unselected {
+		font-size: 12px;
+		font-height: 23px;
+		text-transform: lowercase;
+		height: 23px;
+		line-height: 23px;
+		font-family: Verdana,Arial,sans-serif;
+		font-weight: 700;
+		margin: 0px;
+		padding: 0px;
+		padding-right: 6px;
+		width: auto;
+		border: 0px;
+		border-bottom: 1px solid #86A1C4;
+	}
+	.tablib_selected {
+		background: url(http://opensocial-resources.googlecode.com/svn/samples/orkut_ui/img/tabsel_r.gif) no-repeat center right;
+		color: #FFFFFF;
+	}
+	.tablib_unselected {
+		background: url(http://opensocial-resources.googlecode.com/svn/samples/orkut_ui/img/tabnotsel_r.gif) no-repeat center right;
+		color: #02679C;
+	}
+	td.tablib_unselected:hover {
+		color: #00344F;
+		text-decoration: underline;
+	}
+	.tablib_spacerTab, .tablib_emptyTab {
+		border-bottom: 1px solid #86A1C4;
+	}
+	.tablib_emptyTab {
+		width: 125px;
+	}
   </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
 	<div id="workWithMe" style="display:none">
@@ -218,7 +257,7 @@
 	}
 	function callback(tabId)
 	{
-	
+	document.getElementById('loader').style.display = "block";	
 		if(tabId == "workWithMyFriends")
 		{//Get all the friends
 			var req = opensocial.newDataRequest();
@@ -228,7 +267,7 @@
 
 			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS,req_params),'ownerFriends'); 
 			req.send(onLoadFriends);
-			document.getElementById('loader').style.display = "block";	
+			
 		}
 	}
 	function onLoadFriends(dataResponse)
@@ -369,7 +408,7 @@
 				}
 				html = "<table>" + html + "</table>";
 				//Set the header
-				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td>Jobs at " + jobCompany + "</td></tr></table>";
+				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td class='generalText'>Jobs at " + jobCompany + "</td></tr></table>";
 			}
 			else
 			{
