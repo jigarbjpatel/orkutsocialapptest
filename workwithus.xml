@@ -66,7 +66,7 @@
 	}
 	.tablib_extension_left_selected, .tablib_extension_left_unselected {
 		height: 23px;
-		width: 6px;
+		width: 1px;
 		float: left;
 	}
 	.tablib_extension_left_selected {
@@ -105,7 +105,9 @@
 	.tablib_spacerTab, .tablib_emptyTab {
 		border-bottom: 1px solid #86A1C4;
 	}
-	
+	.tablib_emptyTab {
+		width: 1px;
+	}
   </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
 	<div id="workWithMe" style="display:none">
