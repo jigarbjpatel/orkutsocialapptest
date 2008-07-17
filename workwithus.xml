@@ -64,8 +64,8 @@
 	.jobLocation{
 		color:green;
 	}
-	.tablib_selected { color: white; background-color: blue }
-   .tablib_unselected { color: blue; background-color: white }
+	.tablib_selected { color: white; background-color: blue; width: 200px; }
+   .tablib_unselected { color: blue; background-color: white; width: 200px;}
    .tablib_table { font-size:12px; font-family:Verdana, Arial, Sans-Serif;	font-weight: normal;	 }
    .tablib_emptyTab { padding:2px 5px; }
    .tablib_spacerTab { padding:0px 5px; }
