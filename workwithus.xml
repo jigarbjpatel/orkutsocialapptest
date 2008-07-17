@@ -107,6 +107,11 @@
 		<div id="searchResults" style="display:none">
 			<table>
 				<tr>
+					<td>
+						<div id="jobsTableHeader" ></div>
+					</td>
+				</tr>
+				<tr>
 					<td align="right"><div id="pager" class='generalText'></div></td>
 				</tr>
 				<tr>
@@ -359,7 +364,8 @@
 					  }
 					}
 					// Append extracted data to the HTML string
-					html += "<tr><td  class='TopRow'><a href='" + jobTitleUrl + "' target='_blank'>" + jobTitle +"</a> at " + jobLocation + "</td></tr><tr><td class='BottomRow'>from <span class='companyName'>"+ jobCompany +"</span> posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
+//					html += "<tr><td  class='TopRow'><a href='" + jobTitleUrl + "' target='_blank'>" + jobTitle +"</a> at " + jobLocation + "</td></tr><tr><td class='BottomRow'>from <span class='companyName'>"+ jobCompany +"</span> posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
+					html += "<tr><td  class='TopRow'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td class='BottomRow'>at " + jobLocation + " posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
 				}
 				html = "<table>" + html + "</table>";
 			}
@@ -371,6 +377,7 @@
 			
 			//var newTitle = "Hot Jobs at " + jobCompany;
 			//gadgets.window.setTitle(newTitle);
+			document.getElementById('jobsTableHeader').innnerHTML = "<table><tr><td>Jobs at " + jobCompany + "</td></tr></table>";
 			document.getElementById('jobsTable').innerHTML = html;			
 			document.getElementById('loader').style.display = "none";	
 			document.getElementById('searchResults').style.display = "block";			
