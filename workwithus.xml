@@ -64,52 +64,16 @@
 	.jobLocation{
 		color:green;
 	}
-	.tablib_extension_left_selected, .tablib_extension_left_unselected {
-		height: 23px;
-		width: 1px;
-		float: left;
-	}
-	.tablib_extension_left_selected {
-		background-image: url(http://opensocial-resources.googlecode.com/svn/samples/orkut_ui/img/tabsel_l.gif);
-	}
-	.tablib_extension_left_unselected {
-		background-image: url(http://opensocial-resources.googlecode.com/svn/samples/orkut_ui/img/tabnotsel_l.gif);
-	}
-	.tablib_selected, .tablib_unselected {
-		font-size: 12px;
-		font-height: 23px;
-		text-transform: lowercase;
-		height: 23px;
-		line-height: 23px;
-		font-family: Verdana,Arial,sans-serif;
-		font-weight: 700;
-		margin: 0px;
-		padding: 0px;
-		padding-right: 6px;
-		width: auto;
-		border: 0px;
-		border-bottom: 1px solid #86A1C4;
-	}
-	.tablib_selected {
-		background: url(http://opensocial-resources.googlecode.com/svn/samples/orkut_ui/img/tabsel_r.gif) no-repeat center right;
-		color: #FFFFFF;
-	}
-	.tablib_unselected {
-		background: url(http://opensocial-resources.googlecode.com/svn/samples/orkut_ui/img/tabnotsel_r.gif) no-repeat center right;
-		color: #02679C;
-	}
-	td.tablib_unselected:hover {
-		color: #00344F;
-		text-decoration: underline;
-	}
-	.tablib_spacerTab, .tablib_emptyTab {
-		border-bottom: 1px solid #86A1C4;
-	}
-	.tablib_emptyTab {
-		width: 1px;
-	}
+	.tablib_selected { color: white; background-color: blue }
+   .tablib_unselected { color: blue; background-color: white }
+   .tablib_table { font-size:12px; font-family:Verdana, Arial, Sans-Serif;	font-weight: normal;	 }
+   .tablib_emptyTab { padding:2px 5px; }
+   .tablib_spacerTab { padding:0px 5px; }
   </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
+	<div id="loader" style="display:none">
+		<img src="http://www.talentnow.com/orkutapp/images/loader.gif" border='0' alt='Please wait while we fetch the jobs' />
+	</div>
 	<div id="workWithMe" style="display:none">
 		<div id="searchForm" style="display:none" onkeydown="checkPost(event);">
 			<table>
@@ -167,9 +131,7 @@
 				</tr>
 			</table>
 		</div>
-		<div id="loader">
-			<img src="http://www.talentnow.com/orkutapp/images/loader.gif" border='0' alt='Please wait while we fetch the jobs' />
-		</div>
+
 	</div>
 
 	<div id="workWithMyFriends" style="display:none">
@@ -215,6 +177,7 @@
     }
 	function getOwnerId() 
 	{    
+		document.getElementById('loader').style.display = "block";	
 		var req = opensocial.newDataRequest();
 		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.OWNER), 'owner');
 		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
