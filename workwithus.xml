@@ -485,7 +485,7 @@
 			}
 			else
 			{
-				html += "<table><tr><td >No jobs found.</td></tr></table>";
+				html += "<table><tr><td >Either we don't have any jobs posted by your company or the company code you entered may be incorrect. </td></tr></table>";
 				document.getElementById('pager').innerHTML = "";
 			}
 			
