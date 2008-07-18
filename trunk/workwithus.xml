@@ -246,8 +246,9 @@
 	}
 	function onLoadFriends(dataResponse)
 	{	
-	alert(gadgets.util.getUrlParameters()["parent"]);
-	alert(gadgets.util.getUrlParameters()["gadgetId"]);
+	//alert(gadgets.util.getUrlParameters()["parent"]);
+	//alert(gadgets.util.getUrlParameters()["gadgetId"]);
+	
 		var friendsWhoHaveInstalledApp = "";
 		if(dataResponse != null && dataResponse.get('ownerFriends') != null)
 		{
@@ -256,7 +257,7 @@
 			friendsHtml = '<table>';
 			ownerFriends.each(function(person){		
 				if(person.getDisplayName() != "")
-				{
+				{alert(person.getField(opensocial.Person.Field.URLS));
 					var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
 					var profileUrl = person.getField(opensocial.Person.Field.PROFILE_URL);
 					var appUrl = profileUrl + "&appId=184972450298";
