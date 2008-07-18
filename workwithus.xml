@@ -5,6 +5,7 @@
 	<Require feature="minimessage"/>
 	<Require feature="tabs" /> 
 	<Locale lang="en" country="us" />
+	<Require feature="dynamic-height"/>
 	<!--<Require feature="settitle"/>-->
  </ModulePrefs>
  <Content type="html">
@@ -98,14 +99,16 @@
 			border-left: #82B0CA 1px solid; 
 			border-top: #82B0CA 1px solid; 
 			border-right: #82B0CA 1px solid; 
-			padding: 5px;}
+			padding: 5px;
+			width: 200px;}
    .tablib_unselected { 
 			font-weight: bold;
 			background-color: #E8F0F7;
 			border-left: #BED4E8 1px solid; 
 			border-top: #BED4E8 1px solid; 
 			border-right: #BED4E8 1px solid; 
-			padding: 5px;}
+			padding: 5px;
+			width: 200px;}
    .tablib_table { 	 }
    .tablib_emptyTab { padding:2px 5px; }
    .tablib_spacerTab { padding:0px 5px; }
