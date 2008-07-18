@@ -78,14 +78,14 @@
 		<div id="searchForm" style="display:none" onkeydown="checkPost(event);">
 			<table>
 				<tr>
-					<td colspan="2" align="right" class="helpText">Please enter the company code given to you by your company</td>
+					<td colspan="2" align="right" class="helpText">Enter your company code (If you dont have it already, get this from your company). This is what helps you make your company's jobs show up in the app.</td>
 				</tr>
 				<tr>
 					<td class="fieldLabel">Company Code:</td>
 					<td class="generalText"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" /></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="right" class="helpText">Please enter your full name or employee id so your company can identify you for referral incentives per company policy.</td>
+					<td colspan="2" align="right" class="helpText">Please enter your full name. This helps your company identify you and might get you referral incentives as per their policy</td>
 				</tr>
 				<tr>
 					<td class="fieldLabel">Full Name:</td>
@@ -115,7 +115,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="right"><div id="pager" class='generalText'></div></td>
+					<td align="left"><div id="pager" class='generalText'></div></td>
+					<td id="changeSettings" align="right"  class="generalText"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
 				</tr>
 				<tr>
 					<td>
@@ -124,6 +125,7 @@
 				</tr>			
 			</table>		
 		</div>
+		<!--
 		<div id="changeSettings" style="display:none">
 			<table>
 				<tr>
@@ -131,12 +133,13 @@
 				</tr>
 			</table>
 		</div>
-
+-->
 	</div>
 
 	<div id="workWithMyFriends" style="display:none">
 		<div id="friendsHeader"></div>
 		<div id="friends"></div>
+		<div id="friendsJobs" style="display:none"></div>
 	</div>
 	 
   </form>
@@ -186,13 +189,20 @@
 
 	function onGotOwnerId(dataResponse)
 	{
-		var owner = dataResponse.get('owner').getData();
-		ownerId = owner.getId();
-		ownerName = owner.getDisplayName();	
-		var viewer = dataResponse.get('viewer').getData();
-		if(typeof(viewer) != 'undefined')
-			viewerId = viewer.getId();
-		makeInitialPOSTRequest() ;		
+		if(dataResponse != null && dataResponse.get('owner') != null)
+		{
+			var owner = dataResponse.get('owner').getData();
+			ownerId = owner.getId();
+			ownerName = owner.getDisplayName();	
+			var viewer = dataResponse.get('viewer').getData();
+			if(typeof(viewer) != 'undefined')
+				viewerId = viewer.getId();
+			makeInitialPOSTRequest() ;		
+		}
+		else
+		{
+			getOwnerId();
+		}
 	}
 
 	function makeInitialPOSTRequest() 
@@ -224,7 +234,7 @@
 		if(tabId == "workWithMyFriends")
 		{//Get all the friends		
 			document.getElementById('friendsHeader').innerHTML = "<table><tr><td class='generalText'>These are jobs from companies where some of my friends work. Click on the company name to see the jobs. I can help you connect with them to find out any additional information you may need.</td></tr></table>";
-
+			document.getElementById('loader').style.display = "block";	
 			var req = opensocial.newDataRequest();
 			var req_params = {}; 
 			req_params[opensocial.DataRequest.PeopleRequestFields.FILTER] = opensocial.DataRequest.FilterType.HAS_APP;
@@ -246,10 +256,11 @@
 				if(person.getDisplayName() != "")
 				{
 					var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
-					var profile = person.getField(opensocial.Person.Field.PROFILE_URL);
-					friendsHtml += '<tr><td id="' + person.getId() + '" class="generalText"><a href="' + profile + '" target="_top" style="float:left">' +
+					var profileUrl = person.getField(opensocial.Person.Field.PROFILE_URL);
+					var appUrl = profileUrl + "&appId=184972450298";
+					friendsHtml += '<tr><td id="' + person.getId() + '" class="generalText"><a href="' + profileUrl + '" target="_top" style="float:left">' +
 							  '<img src="' + thumb + '"/>' +
-					  '</a><br/>'+ person.getDisplayName() +'</td></tr>';
+					  '</a>'+ person.getDisplayName() +'</td></tr>';
 					if(friendsWhoHaveInstalledApp == "")
 						friendsWhoHaveInstalledApp += "'" + person.getId() + "'";
 					else
@@ -274,21 +285,42 @@
 		else
 		{
 			//Write some text saying no friends have this app installed
+			document.getElementById('loader').style.display = "none";	
 			document.getElementById('friends').innerHTML  = "<table><tr><td class='generalText'>Sorry, could not find jobs.</td></tr></table>";
 		}
 	}
 	
 	function gotCompanyNames(obj)
 	{
+		document.getElementById('loader').style.display = "none";	
 		var responseText = obj.data;
 		var userList = responseText.getElementsByTagName("user");
 		document.getElementById('friends').innerHTML = friendsHtml;
 		for (var i = 0; i < userList.length ; i++) 
 		{ 
-			document.getElementById(userList.item(i).getAttribute("id")).innerHTML += " working at " + userList.item(i).getAttribute("companyName");
+			document.getElementById(userList.item(i).getAttribute("id")).innerHTML += " working at " + userList.item(i).getAttribute("companyName")\;
 		}
 	}
+	
+	function getFriendsJobs(friendId)
+	{
+		var params = {};  
+		var postdata = {
+			id : friendId						
+			};  
+		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+		var url = "http://talentnow.com/orkutapp/Default.aspx";  
+		gadgets.io.makeRequest(url, onGotFriendJobs, params);
+	}
 
+	function onGotFriendJobs()
+	{
+		
+		document.getElementById("friends").style.display = "none";
+		document.getElementById("friendsJobs").style.display = "block";
+	}
 	function response(obj) 
 	{
 		if(typeof(loadMessage) != 'undefined')
@@ -339,11 +371,9 @@
 				else
 				{
 					document.getElementById('pager').innerHTML = "&lt;Prev"; 
-				}
-				
+				}				
 				if((parseInt(startIndex,10) + parseInt(pageSize,10)) < parseInt(jobCount,10))
 				{
-					//display next
 					document.getElementById('pager').innerHTML += " | " + "<a id='next' href='#' onclick='getNextJobs();' >Next&gt;</a>"; 
 				}
 				else
@@ -393,16 +423,13 @@
 					  }
 					  if (node.nodeName == "titleurl")
 					  {
-						//if (node.firstChild.nodeName == "#cdata-section") 
 						if(node.firstChild == null)
 							var jobTitleUrl = "http://talentnow.com/public/viewalljobs.aspx?jpc="+jobPostingCode+"&rid="+ownerId;
 						else
-							var jobTitleUrl = node.firstChild.nodeValue;
-						 //TODO: Add id of user and name to the url
+							var jobTitleUrl = node.firstChild.nodeValue;						
 					  }
 					}
-					// Append extracted data to the HTML string
-//					html += "<tr><td  class='TopRow'><a href='" + jobTitleUrl + "' target='_blank'>" + jobTitle +"</a> at " + jobLocation + "</td></tr><tr><td class='BottomRow'>from <span class='companyName'>"+ jobCompany +"</span> posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
+					// Append extracted data to the HTML string					
 					html += "<tr><td  class='TopRow'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td class='BottomRow'>at <span class='jobLocation'>" + jobLocation + "</span> posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
 				}
 				html = "<table>" + html + "</table>";
