@@ -182,6 +182,7 @@
 	var viewerId = "";
 	var employeeName = "";
 	var friendsHtml = "";
+	var appUrls = {};
 
 	function checkPost(evt)
 	{
@@ -279,7 +280,7 @@
 		if(dataResponse != null && dataResponse.get('ownerFriends') != null)
 		{
 			var ownerFriends = dataResponse.get('ownerFriends').getData();		
-
+			
 			friendsHtml = '<table>';
 			ownerFriends.each(function(person){		
 				if(person.getDisplayName() != "")
@@ -295,6 +296,10 @@
 					friendsHtml += '<tr><td class="imageContainer" id="' + person.getId() + '" ><a href="' + appUrl + '" target="_top" style="float:left">' +
 							  '<img src="' + thumb + '" border="0"/>' +
 					  '</a><br/>&nbsp;&nbsp;&nbsp;'+ person.getDisplayName() +'</td></tr>';
+					
+					//store app urls 
+					appUrls[person.getId()] = appUrl;
+
 					if(friendsWhoHaveInstalledApp == "")
 						friendsWhoHaveInstalledApp += "'" + person.getId() + "'";
 					else
@@ -332,7 +337,8 @@
 		document.getElementById('friends').innerHTML = friendsHtml;
 		for (var i = 0; i < userList.length ; i++) 
 		{ 
-			document.getElementById(userList.item(i).getAttribute("id")).innerHTML += " working at <span class='friendCompany'>" + userList.item(i).getAttribute("companyName") + "</span>";
+			var friendId = userList.item(i).getAttribute("id");
+			document.getElementById(friendId).innerHTML += " working at <a href='"+appUrls[friendId]+"'>" + userList.item(i).getAttribute("companyName") + "</a>";
 		}
 		
 	}
