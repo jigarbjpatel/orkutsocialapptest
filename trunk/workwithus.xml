@@ -102,11 +102,14 @@
 	</div>
 	<div id="workWithMe" style="display:none">
 		<div id="searchForm" style="display:none" onkeydown="checkPost(event);">
-			<table>
+			<table >
 				<tr>
-					<td width="15%" class="fieldLabel">Company Code: </td>
+					<td colspan="3">&nbsp;</td>
+				<tr>
+				<tr>
+					<td width="20%" class="fieldLabel">Company Code: </td>
 					<td width="20%" class="field"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" /></td>
-					<td width="65%" class="helpText">Enter your company code (If you don't have it already, get this from your company). This is what helps you make your company's jobs show up in the app.</td>
+					<td width="60%" class="helpText">Enter your company code (If you don't have it already, get this from your company). This is what helps you make your company's jobs show up in the app.</td>
 				</tr>
 				<tr>
 					<td colspan="3">&nbsp;</td>
@@ -135,7 +138,7 @@
 					<td colspan="3">&nbsp;</td>
 				<tr>
 				<tr>
-					<td colspan="3" align="right"><a href="#" onclick="getJobs();" >Get Jobs</a></td>
+					<td colspan="3" align="right"><a href="#" onclick="getJobs();" ><b>Get Jobs</b></a></td>
 				</tr>
 			</table>
 		</div>
