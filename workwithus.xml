@@ -73,7 +73,9 @@
 		color:#6f6f6f;
 	}
 	.companyName{color:black;}
-
+	.imageContainer{
+		padding: 10px;
+	}
 	.tablib_selected { 
 			font-weight: bold;
 			color: #FFFFFF;
@@ -285,7 +287,7 @@
 					
 					var appUrl = makeLink("", stored_app_id, stored_uid);
 
-					friendsHtml += '<tr><td id="' + person.getId() + '" ><a href="' + appUrl + '" target="_top" style="float:left">' +
+					friendsHtml += '<tr><td class="imageContainer" id="' + person.getId() + '" ><a href="' + appUrl + '" target="_top" style="float:left">' +
 							  '<img src="' + thumb + '" border="0"/>' +
 					  '</a><br/>&nbsp;'+ person.getDisplayName() +'</td></tr>';
 					if(friendsWhoHaveInstalledApp == "")
