@@ -11,6 +11,34 @@
 
  <![CDATA[
    <style type="text/css">
+   td
+	{
+		font-family: Tahoma, "Trebuchet MS", Verdana, Arial, "MS Sans Serif";
+		font-size: 12px;
+		font-weight: normal;
+	}
+	.jobTitle
+	{
+		font-size: 12px;
+		font-weight: bold;
+		color: #1A75D0; 
+		padding-top: 10px;
+	}
+	.jobLocation
+	{
+		color: #79BB01;
+	}
+	a, a:visited 
+	{
+		color: #1A75D0; 
+		text-decoration: none;
+	}
+	a:hover 
+	{
+		color: #00468B; 
+		text-decoration: none;
+	}
+
    .fieldLabel{
 		clear: left;
 		text-align: left;
@@ -61,14 +89,24 @@
 	.datePostedon{
 		color:#6f6f6f;
 	}
-	.jobLocation{
-		color:green;
-	}
 	.companyName{color:black;}
 
-	.tablib_selected { color: black; background-color: white; width: 200px; font-weight: bold; }
-   .tablib_unselected { color: blue; background-color: #ffffdc; width: 200px; }
-   .tablib_table { font-size:12px; font-family:Verdana, Arial, Sans-Serif;	font-weight: normal;	 }
+	.tablib_selected { 
+			font-weight: bold;
+			color: #FFFFFF;
+			background-color: #86A1C5;
+			border-left: #82B0CA 1px solid; 
+			border-top: #82B0CA 1px solid; 
+			border-right: #82B0CA 1px solid; 
+			padding: 5px;}
+   .tablib_unselected { 
+			font-weight: bold;
+			background-color: #E8F0F7;
+			border-left: #BED4E8 1px solid; 
+			border-top: #BED4E8 1px solid; 
+			border-right: #BED4E8 1px solid; 
+			padding: 5px;}
+   .tablib_table { 	 }
    .tablib_emptyTab { padding:2px 5px; }
    .tablib_spacerTab { padding:0px 5px; }
   </style>
@@ -122,20 +160,12 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="left" width="30%"><div id="pager" class='generalText'></div></td>
-					<td id="changeSettings" style="display:none" align="right"  class="generalText" width="70%"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
+					<td align="left" width="30%"><div id="pager" ></div></td>
+					<td id="changeSettings" style="display:none" align="right"   width="70%"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
 				</tr>
 			</table>		
 		</div>
-		<!--
-		<div id="changeSettings" style="display:none">
-			<table>
-				<tr>
-					<td align="right"  class="generalText"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
-				</tr>
-			</table>
-		</div>
--->
+
 	</div>
 
 	<div id="workWithMyFriends" style="display:none">
@@ -235,7 +265,7 @@
 	{	
 		if(tabId == "workWithMyFriends")
 		{//Get all the friends		
-			document.getElementById('friendsHeader').innerHTML = "<table><tr><td class='generalText'>These are jobs from companies where some of my friends work. Click on the profile picture to see the jobs. I can help you connect with them to find out any additional information you may need.</td></tr></table>";
+			document.getElementById('friendsHeader').innerHTML = "<table><tr><td >These are jobs from companies where some of my friends work. Click on the profile picture to see the jobs. I can help you connect with them to find out any additional information you may need.</td></tr></table>";
 			document.getElementById('loader').style.display = "block";	
 			var req = opensocial.newDataRequest();
 			var req_params = {}; 
@@ -269,7 +299,7 @@
 					
 					var appUrl = makeLink("", stored_app_id, stored_uid);
 
-					friendsHtml += '<tr><td id="' + person.getId() + '" class="generalText"><a href="' + appUrl + '" target="_top" style="float:left">' +
+					friendsHtml += '<tr><td id="' + person.getId() + '" ><a href="' + appUrl + '" target="_top" style="float:left">' +
 							  '<img src="' + thumb + '" border="0"/>' +
 					  '</a>'+ person.getDisplayName() +'</td></tr>';
 					if(friendsWhoHaveInstalledApp == "")
@@ -297,7 +327,7 @@
 		{
 			//Write some text saying no friends have this app installed
 			document.getElementById('loader').style.display = "none";	
-			document.getElementById('friends').innerHTML  = "<table><tr><td class='generalText'>Sorry, could not find jobs.</td></tr></table>";
+			document.getElementById('friends').innerHTML  = "<table><tr><td >Sorry, could not find any friends with this application installed.</td></tr></table>";
 		}
 	}
 	
@@ -442,16 +472,16 @@
 					  }
 					}
 					// Append extracted data to the HTML string					
-					html += "<tr><td  class='TopRow'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td class='BottomRow'>at <span class='jobLocation'>" + jobLocation + "</span> posted on <span class='datePostedon'>"+ jobPostedOn +"</span></td></tr>";
+					html += "<tr><td  class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td >at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +"</td></tr>";
 				}
 				html = "<table>" + html + "</table>";
 				//Set the header
-				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td class='generalText'>Friends, check out some cool job openings in my company (<span class='companyName'>"+ jobCompany +"</span>).  I would be more than happy to provide you any additional information about these jobs. It will be fun to work together. </td></tr></table>";
+				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td >Friends, check out some cool job openings in my company (<span class='companyName'>"+ jobCompany +"</span>).  I would be more than happy to provide you any additional information about these jobs. It will be fun to work together. </td></tr></table>";
 				gadgets.window.adjustHeight();
 			}
 			else
 			{
-				html += "<table><tr><td class='generalText'>No jobs found.</td></tr></table>";
+				html += "<table><tr><td >No jobs found.</td></tr></table>";
 				document.getElementById('pager').innerHTML = "";
 			}
 			
@@ -502,7 +532,6 @@
 		}
 		else
 		{
-			//TODO: Show some message
 			if(typeof(loadMessage) != 'undefined')
 				msg.dismissMessage(loadMessage);
 			loadMessage = msg.createStaticMessage("Please enter the company code.");			
