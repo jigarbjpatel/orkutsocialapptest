@@ -154,6 +154,7 @@
 	var startIndex = 0;
 	var viewerId = "";
 	var employeeName = "";
+	var friendsHtml = "";
 
 	function checkPost(evt)
 	{
@@ -189,7 +190,8 @@
 		ownerId = owner.getId();
 		ownerName = owner.getDisplayName();	
 		var viewer = dataResponse.get('viewer').getData();
-		viewerId = viewer.getId();
+		if(typeof(viewer) != 'undefined')
+			viewerId = viewer.getId();
 		makeInitialPOSTRequest() ;		
 	}
 
@@ -237,13 +239,13 @@
 		var ownerFriends = dataResponse.get('ownerFriends').getData();
 		var friendsWhoHaveInstalledApp = "";
 
-		var html = '<table>';
+		friendsHtml = '<table>';
 		ownerFriends.each(function(person){		
 			if(person.getDisplayName() != "")
 			{
 				var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
 				var profile = person.getField(opensocial.Person.Field.PROFILE_URL);
-				html += '<tr><td id="' + person.getId() + '" class="generalText"><a href="' + profile + '" target="_top" style="float:left">' +
+				friendsHtml += '<tr><td id="' + person.getId() + '" class="generalText"><a href="' + profile + '" target="_top" style="float:left">' +
 						  '<img src="' + thumb + '"/>' +
                   '</a><br/>'+ person.getDisplayName() +'</td></tr>';
 				if(friendsWhoHaveInstalledApp == "")
@@ -252,7 +254,7 @@
 					friendsWhoHaveInstalledApp += "," + "'" + person.getId() + "'";
 			}
 		});
-		html += '</table>';
+		friendsHtml += '</table>';
 		
 		if(friendsWhoHaveInstalledApp != "")
 		{
@@ -278,7 +280,7 @@
 	{
 		var responseText = obj.data;
 		var userList = responseText.getElementsByTagName("user");
-		document.getElementById('friends').innerHTML = html;
+		document.getElementById('friends').innerHTML = friendsHtml;
 		for (var i = 0; i < userList.length ; i++) 
 		{ 
 			document.getElementById(userList.item(i).getAttribute("id")).innerHTML += " working at " + userList.item(i).getAttribute("companyName");
