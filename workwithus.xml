@@ -115,8 +115,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="left"><div id="pager" class='generalText'></div></td>
-					<td id="changeSettings" align="right"  class="generalText"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
+					<td align="left" width="50%"><div id="pager" class='generalText'></div></td>
+					<td id="changeSettings" align="right"  class="generalText" width="50%"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
 				</tr>
 				<tr>
 					<td>
@@ -258,7 +258,7 @@
 					var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
 					var profileUrl = person.getField(opensocial.Person.Field.PROFILE_URL);
 					var appUrl = profileUrl + "&appId=184972450298";
-					friendsHtml += '<tr><td id="' + person.getId() + '" class="generalText"><a href="' + profileUrl + '" target="_top" style="float:left">' +
+					friendsHtml += '<tr><td id="' + person.getId() + '" class="generalText"><a href="' + appUrl + '" target="_top" style="float:left">' +
 							  '<img src="' + thumb + '"/>' +
 					  '</a>'+ person.getDisplayName() +'</td></tr>';
 					if(friendsWhoHaveInstalledApp == "")
