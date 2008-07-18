@@ -60,25 +60,7 @@
 		font-weight: normal;		
 		font-family:Verdana, Arial, Sans-Serif;		
 	}
-	.TopRow{
-		clear: left;
-		text-align: left;
-		color: #666666;
-		vertical-align: top;
-		font-size: 12px;
-		font-weight: normal;		
-		font-family:Verdana, Arial, Sans-Serif;		
-	}
-	.BottomRow{
-		clear: left;
-		text-align: left;
-		padding-bottom: 5px;
-		color: #666666;
-		vertical-align: top;
-		font-size: 12px;
-		font-weight: normal;		
-		font-family:Verdana, Arial, Sans-Serif;		
-	}
+	
 	.helpText{
 		text-align: left;
 		padding-bottom: 5px;
@@ -99,7 +81,7 @@
 			border-left: #82B0CA 1px solid; 
 			border-top: #82B0CA 1px solid; 
 			border-right: #82B0CA 1px solid; 
-			padding: 5px;
+			padding: 3px;
 			width: 200px;}
    .tablib_unselected { 
 			font-weight: bold;
@@ -107,7 +89,7 @@
 			border-left: #BED4E8 1px solid; 
 			border-top: #BED4E8 1px solid; 
 			border-right: #BED4E8 1px solid; 
-			padding: 5px;
+			padding: 3px;
 			width: 200px;}
    .tablib_table { 	 }
    .tablib_emptyTab { padding:2px 5px; }
