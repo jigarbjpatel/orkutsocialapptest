@@ -76,6 +76,11 @@
 	.imageContainer{
 		padding: 10px;
 	}
+	.friendCompany
+	{
+		color: #86A1C5;
+		font-weight: bold;
+	}
 	.tablib_selected { 
 			font-weight: bold;
 			color: #FFFFFF;
@@ -315,7 +320,7 @@
 		{
 			//Write some text saying no friends have this app installed
 			document.getElementById('loader').style.display = "none";	
-			document.getElementById('friends').innerHTML  = "<table><tr><td >Sorry, could not find any friends with this application installed.</td></tr></table>";
+			document.getElementById('friends').innerHTML  = "<table><tr><td>Sorry, could not find any friends with this application installed.</td></tr></table>";
 		}
 	}
 	
@@ -327,7 +332,7 @@
 		document.getElementById('friends').innerHTML = friendsHtml;
 		for (var i = 0; i < userList.length ; i++) 
 		{ 
-			document.getElementById(userList.item(i).getAttribute("id")).innerHTML += " working at " + userList.item(i).getAttribute("companyName");
+			document.getElementById(userList.item(i).getAttribute("id")).innerHTML += " working at <span class='friendCompany'>" + userList.item(i).getAttribute("companyName") + "</span>";
 		}
 		
 	}
