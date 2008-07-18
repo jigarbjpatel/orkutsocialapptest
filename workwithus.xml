@@ -338,7 +338,7 @@
 		for (var i = 0; i < userList.length ; i++) 
 		{ 
 			var friendId = userList.item(i).getAttribute("id");
-			document.getElementById(friendId).innerHTML += " working at <a href='"+appUrls[friendId]+"'>" + userList.item(i).getAttribute("companyName") + "</a>";
+			document.getElementById(friendId).innerHTML += " working at <a href='"+appUrls[friendId]+"' target='_top' style='float:left'>" + userList.item(i).getAttribute("companyName") + "</a>";
 		}
 		
 	}
