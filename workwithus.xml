@@ -236,26 +236,28 @@
 	}
 	function onLoadFriends(dataResponse)
 	{	
-		var ownerFriends = dataResponse.get('ownerFriends').getData();
 		var friendsWhoHaveInstalledApp = "";
+		if(dataResponse != null && dataResponse.get('ownerFriends') != null)
+		{
+			var ownerFriends = dataResponse.get('ownerFriends').getData();		
 
-		friendsHtml = '<table>';
-		ownerFriends.each(function(person){		
-			if(person.getDisplayName() != "")
-			{
-				var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
-				var profile = person.getField(opensocial.Person.Field.PROFILE_URL);
-				friendsHtml += '<tr><td id="' + person.getId() + '" class="generalText"><a href="' + profile + '" target="_top" style="float:left">' +
-						  '<img src="' + thumb + '"/>' +
-                  '</a><br/>'+ person.getDisplayName() +'</td></tr>';
-				if(friendsWhoHaveInstalledApp == "")
-					friendsWhoHaveInstalledApp += "'" + person.getId() + "'";
-				else
-					friendsWhoHaveInstalledApp += "," + "'" + person.getId() + "'";
-			}
-		});
-		friendsHtml += '</table>';
-		
+			friendsHtml = '<table>';
+			ownerFriends.each(function(person){		
+				if(person.getDisplayName() != "")
+				{
+					var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
+					var profile = person.getField(opensocial.Person.Field.PROFILE_URL);
+					friendsHtml += '<tr><td id="' + person.getId() + '" class="generalText"><a href="' + profile + '" target="_top" style="float:left">' +
+							  '<img src="' + thumb + '"/>' +
+					  '</a><br/>'+ person.getDisplayName() +'</td></tr>';
+					if(friendsWhoHaveInstalledApp == "")
+						friendsWhoHaveInstalledApp += "'" + person.getId() + "'";
+					else
+						friendsWhoHaveInstalledApp += "," + "'" + person.getId() + "'";
+				}
+			});
+			friendsHtml += '</table>';
+		}
 		if(friendsWhoHaveInstalledApp != "")
 		{
 			//Get company names of the friends who have installed this app		
