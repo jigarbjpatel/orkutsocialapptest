@@ -311,6 +311,7 @@
 		{ 
 			document.getElementById(userList.item(i).getAttribute("id")).innerHTML += " working at " + userList.item(i).getAttribute("companyName");
 		}
+		gadgets.window.adjustHeight();
 	}
 	
 	function getFriendsJobs(friendId)
@@ -446,6 +447,7 @@
 				html = "<table>" + html + "</table>";
 				//Set the header
 				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td class='generalText'>Friends, check out some cool job openings in my company (<span class='companyName'>"+ jobCompany +"</span>).  I would be more than happy to provide you any additional information about these jobs. It will be fun to work together. </td></tr></table>";
+				gadgets.window.adjustHeight();
 			}
 			else
 			{
