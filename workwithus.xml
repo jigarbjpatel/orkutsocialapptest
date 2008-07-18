@@ -287,7 +287,7 @@
 
 					friendsHtml += '<tr><td id="' + person.getId() + '" ><a href="' + appUrl + '" target="_top" style="float:left">' +
 							  '<img src="' + thumb + '" border="0"/>' +
-					  '</a>'+ person.getDisplayName() +'</td></tr>';
+					  '</a><br/>&nbsp;'+ person.getDisplayName() +'</td></tr>';
 					if(friendsWhoHaveInstalledApp == "")
 						friendsWhoHaveInstalledApp += "'" + person.getId() + "'";
 					else
