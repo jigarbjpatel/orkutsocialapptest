@@ -64,8 +64,10 @@
 	.jobLocation{
 		color:green;
 	}
-	.tablib_selected { color: white; background-color: blue; width: 200px; }
-   .tablib_unselected { color: blue; background-color: white; width: 200px;}
+	.companyName{color:black;}
+
+	.tablib_selected { color: white; background-color: #CEE2EA; width: 200px; }
+   .tablib_unselected { color: #CEE2EA; background-color: white; width: 200px;}
    .tablib_table { font-size:12px; font-family:Verdana, Arial, Sans-Serif;	font-weight: normal;	 }
    .tablib_emptyTab { padding:2px 5px; }
    .tablib_spacerTab { padding:0px 5px; }
@@ -113,16 +115,16 @@
 					<td colspan="2">
 						<div id="jobsTableHeader" ></div>
 					</td>
+				</tr>				
+				<tr>
+					<td colspan="2">
+						<div id="jobsTable"></div>
+					</td>
 				</tr>
 				<tr>
 					<td align="left" width="30%"><div id="pager" class='generalText'></div></td>
 					<td id="changeSettings" align="right"  class="generalText" width="70%"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
 				</tr>
-				<tr>
-					<td colspan="2">
-						<div id="jobsTable"></div>
-					</td>
-				</tr>			
 			</table>		
 		</div>
 		<!--
@@ -270,7 +272,7 @@
 					var appUrl = makeLink("", stored_app_id, stored_uid);
 
 					friendsHtml += '<tr><td id="' + person.getId() + '" class="generalText"><a href="' + appUrl + '" target="_top" style="float:left">' +
-							  '<img src="' + thumb + '"/>' +
+							  '<img src="' + thumb + '" border="0"/>' +
 					  '</a>'+ person.getDisplayName() +'</td></tr>';
 					if(friendsWhoHaveInstalledApp == "")
 						friendsWhoHaveInstalledApp += "'" + person.getId() + "'";
@@ -445,7 +447,7 @@
 				}
 				html = "<table>" + html + "</table>";
 				//Set the header
-				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td class='generalText'>Friends, check out some cool job openings in my company("+ jobCompany +").  I would be more than happy to provide you any additional information about these jobs. It will be fun to work together. </td></tr></table>";
+				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td class='generalText'>Friends, check out some cool job openings in my company (<span class='companyName'>"+ jobCompany +"</span>).  I would be more than happy to provide you any additional information about these jobs. It will be fun to work together. </td></tr></table>";
 			}
 			else
 			{
