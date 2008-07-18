@@ -248,7 +248,10 @@
 	{	
 	//alert(gadgets.util.getUrlParameters()["parent"]);
 	//alert(gadgets.util.getUrlParameters()["gadgetId"]);
-	
+	var parentUrl = gadgets.util.getUrlParameters()["parent"];
+	var stored_app_id = gadgets.util.getUrlParameters()["gadgetId"];
+	var regex = /uid=([^&#]+)/;
+
 		var friendsWhoHaveInstalledApp = "";
 		if(dataResponse != null && dataResponse.get('ownerFriends') != null)
 		{
@@ -257,10 +260,15 @@
 			friendsHtml = '<table>';
 			ownerFriends.each(function(person){		
 				if(person.getDisplayName() != "")
-				{alert(person.getField(opensocial.Person.Field.URLS));
+				{
 					var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
 					var profileUrl = person.getField(opensocial.Person.Field.PROFILE_URL);
-					var appUrl = profileUrl + "&appId=184972450298";
+					var result = profileUrl.match(regex);
+					if (result.length == 2) 
+						var stored_uid = result[1];					  
+					
+					var appUrl = makeLink("", stored_app_id, stored_uid);
+
 					friendsHtml += '<tr><td id="' + person.getId() + '" class="generalText"><a href="' + appUrl + '" target="_top" style="float:left">' +
 							  '<img src="' + thumb + '"/>' +
 					  '</a>'+ person.getDisplayName() +'</td></tr>';
@@ -539,6 +547,19 @@
 		gadgets.io.makeRequest(url, response, params);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 	}
+	
+	function makeLink(page, app_id, uid)
+	{
+		return [ gadgets.util.getUrlParameters()["parent"], 
+             "/Application.aspx?appId=", 
+             app_id, 
+             "&uid=",
+             uid,
+             "&appParams=%7B%22page%22%3A%22", 
+             page,
+             "%22%7D"].join("");
+	}
+
 
 	gadgets.util.registerOnLoadHandler(getOwnerId);
 
