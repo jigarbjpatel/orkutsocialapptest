@@ -115,8 +115,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="left" width="50%"><div id="pager" class='generalText'></div></td>
-					<td id="changeSettings" align="right"  class="generalText" width="50%"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
+					<td align="left" width="30%"><div id="pager" class='generalText'></div></td>
+					<td id="changeSettings" align="right"  class="generalText" width="70%"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
 				</tr>
 				<tr>
 					<td colspan="2">
