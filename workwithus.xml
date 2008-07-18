@@ -110,7 +110,7 @@
 		<div id="searchResults" style="display:none">
 			<table>
 				<tr>
-					<td>
+					<td colspan="2">
 						<div id="jobsTableHeader" ></div>
 					</td>
 				</tr>
@@ -119,7 +119,7 @@
 					<td id="changeSettings" align="right"  class="generalText" width="50%"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
 				</tr>
 				<tr>
-					<td>
+					<td colspan="2">
 						<div id="jobsTable"></div>
 					</td>
 				</tr>			
@@ -246,6 +246,8 @@
 	}
 	function onLoadFriends(dataResponse)
 	{	
+	alert(gadgets.util.getUrlParameters()["parent"]);
+	alert(gadgets.util.getUrlParameters()["gadgetId"]);
 		var friendsWhoHaveInstalledApp = "";
 		if(dataResponse != null && dataResponse.get('ownerFriends') != null)
 		{
