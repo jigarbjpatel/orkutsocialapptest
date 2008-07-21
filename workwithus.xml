@@ -490,9 +490,9 @@
 						if(viewerId == ownerId)
 						{
 							if(recommended == "false")
-								iRecommendHTML = "<a href='#' onclick=recommendJob('"+jobPostingCode+"','"+encodeURIComponent(jobTitle)+"');>I recommend</a>";							
+								iRecommendHTML = "<a href='#' onclick=recommendJob('"+jobPostingCode+"','"+encodeURIComponent(jobTitle)+"');>Recommend</a>";							
 							else
-								iRecommendHTML = "Recommended Job";
+								iRecommendHTML = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";
 						}
 						else
 						{
@@ -503,7 +503,7 @@
 						}
 					}
 					// Append extracted data to the HTML string					
-					html += "<tr><td  class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td >at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +"&nbsp;&nbsp;<span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td></tr>";
+					html += "<tr><td><span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td><td class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td rowspan='2'> at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +"</td></tr>";
 
 				}
 				html = "<table>" + html + "</table>";
