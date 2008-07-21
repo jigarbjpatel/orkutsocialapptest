@@ -485,11 +485,14 @@
 					// Append extracted data to the HTML string					
 					html += "<tr><td  class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td >at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +" <span id='"+jobPostingCode+"'></span></td></tr>";
 
-					/*if(recommended != "")
+					if(recommended != "")
 					{
 						if(viewerId == ownerId)
 						{
+							alert(jobPostingCode);
 							var jpcEl = document.getElementById(jobPostingCode);
+							alert(jpcEl);
+							alert(jpcEl.innerHTML);
 							if(recommended == "false")
 								jpcEl.innerHTML = "<a href='#' onclick='recommendJob('"+jobPostingCode+"');'>Recommend this job</a>";							
 							else
@@ -503,7 +506,7 @@
 								jpcEl.innerHTML = "http://talentnow.com/images/star.gif";							
 							}
 						}
-					}*/
+					}
 				}
 				html = "<table>" + html + "</table>";
 				//Set the header
