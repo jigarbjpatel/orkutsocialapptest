@@ -498,7 +498,7 @@
 						{
 							if(recommended == "true")
 							{
-								iRecommendHTML  = "http://talentnow.com/images/star.gif";							
+								iRecommendHTML  = "<img src='http://talentnow.com/images/star.gif' border='0'/>";							
 							}
 						}
 					}
@@ -549,8 +549,8 @@
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		var url = "http://talentnow.com/orkutapp/Default.aspx";   
 		gadgets.io.makeRequest(url, jobRecommended, params);	
-		var jpcEl = document.getElementById(jpc);
-		jpcEl.innerHTML = "Recommended Job";
+
+		document.getElementById(jpc).innerHTML = "Recommended Job";
 		//post updates to owner's friends
 	}
 	function jobRecommended()
