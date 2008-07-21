@@ -505,7 +505,7 @@
 						}
 					}
 					// Append extracted data to the HTML string					
-					html += "<tr><td width='1%'><span style='padding-right: 20px;' id='"+jobPostingCode+"image'>"+iRecommendImage+"</span></td><td class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td>&nbsp;</td><td> at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +"&nbsp;<span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td></tr>";
+					html += "<tr><td width='1%'><span style='padding-right: 20px;' id='"+jobPostingCode+"image'>"+iRecommendImage+"</span></td><td class='jobTitle' width='99%'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td>&nbsp;</td><td> at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +"&nbsp;<span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td></tr>";
 
 				}
 				html = "<table>" + html + "</table>";
