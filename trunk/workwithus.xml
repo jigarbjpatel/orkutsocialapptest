@@ -448,6 +448,7 @@
 					jobTitleUrl = "";
 					recommended = "";
 					iRecommendHTML ="";
+					iRecommendImage = "";
 					for (var j = 0; j < nodeList.length ; j++) 
 					{
 					  var node = nodeList.item(j);
@@ -498,12 +499,12 @@
 						{
 							if(recommended == "true")
 							{
-								iRecommendImage  = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";							
+								iRecommendImage  = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";	
 							}
 						}
 					}
 					// Append extracted data to the HTML string					
-					html += "<tr><td width='10%'><span id='"+jobPostingCode+"image'>"+iRecommendImage+"</span></td><td class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td colspan='2'> at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +" <span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td></tr>";
+					html += "<tr><td width='1%'><span id='"+jobPostingCode+"image'>"+iRecommendImage+"</span></td><td class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td colspan='2'> at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +" <span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td></tr>";
 
 				}
 				html = "<table>" + html + "</table>";
