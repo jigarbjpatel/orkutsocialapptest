@@ -435,6 +435,7 @@
 				var jobPostedOn = "";
 				var jobTitleUrl = "";
 				var recommended = "";
+				var iRecommendHTML  = "";
 
 				for (var i = 0; i < jobList.length ; i++) 
 				{ 
@@ -446,6 +447,7 @@
 					jobPostedOn = "";
 					jobTitleUrl = "";
 					recommended = "";
+					iRecommendHTML ="";
 					for (var j = 0; j < nodeList.length ; j++) 
 					{
 					  var node = nodeList.item(j);
@@ -477,35 +479,32 @@
 					  if (node.nodeName == "titleurl")
 					  {
 						if(node.firstChild == null)
-							var jobTitleUrl = "http://talentnow.com/public/viewalljobs.aspx?jpc="+jobPostingCode+"&rid="+ownerId;
+							jobTitleUrl = "http://talentnow.com/public/viewalljobs.aspx?jpc="+jobPostingCode+"&rid="+ownerId;
 						else
-							var jobTitleUrl = node.firstChild.nodeValue;						
+							jobTitleUrl = node.firstChild.nodeValue;						
 					  }
 					}
-					// Append extracted data to the HTML string					
-					html += "<tr><td  class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td >at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +" <span id='"+jobPostingCode+"'></span></td></tr>";
-
+					
 					if(recommended != "")
 					{
 						if(viewerId == ownerId)
 						{
-						
-							var jpcEl = document.getElementById("'" + jobPostingCode + "'");
-							alert(jpcEL);
 							if(recommended == "false")
-								jpcEl.innerHTML = "<a href='#' onclick='recommendJob('"+jobPostingCode+"');'>Recommend this job</a>";							
+								iRecommendHTML = "<a href='#' onclick='recommendJob('"+jobPostingCode+"');'>Recommend this job</a>";							
 							else
-								jpcEl.innerHTML = "Recommended Job";
+								iRecommendHTML = "Recommended Job";
 						}
 						else
 						{
 							if(recommended == "true")
 							{
-								var jpcEl = document.getElementById(jobPostingCode);
-								jpcEl.innerHTML = "http://talentnow.com/images/star.gif";							
+								iRecommendHTML  = "http://talentnow.com/images/star.gif";							
 							}
 						}
 					}
+					// Append extracted data to the HTML string					
+					html += "<tr><td  class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td >at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +" <span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td></tr>";
+
 				}
 				html = "<table>" + html + "</table>";
 				//Set the header
