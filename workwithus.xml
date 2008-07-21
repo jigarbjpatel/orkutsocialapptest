@@ -434,6 +434,7 @@
 				var jobCompany = "";
 				var jobPostedOn = "";
 				var jobTitleUrl = "";
+				var recommended = "";
 
 				for (var i = 0; i < jobList.length ; i++) 
 				{ 
@@ -444,6 +445,7 @@
 					jobCompany = "";
 					jobPostedOn = "";
 					jobTitleUrl = "";
+					recommended = "";
 					for (var j = 0; j < nodeList.length ; j++) 
 					{
 					  var node = nodeList.item(j);
@@ -467,6 +469,11 @@
 						if(node.firstChild != null)
 							jobPostedOn = node.firstChild.nodeValue; 
 					  }
+					  if (node.nodeName == "recommended") 
+					  {
+						if(node.firstChild != null)
+							recommended = node.firstChild.nodeValue; 
+					  }
 					  if (node.nodeName == "titleurl")
 					  {
 						if(node.firstChild == null)
@@ -476,7 +483,23 @@
 					  }
 					}
 					// Append extracted data to the HTML string					
-					html += "<tr><td  class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td >at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +"</td></tr>";
+					html += "<tr><td  class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td >at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +" <span id='"+jobPostingCode+"'></span></td></tr>";
+
+					if(recommended != "")
+					{
+						if(viewerId == ownerId)
+						{
+							if(recommended == "false")
+								document.getElementById(jobPostingCode).innerHTML = "<a href='#' onclick='recommendJob('"+jobPostingCode+"');'>Recommend this job</a>";
+							else
+								document.getElementById(jobPostingCode).innerHTML = "Recommended Job";
+						}
+						else
+						{
+							if(recommended == "true")
+								document.getElementById(jobPostingCode).innerHTML = "http://talentnow.com/images/star.gif";							
+						}
+					}
 				}
 				html = "<table>" + html + "</table>";
 				//Set the header
@@ -504,11 +527,32 @@
 		}		
 	}
 	function handlePopulateMyAppData(data) {};
+	
+	function recommendJob(jpc)
+	{
+		//request in pipeline
+		document.getElementById(jpc).innerHTML = "recommending...";
+		//store the user preferences
+		var params = {};  
+		var postdata = {
+			id : ownerId,
+			rj : jpc
+			};  
+		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+		var url = "http://talentnow.com/orkutapp/Default.aspx";   
+		gadgets.io.makeRequest(url, jobRecommended, params);	
 
+		document.getElementById(jpc).innerHTML = "Recommended Job";
+		//post updates to owner's friends
+	}
+	function jobRecommended()
+	{
+		
+	}
 	function getJobs()
 	{
-	
-	//TODO: put input validation here
 		if(trim(document.getElementById('txtCompanyCode').value) != "")
 		{
 			companyCode = trim(document.getElementById('txtCompanyCode').value);			
@@ -551,7 +595,6 @@
 		document.getElementById('txtEmployeeName').value = employeeName;
 		document.getElementById('selPageSize').options[document.getElementById('selPageSize').selectedIndex].value = pageSize;
 	}
-	//Get previous jobs
 	function getPrevJobs()
 	{
 		startIndex = startIndex - pageSize;
@@ -567,7 +610,6 @@
 		gadgets.io.makeRequest(url, response, params);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
 	}
-	//Get next jobs
 	function getNextJobs()
 	{
 		startIndex = startIndex + pageSize;
@@ -593,9 +635,7 @@
              uid].join("");
 	}
 
-
 	gadgets.util.registerOnLoadHandler(getOwnerId);
-
   </script>
  
   ]]>
