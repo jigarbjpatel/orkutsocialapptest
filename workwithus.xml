@@ -555,12 +555,20 @@
 		var params = {};  
 		params[opensocial.Activity.Field.TITLE] = ownerName + "recommended a <a href='http://talentnow.com/public/viewalljobs.aspx?jpc="+jpc+"&rid="+ownerId+"'>job</a>";
 		var activity = opensocial.newActivity(params); 
-		opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.LOW, jobRecommended);
+		opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, jobRecommended);
 
 	}
-	function jobRecommended()
+	function jobRecommended(status)
 	{
-		
+		if (status.hadError())
+		{
+		  alert("Error creating activity.");
+		}
+		else 
+		{
+		  alert("Activity successfully created.");
+		}
+
 	}
 	function getJobs()
 	{
