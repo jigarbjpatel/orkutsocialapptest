@@ -489,10 +489,9 @@
 					{
 						if(viewerId == ownerId)
 						{
-							alert(jobPostingCode);
-							var jpcEl = document.getElementById(jobPostingCode);
-							alert(jpcEl);
-							alert(jpcEl.innerHTML);
+						
+							var jpcEl = document.getElementById("'" + jobPostingCode + "'");
+						
 							if(recommended == "false")
 								jpcEl.innerHTML = "<a href='#' onclick='recommendJob('"+jobPostingCode+"');'>Recommend this job</a>";							
 							else
