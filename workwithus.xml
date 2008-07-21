@@ -489,15 +489,19 @@
 					{
 						if(viewerId == ownerId)
 						{
+							var jpcEl = document.getElementById(jobPostingCode);
 							if(recommended == "false")
-								document.getElementById(jobPostingCode).innerHTML = "<a href='#' onclick='recommendJob('"+jobPostingCode+"');'>Recommend this job</a>";
+								jpcEl.innerHTML = "<a href='#' onclick='recommendJob('"+jobPostingCode+"');'>Recommend this job</a>";							
 							else
-								document.getElementById(jobPostingCode).innerHTML = "Recommended Job";
+								jpcEl.innerHTML = "Recommended Job";
 						}
 						else
 						{
 							if(recommended == "true")
-								document.getElementById(jobPostingCode).innerHTML = "http://talentnow.com/images/star.gif";							
+							{
+								var jpcEl = document.getElementById(jobPostingCode);
+								jpcEl.innerHTML = "http://talentnow.com/images/star.gif";							
+							}
 						}
 					}
 				}
@@ -543,8 +547,8 @@
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		var url = "http://talentnow.com/orkutapp/Default.aspx";   
 		gadgets.io.makeRequest(url, jobRecommended, params);	
-
-		document.getElementById(jpc).innerHTML = "Recommended Job";
+		var jpcEl = document.getElementById(jpc);
+		jpcEl.innerHTML = "Recommended Job";
 		//post updates to owner's friends
 	}
 	function jobRecommended()
