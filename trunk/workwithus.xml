@@ -491,7 +491,7 @@
 						{
 						
 							var jpcEl = document.getElementById("'" + jobPostingCode + "'");
-						
+							alert(jpcEL);
 							if(recommended == "false")
 								jpcEl.innerHTML = "<a href='#' onclick='recommendJob('"+jobPostingCode+"');'>Recommend this job</a>";							
 							else
