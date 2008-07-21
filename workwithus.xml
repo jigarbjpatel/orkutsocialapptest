@@ -503,7 +503,7 @@
 						}
 					}
 					// Append extracted data to the HTML string					
-					html += "<tr><td><span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td><td class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td rowspan='2'> at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +"</td></tr>";
+					html += "<tr><td width='10%'><span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td><td class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td colspan='2'> at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +"</td></tr>";
 
 				}
 				html = "<table>" + html + "</table>";
