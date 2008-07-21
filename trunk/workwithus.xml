@@ -436,7 +436,7 @@
 				var jobTitleUrl = "";
 				var recommended = "";
 				var iRecommendHTML  = "";
-
+				var iRecommendImage = "":
 				for (var i = 0; i < jobList.length ; i++) 
 				{ 
 					var nodeList = jobList.item(i).childNodes;	
@@ -492,18 +492,18 @@
 							if(recommended == "false")
 								iRecommendHTML = "<a href='#' onclick=recommendJob('"+jobPostingCode+"','"+encodeURIComponent(jobTitle)+"');>Recommend</a>";							
 							else
-								iRecommendHTML = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";
+								iRecommendImage = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";
 						}
 						else
 						{
 							if(recommended == "true")
 							{
-								iRecommendHTML  = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";							
+								iRecommendImage  = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";							
 							}
 						}
 					}
 					// Append extracted data to the HTML string					
-					html += "<tr><td width='10%'><span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td><td class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td colspan='2'> at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +"</td></tr>";
+					html += "<tr><td width='10%'><span id='"+jobPostingCode+"image'>"+iRecommendImage+"</span></td><td class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td colspan='2'> at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +" <span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td></tr>";
 
 				}
 				html = "<table>" + html + "</table>";
@@ -550,7 +550,8 @@
 		var url = "http://talentnow.com/orkutapp/Default.aspx";   
 		gadgets.io.makeRequest(url, jobRecommended, params);	
 
-		document.getElementById(jpc).innerHTML = "Recommended Job";
+		document.getElementById(jpc).innerHTML = "";
+		document.getElementById(jpc+"image").innerHTML = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";
 		//post updates to owner's friends
 
 		var reqParams = {};  
