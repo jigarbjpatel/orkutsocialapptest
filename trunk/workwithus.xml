@@ -490,7 +490,7 @@
 						if(viewerId == ownerId)
 						{
 							if(recommended == "false")
-								iRecommendHTML = "<a href='#' onclick=recommendJob("+jobPostingCode+","+jobTitle+");>I Recommend</a>";							
+								iRecommendHTML = "<a href='#' onclick=recommendJob('"+jobPostingCode+"','"+encodeURIComponent(jobTitle)+"');>Recommend</a>";							
 							else
 								iRecommendHTML = "Recommended Job";
 						}
@@ -554,7 +554,7 @@
 		//post updates to owner's friends
 
 		var reqParams = {};  
-		reqParams[opensocial.Activity.Field.TITLE] = "recommended a job titled " + jobTitle;
+		reqParams[opensocial.Activity.Field.TITLE] = "has recommended a job titled " + decodeURIComponent(jobTitle);
 		alert(reqParams[opensocial.Activity.Field.TITLE] );
 		var activity = opensocial.newActivity(reqParams);		
 		opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, jobRecommended);
