@@ -490,7 +490,7 @@
 						if(viewerId == ownerId)
 						{
 							if(recommended == "false")
-								iRecommendHTML = "<a href='#' onclick=recommendJob("+jobPostingCode+",'"+jobTitle+"');>Recommend this job</a>";							
+								iRecommendHTML = "<a href='#' onclick=recommendJob("+jobPostingCode+","+jobTitle+");>I Recommend</a>";							
 							else
 								iRecommendHTML = "Recommended Job";
 						}
