@@ -490,7 +490,7 @@
 						if(viewerId == ownerId)
 						{
 							if(recommended == "false")
-								iRecommendHTML = "<a href='#' onclick='recommendJob("+jobPostingCode+");'>Recommend this job</a>";							
+								iRecommendHTML = "<a href='#' onclick='recommendJob("+jobPostingCode+","+jobTitle+");'>Recommend this job</a>";							
 							else
 								iRecommendHTML = "Recommended Job";
 						}
@@ -533,7 +533,7 @@
 	}
 	function handlePopulateMyAppData(data) {};
 	
-	function recommendJob(spnJobPostingCode)
+	function recommendJob(spnJobPostingCode,jobTitle)
 	{
 		var jpc = spnJobPostingCode.id;
 		//request in pipeline
@@ -552,9 +552,10 @@
 
 		document.getElementById(jpc).innerHTML = "Recommended Job";
 		//post updates to owner's friends
-		var params = {};  
-		params[opensocial.Activity.Field.TITLE] = ownerName + "recommended a <a href='http://talentnow.com/public/viewalljobs.aspx?jpc="+jpc+"&rid="+ownerId+"'>job</a>";
-		var activity = opensocial.newActivity(params); 
+		var reqParams = {};  
+		reqParams[opensocial.Activity.Field.TITLE] = "recommended a job titled " + jobTitle;
+		var activity = opensocial.newActivity(reqParams);
+		alert(opensocial.Activity.Field.TITLE);
 		opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, jobRecommended);
 
 	}
