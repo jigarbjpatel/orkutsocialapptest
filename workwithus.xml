@@ -109,7 +109,7 @@
 				<tr>
 				<tr>
 					<td width="25%" class="fieldLabel">Talentnow Company Code: </td>
-					<td width="20%" class="field"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" /></td>
+					<td width="20%" class="field"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="50" /></td>
 					<td width="55%" class="helpText">Enter your company code (If you don't have it already, get this from your company). This is what helps you share your company's jobs with your friends.</td>
 				</tr>
 				<tr>
@@ -518,6 +518,7 @@
 			{
 				html += "<table><tr><td >Either we don't have any jobs posted by your company or the company code you entered may be incorrect. </td></tr></table>";
 				document.getElementById('pager').innerHTML = "";
+				document.getElementById('jobsTableHeader').innerHTML ="";
 			}
 			
 			//var newTitle = "Hot Jobs at " + jobCompany;
