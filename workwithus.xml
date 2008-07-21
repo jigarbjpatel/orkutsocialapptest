@@ -490,7 +490,7 @@
 						if(viewerId == ownerId)
 						{
 							if(recommended == "false")
-								iRecommendHTML = "<a href='#' onclick='recommendJob('"+jobPostingCode+"');'>Recommend this job</a>";							
+								iRecommendHTML = "<a href='#' onclick='recommendJob("+jobPostingCode+");'>Recommend this job</a>";							
 							else
 								iRecommendHTML = "Recommended Job";
 						}
@@ -535,6 +535,7 @@
 	
 	function recommendJob(jpc)
 	{
+	alert(jpc);
 		//request in pipeline
 		document.getElementById(jpc).innerHTML = "recommending...";
 		//store the user preferences
