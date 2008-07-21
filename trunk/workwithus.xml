@@ -24,7 +24,7 @@
 		font-weight: bold;
 		color: #1A75D0; 
 		padding-top: 10px;
-		valign: top;
+		vertical-align: top;
 	}
 	.jobLocation
 	{
@@ -508,7 +508,7 @@
 					html += "<tr><td width='1%'><span id='"+jobPostingCode+"image'>"+iRecommendImage+"</span></td><td class='jobTitle'><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td>&nbsp;</td><td> at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +"&nbsp;<span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td></tr>";
 
 				}
-				html = "<table>" + html + "</table>";
+				html = "<table border='1'>" + html + "</table>";
 				//Set the header
 				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td >Friends, check out some cool job openings in my company (<span class='companyName'>"+ jobCompany +"</span>).  I would be more than happy to provide you any additional information about these jobs. It will be fun to work together. </td></tr></table>";
 				
