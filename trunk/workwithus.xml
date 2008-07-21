@@ -23,7 +23,7 @@
 		font-size: 12px;
 		font-weight: bold;
 		color: #1A75D0; 
-		padding-top: 10px;
+		padding-top: 5px;
 		vertical-align: top;
 	}
 	.jobLocation
