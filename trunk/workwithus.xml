@@ -494,13 +494,13 @@
 							if(recommended == "false")
 								iRecommendHTML = "<a href='#' onclick=recommendJob('"+jobPostingCode+"','"+encodeURIComponent(jobTitle)+"');>Recommend this job</a>";							
 							else
-								iRecommendImage = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";
+								iRecommendImage = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended' hspace='20'/>";
 						}
 						else
 						{
 							if(recommended == "true")
 							{
-								iRecommendImage  = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";	
+								iRecommendImage  = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended' hspace='20'/>";	
 							}
 						}
 					}
