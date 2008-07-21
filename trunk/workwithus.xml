@@ -264,7 +264,6 @@
 	{	
 		if(tabId == "workWithMyFriends")
 		{//Get all the friends		
-			document.getElementById('friendsHeader').innerHTML = "<table><tr><td >You can also check out jobs from companies where some of my friends work. Click on the profile picture or company name to see the jobs. I can help you connect with them to find out additional information you may need.</td></tr></table>";
 			document.getElementById('loader').style.display = "block";	
 			var req = opensocial.newDataRequest();
 			var req_params = {}; 
@@ -273,8 +272,6 @@
 			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS,req_params),'ownerFriends'); 
 			req.send(onLoadFriends);
 		}
-		
-
 	}
 	function onLoadFriends(dataResponse)
 	{	
@@ -341,6 +338,7 @@
 		document.getElementById('loader').style.display = "none";	
 		var responseText = obj.data;
 		var userList = responseText.getElementsByTagName("user");
+		document.getElementById('friendsHeader').innerHTML = "<table><tr><td >You can also check out jobs from companies where some of my friends work. Click on the profile picture or company name to see the jobs. I can help you connect with them to find out additional information you may need.</td></tr></table>";
 		document.getElementById('friends').innerHTML = friendsHtml;
 		for (var i = 0; i < userList.length ; i++) 
 		{ 
@@ -364,8 +362,7 @@
 	}
 
 	function onGotFriendJobs()
-	{
-		
+	{		
 		document.getElementById("friends").style.display = "none";
 		document.getElementById("friendsJobs").style.display = "block";
 	}
