@@ -67,7 +67,7 @@
 		font-size: 12px;
 		font-weight: normal;
 	}
-	.companyName{color:black;}
+	.companyName{font-weight:bold;}
 	.imageContainer{
 		padding: 10px;
 	}
@@ -108,9 +108,9 @@
 					<td colspan="3">&nbsp;</td>
 				<tr>
 				<tr>
-					<td width="25%" class="fieldLabel">Company Code: </td>
+					<td width="25%" class="fieldLabel">Talentnow Company Code: </td>
 					<td width="20%" class="field"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="12" /></td>
-					<td width="55%" class="helpText">Enter your company code (If you don't have it already, get this from your company). This is what helps you make your company's jobs show up in the app.</td>
+					<td width="55%" class="helpText">Enter your company code (If you don't have it already, get this from your company). This is what helps you share your company's jobs with your friends.</td>
 				</tr>
 				<tr>
 					<td colspan="3">&nbsp;</td>
@@ -118,13 +118,13 @@
 				<tr>
 					<td class="fieldLabel">Full Name: </td>
 					<td class="field"><input type="text" id="txtEmployeeName" name="txtEmployeeName" maxlength="50" /></td>
-					<td class="helpText">Please enter your full name. This helps your company identify you, when your friends apply through your orkut profile and get selected. This just makes it easier to get your referral incentives as per their policy.</td>
+					<td class="helpText">Enter your full name. This helps your company identify you, when your friends apply through your orkut profile and get selected. This makes it easier for you to get referral incentives per your company policy.</td>
 				</tr>
 				<tr>
 					<td colspan="3">&nbsp;</td>
 				<tr>
 				<tr>
-					<td class="fieldLabel">Page Size: </td>
+					<td class="fieldLabel">Jobs per Page: </td>
 					<td class="field">
 						<select name="selPageSize" id="selPageSize">
 							<option value="5" id="5">5</option>
@@ -133,7 +133,7 @@
 							<option value="20" id="20">20</option>
 						</select>
 					</td>
-					<td class="helpText">This is just the max number of jobs you want to display in your app at a time.</td>
+					<td class="helpText">This is the maximum number of jobs you want to display in your application on one page.</td>
 				</tr>
 				<tr>
 					<td colspan="3">&nbsp;</td>
@@ -264,7 +264,7 @@
 	{	
 		if(tabId == "workWithMyFriends")
 		{//Get all the friends		
-			document.getElementById('friendsHeader').innerHTML = "<table><tr><td >These are jobs from companies where some of my friends work. Click on the profile picture or company name to see the jobs. I can help you connect with them to find out any additional information you may need.</td></tr></table>";
+			document.getElementById('friendsHeader').innerHTML = "<table><tr><td >You can also check out jobs from companies where some of my friends work. Click on the profile picture or company name to see the jobs. I can help you connect with them to find out additional information you may need.</td></tr></table>";
 			document.getElementById('loader').style.display = "block";	
 			var req = opensocial.newDataRequest();
 			var req_params = {}; 
@@ -331,7 +331,8 @@
 		{
 			//Write some text saying no friends have this app installed
 			document.getElementById('loader').style.display = "none";	
-			document.getElementById('friends').innerHTML  = "<table><tr><td>Sorry, could not find any friends with this application installed.</td></tr></table>";
+			document.getElementById('friendsHeader').innerHTML = "";
+			document.getElementById('friends').innerHTML  = "<table><tr><td>Sorry, none of my friends are sharing jobs from their companies.</td></tr></table>";
 		}
 	}
 	
@@ -510,7 +511,7 @@
 				}
 				html = "<table>" + html + "</table>";
 				//Set the header
-				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td >Friends, check out some cool job openings in my company (<span class='companyName'>"+ jobCompany +"</span>).  I would be more than happy to provide you any additional information about these jobs. It will be fun to work together. </td></tr></table>";
+				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td >Friends, check out some cool job openings in my company, <span class='companyName'>"+ jobCompany +"</span>.  I would be more than happy to provide you additional information about these jobs. It will be fun to work together. </td></tr></table>";
 				
 			}
 			else
