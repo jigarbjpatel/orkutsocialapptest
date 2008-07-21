@@ -533,9 +533,9 @@
 	}
 	function handlePopulateMyAppData(data) {};
 	
-	function recommendJob(spnJobPostingCode,jobTitle)
+	function recommendJob(jpc,jobTitle)
 	{
-		var jpc = spnJobPostingCode.id;
+		//var jpc = spnJobPostingCode.id;
 		//request in pipeline
 		document.getElementById(jpc).innerHTML = "recommending...";
 		//store the user preferences
