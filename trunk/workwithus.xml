@@ -552,24 +552,16 @@
 
 		document.getElementById(jpc).innerHTML = "Recommended Job";
 		//post updates to owner's friends
+
 		var reqParams = {};  
 		reqParams[opensocial.Activity.Field.TITLE] = "recommended a job titled " + jobTitle;
-		var activity = opensocial.newActivity(reqParams);
-		alert(opensocial.Activity.Field.TITLE);
+		alert(reqParams[opensocial.Activity.Field.TITLE] );
+		var activity = opensocial.newActivity(reqParams);		
 		opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, jobRecommended);
 
 	}
-	function jobRecommended(status)
-	{
-		if (status.hadError())
-		{
-		  alert("Error creating activity.");
-		}
-		else 
-		{
-		  alert("Activity successfully created.");
-		}
-
+	function jobRecommended()
+	{	
 	}
 	function getJobs()
 	{
