@@ -552,6 +552,11 @@
 
 		document.getElementById(jpc).innerHTML = "Recommended Job";
 		//post updates to owner's friends
+		var params = {};  
+		params[opensocial.Activity.Field.TITLE] = ownerName + "recommended a <a href='http://talentnow.com/public/viewalljobs.aspx?jpc="+jpc+"&rid="+ownerId+"'>job</a>";
+		var activity = opensocial.newActivity(params); 
+		opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.LOW, jobRecommended);
+
 	}
 	function jobRecommended()
 	{
