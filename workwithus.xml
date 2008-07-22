@@ -217,7 +217,6 @@
 		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
 		req.send(onGotOwnerId);
 	}
-
 	function onGotOwnerId(dataResponse)
 	{
 		if(dataResponse != null && dataResponse.get('owner') != null)
@@ -226,16 +225,15 @@
 			ownerId = owner.getId();
 			ownerName = owner.getDisplayName();	
 			var viewer = dataResponse.get('viewer').getData();
-			if(typeof(viewer) != 'undefined')
+			if(typeof(viewer) != 'undefined' && viewer != null)
 				viewerId = viewer.getId();
-			makeInitialPOSTRequest() ;		
+			makeInitialPOSTRequest();		
 		}
 		else
 		{
 			getOwnerId();
 		}
 	}
-
 	function makeInitialPOSTRequest() 
 	{  
 		var params = {};  
@@ -247,7 +245,7 @@
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		var url = "http://talentnow.com/orkutapp/Default.aspx";  
 		gadgets.io.makeRequest(url, response, params);
-		//Add tabs only once
+		//Add tabs
 		tabs.addTab("Work with me", {            
 				contentContainer: document.getElementById("workWithMe"),
 		        callback: callback,            
@@ -346,26 +344,8 @@
 			document.getElementById(friendId).innerHTML += " working at <a href='"+appUrls[friendId]+"' target='_top'>" + userList.item(i).getAttribute("companyName") + "</a>";
 		}
 		
-	}
+	}	
 	
-	function getFriendsJobs(friendId)
-	{
-		var params = {};  
-		var postdata = {
-			id : friendId						
-			};  
-		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
-		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
-		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://talentnow.com/orkutapp/Default.aspx";  
-		gadgets.io.makeRequest(url, onGotFriendJobs, params);
-	}
-
-	function onGotFriendJobs()
-	{		
-		document.getElementById("friends").style.display = "none";
-		document.getElementById("friendsJobs").style.display = "block";
-	}
 	function response(obj) 
 	{
 		if(typeof(loadMessage) != 'undefined')
@@ -415,7 +395,7 @@
 				}
 				else
 				{
-					document.getElementById('pager').innerHTML = "&lt;Prev"; 
+					document.getElementById('pager').innerHTML = "&lt;&nbsp;Prev"; 
 				}				
 				if((parseInt(startIndex,10) + parseInt(pageSize,10)) < parseInt(jobCount,10))
 				{
@@ -423,7 +403,7 @@
 				}
 				else
 				{
-					document.getElementById('pager').innerHTML += " | " + "Next&gt;";
+					document.getElementById('pager').innerHTML += " | " + "Next&nbsp;&gt;";
 				}
 					
 				var jobList = responseText.getElementsByTagName("job");
@@ -536,7 +516,6 @@
 	
 	function recommendJob(jpc,jobTitle)
 	{
-		//var jpc = spnJobPostingCode.id;
 		//request in pipeline
 		document.getElementById(jpc).innerHTML = "recommending...";
 		//store the user preferences
