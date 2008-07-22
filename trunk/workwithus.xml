@@ -512,8 +512,6 @@
 			document.getElementById('searchForm').style.display = "none";			
 		}		
 	}
-	function handlePopulateMyAppData(data) {};
-	
 	function recommendJob(jpc,jobTitle)
 	{
 		//request in pipeline
