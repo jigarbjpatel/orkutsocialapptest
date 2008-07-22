@@ -5,7 +5,7 @@
 	<Require feature="minimessage"/>
 	<Require feature="tabs" /> 
 	<Locale lang="en" country="us" />
-	<Preload url="http://talentnow.com/orkutapp/images/star.gif" />
+	<Preload href="http://talentnow.com/orkutapp/images/star.gif" />
 	<!--<Require feature="dynamic-height"/>-->
 	<!--<Require feature="settitle"/>-->
  </ModulePrefs>
