@@ -6,6 +6,7 @@
 	<Require feature="tabs" /> 
 	<Locale lang="en" country="us" />
 	<Preload href="http://talentnow.com/orkutapp/images/star.gif" />
+	<Preload href="http://www.talentnow.com/orkutapp/images/loader.gif" />
 	<!--<Require feature="dynamic-height"/>-->
 	<!--<Require feature="settitle"/>-->
  </ModulePrefs>
