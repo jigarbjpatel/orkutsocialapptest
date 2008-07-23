@@ -161,7 +161,7 @@
 				</tr>
 				<tr>
 					<td align="left" width="30%"><div id="pager" ></div></td>
-					<td id="changeSettings" style="display:none" align="right"   width="70%"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
+					<td id="changeSettings" style="display:none" align="right" width="70%"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
 				</tr>
 			</table>		
 		</div>
@@ -461,7 +461,7 @@
 					  if (node.nodeName == "titleurl")
 					  {
 						if(node.firstChild == null)
-							jobTitleUrl = "http://talentnow.com/public/viewalljobs.aspx?jpc="+jobPostingCode+"&rid="+ownerId;
+							jobTitleUrl = "http://talentnow.com/shared/viewspecificjob.aspx?jpc="+jobPostingCode+"&rid="+ownerId;
 						else
 							jobTitleUrl = node.firstChild.nodeValue;						
 					  }
