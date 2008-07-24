@@ -108,7 +108,7 @@
 			<table >
 				<tr>
 					<td colspan="3">&nbsp;</td>
-				<tr>
+				</tr>
 				<tr>
 					<td width="25%" class="fieldLabel">Talentnow Company Code: </td>
 					<td width="20%" class="field"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="50" /></td>
@@ -116,7 +116,7 @@
 				</tr>
 				<tr>
 					<td colspan="3">&nbsp;</td>
-				<tr>
+				</tr>
 				<tr>
 					<td class="fieldLabel">Full Name: </td>
 					<td class="field"><input type="text" id="txtEmployeeName" name="txtEmployeeName" maxlength="50" /></td>
@@ -124,7 +124,7 @@
 				</tr>
 				<tr>
 					<td colspan="3">&nbsp;</td>
-				<tr>
+				</tr>
 				<tr>
 					<td class="fieldLabel">Jobs per Page: </td>
 					<td class="field">
@@ -139,7 +139,7 @@
 				</tr>
 				<tr>
 					<td colspan="3">&nbsp;</td>
-				<tr>
+				</tr>
 				<tr>
 					<td>&nbsp;</td>
 					<td colspan="2"><a href="#" onclick="getJobs();" ><b>Get Jobs</b></a></td>
