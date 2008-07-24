@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
- <ModulePrefs title="Talentnow - Let's work together!" title_url="http://www.talentnow.com" description="Install this application and use your orkut network to help your friends find a job in your or your friends' companies. Wouldn't it be fun to work with friends and also earn brownie points in your company helping them find talent? To use this application, your company must have posted jobs on Talentnow. Any company can register and post jobs on Talentnow absolutely free. So, if your company has not already registered, you can ask them to. This service is currently only for companies in India. " author="Talentnow" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/orkutapp/images/applogo.jpg" screenshot="http://talentnow.com/orkutapp/images/orkutAppSnapshot.jpg" height="500">
+ <ModulePrefs title="Talentnow - Let's work together!" title_url="http://www.talentnow.com" description="Share with your friends jobs from your company and your friends' companies. Wouldn't it be fun to work with friends and also earn brownie points in your company helping them find talent? To use this application, your company must have posted jobs on Talentnow. Any company can post jobs on Talentnow absolutely free. So, if your company has not already registered, you can ask them to. This service is currently only for companies in India." author="Talentnow" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/orkutapp/images/applogo.jpg" screenshot="http://talentnow.com/orkutapp/images/orkutAppSnapshot.jpg" height="500">
 	<Require feature="opensocial-0.7"/>
 	<Require feature="minimessage"/>
 	<Require feature="tabs" /> 
@@ -169,9 +169,23 @@
 	</div>
 
 	<div id="workWithMyFriends" style="display:none">
-		<div id="friendsHeader"></div>
-		<div id="friends"></div>
-		<div id="friendsJobs" style="display:none"></div>
+		<table>
+			<tr>
+				<td>
+					<div id="friendsHeader"></div>
+				</td>
+			</tr>				
+			<tr>
+				<td>
+					<div id="friends"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="friendsJobs" style="display:none"></div>
+				</td>
+			</tr>
+		</table>
 	</div>
 	 
   </form>
@@ -265,6 +279,8 @@
 		if(tabId == "workWithMyFriends")
 		{//Get all the friends		
 			document.getElementById('loader').style.display = "block";	
+			document.getElementById('friendsHeader').innerHTML = "";
+			document.getElementById('friends').innerHTML  = "";
 			var req = opensocial.newDataRequest();
 			var req_params = {}; 
 			req_params[opensocial.DataRequest.PeopleRequestFields.FILTER] = opensocial.DataRequest.FilterType.HAS_APP;
@@ -495,9 +511,9 @@
 			}
 			else
 			{
-				html += "<table><tr><td >Either we don't have any jobs posted by your company or the company code you entered may be incorrect. </td></tr></table>";
-				document.getElementById('pager').innerHTML = "";
 				document.getElementById('jobsTableHeader').innerHTML ="";
+				document.getElementById('pager').innerHTML = "";
+				html += "<table><tr><td >Either we don't have any jobs posted by your company or the company code you entered is incorrect.</td></tr></table>";				
 			}
 			
 			//var newTitle = "Hot Jobs at " + jobCompany;
