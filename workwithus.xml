@@ -104,7 +104,7 @@
 	<div id="loader" style="display:none">
 		<img src="http://www.talentnow.com/orkutapp/images/loader.gif" border='0' alt='Please wait while we fetch the jobs' />
 	</div>
-	<div id="workWithMe" style="display:none">
+	<div id="workWithMe">
 		<div id="searchForm" style="display:none" onkeydown="checkPost(event);">
 			<table >
 				<tr>
