@@ -106,9 +106,9 @@
 	</div>
 	<div id="workWithMe">
 		<div id="searchForm" style="display:none" onkeydown="checkPost(event);">
-			<table >
+			<table>
 				<tr>
-					<td colspan="3">&nbsp;</td>
+					<td colspan="3" id="searchFormMessage">&nbsp;</td>
 				</tr>
 				<tr>
 					<td width="25%" class="fieldLabel"><span style='color:red'>*</span> Talentnow Company Code:</td>
@@ -207,8 +207,17 @@
 	var friendsHtml = "";
 	var appUrls = {};
 	
-	function getViewName() {
+	function getViewName() 
+	{
 	 return gadgets.views.getCurrentView().getName();
+	}
+	function makeLink(page, app_id, uid)
+	{
+		return [ gadgets.util.getUrlParameters()["parent"], 
+             "/Application.aspx?appId=", 
+             app_id, 
+             "&uid=",
+             uid].join("");
 	}
 	function checkPost(evt)
 	{
@@ -519,7 +528,10 @@
 			{
 				document.getElementById('jobsTableHeader').innerHTML ="";
 				document.getElementById('pager').innerHTML = "";
-				html += "<table><tr><td >Either we don't have any jobs posted by your company or the company code you entered is incorrect.</td></tr></table>";				
+				if(viewerId == ownerId)
+					html += "<table><tr><td >Either we don't have any jobs posted by your company or the company code you entered is incorrect.</td></tr></table>";			
+				else
+					html += "<table><tr><td >Sorry, we currently do not have any jobs posted by your friend's company.</td></tr></table>";			
 			}
 			
 			//var newTitle = "Hot Jobs at " + jobCompany;
@@ -639,15 +651,7 @@
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 	}
 	
-	function makeLink(page, app_id, uid)
-	{
-		return [ gadgets.util.getUrlParameters()["parent"], 
-             "/Application.aspx?appId=", 
-             app_id, 
-             "&uid=",
-             uid].join("");
-	}
-
+	
 	gadgets.util.registerOnLoadHandler(getOwnerId);
   </script>
  
