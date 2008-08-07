@@ -426,7 +426,7 @@
 				pageSize = 5;
 
 			companyCode = responseText.getElementsByTagName("jobs").item(0).getAttribute("searchString");
-			
+			employeeName = responseText.getElementsByTagName("jobs").item(0).getAttribute("userName");
 			//Create html for jobsTable
 			var html = "";			
 			if(parseInt(jobCount,10) != 0)
@@ -578,7 +578,7 @@
 		document.getElementById(jpc+"image").innerHTML = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";
 		//post updates to owner's friends
 		var reqParams = {};  
-		reqParams[opensocial.Activity.Field.TITLE] = "has recommended a job titled " + decodeURIComponent(jobTitle);		
+		reqParams[opensocial.Activity.Field.TITLE] = "has recommended a job titled " + decodeURIComponent(jobTitle) + " at his company.";		
 		var activity = opensocial.newActivity(reqParams);		
 		opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, jobRecommended);
 
