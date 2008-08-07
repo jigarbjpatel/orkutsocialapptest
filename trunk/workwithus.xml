@@ -112,7 +112,7 @@
 				</tr>
 				<tr>
 					<td width="25%" class="fieldLabel"><span style='color:red'>*</span> Talentnow Company Code:</td>
-					<td width="20%" class="field"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="50" /></td>
+					<td width="20%" class="field"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="15" /></td>
 					<td width="55%" class="helpText">Enter your company code (If you don't have it already, get this from your company). This is what helps you share your company's jobs with your friends.</td>
 				</tr>
 				<tr>
@@ -268,7 +268,9 @@
 		var postdata ={};
 		//Get the app params (if exists)
 		var querydata = gadgets.views.getParams();
-		if(querydata["cc"] != undefined)
+		alert(querydata["cc"]);
+		alert(typeof(querydata["cc"]) );
+		if(typeof(querydata["cc"]) != undefined)
 		{
 			companyCode = querydata["cc"]; 
 			postdata = new {
