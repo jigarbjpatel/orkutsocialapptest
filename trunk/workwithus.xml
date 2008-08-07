@@ -406,8 +406,16 @@
 		if(parseInt(jobCount,10) == -1)
 		{
 			//Coming for very first time
-			document.getElementById('loader').style.display = "none";	
-			document.getElementById('searchForm').style.display = "block";	
+			document.getElementById('loader').style.display = "none";
+			if(viewerId != ownerId)
+			{
+				document.getElementById('searchForm').style.display = "none";	
+				document.write("Sorry, we do not currently have jobs posted by the company.");
+			}
+			else
+			{
+				document.getElementById('searchForm').style.display = "block";	
+			}
 			document.getElementById('searchResults').style.display = "none";
 			document.getElementById('changeSettings').style.display = "none";
 		}
