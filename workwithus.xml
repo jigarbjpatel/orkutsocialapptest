@@ -421,7 +421,7 @@
 			if(viewerId != ownerId)
 			{
 				document.getElementById('searchForm').style.display = "none";	
-				document.getElementById('searchResults').style.display = "none";
+				document.getElementById('searchResults').style.display = "block";
 				document.getElementById('jobsTableHeader').innerHTML ="Sorry, we do not currently have jobs posted by the company.";
 				document.getElementById('pager').innerHTML = "";
 				document.getElementById('jobsTable').innerHTML = "";				
