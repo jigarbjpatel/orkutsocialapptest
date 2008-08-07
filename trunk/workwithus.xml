@@ -265,28 +265,23 @@
 	}
 	function makeInitialPOSTRequest() 
 	{  
-		var postdata ={};
+		var postdata = "";
 		//Get the app params (if exists)
 		var querydata = gadgets.views.getParams();		
 		if(typeof(querydata["cc"]) != 'undefined')
 		{
 			companyCode = querydata["cc"]; 
-			postdata = new {
-				id : ownerId,
-				cc : companyCode
-				};
+			postdata = "id="+ownerId"&"+"cc="+companyCode;
 		}
 		else
 		{
-			postdata = new {
-				id : ownerId
-				};
+			postdata = "id="+ownerId;
 		}
-		var params = {};  
-  
+		var params = {};    
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
-		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+		//params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+		params[gadgets.io.RequestParameters.POST_DATA] = postdata;  
 		var url = "http://talentnow.com/orkutapp/Default.aspx";  
 		gadgets.io.makeRequest(url, response, params);
 		if (getViewName() == "canvas") 
