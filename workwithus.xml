@@ -271,11 +271,11 @@
 		if(typeof(querydata["cc"]) != 'undefined')
 		{
 			companyCode = querydata["cc"]; 
-			postdata = "id="+ownerId"&"+"cc="+companyCode;
+			postdata = "id=" + ownerId + "&cc=" + companyCode;
 		}
 		else
 		{
-			postdata = "id="+ownerId;
+			postdata = "id=" + ownerId;
 		}
 		var params = {};    
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
