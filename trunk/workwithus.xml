@@ -154,7 +154,7 @@
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
-					<td colspan="2"><input type="button" name="btnShareJobs" id="btnShareJobs" style="font-size: 14px;font-weight: bold;cursor: hand;padding-bottom: 3px;" onclick="getJobs();" value="SHARE JOBS" ></td>
+					<td colspan="2"><input type="button" name="btnShareJobs" id="btnShareJobs" style="font-size: 14px;font-weight: bold;cursor: hand;padding-bottom: 3px;" onclick="getJobs();" value="Share Jobs" ></td>
 					
 				</tr>
 			</table>
