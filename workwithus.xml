@@ -421,13 +421,16 @@
 			if(viewerId != ownerId)
 			{
 				document.getElementById('searchForm').style.display = "none";	
-				document.write("Sorry, we do not currently have jobs posted by the company.");
+				document.getElementById('searchResults').style.display = "none";
+				document.getElementById('jobsTableHeader').innerHTML ="Sorry, we do not currently have jobs posted by the company.";
+				document.getElementById('pager').innerHTML = "";
+				document.getElementById('jobsTable').innerHTML = "";				
 			}
 			else
 			{
 				document.getElementById('searchForm').style.display = "block";	
-			}
-			document.getElementById('searchResults').style.display = "none";
+				document.getElementById('searchResults').style.display = "none";
+			}			
 			document.getElementById('changeSettings').style.display = "none";
 		}
 		else 
