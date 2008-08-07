@@ -267,10 +267,8 @@
 	{  
 		var postdata ={};
 		//Get the app params (if exists)
-		var querydata = gadgets.views.getParams();
-		alert(querydata["cc"]);
-		alert(typeof(querydata["cc"]) );
-		if(typeof(querydata["cc"]) != undefined)
+		var querydata = gadgets.views.getParams();		
+		if(typeof(querydata["cc"]) != 'undefined')
 		{
 			companyCode = querydata["cc"]; 
 			postdata = new {
