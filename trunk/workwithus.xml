@@ -99,6 +99,17 @@
    .tablib_table { 	 }
    .tablib_emptyTab { padding:2px 5px; }
    .tablib_spacerTab { padding:0px 5px; }
+   .button
+	{
+		border: 0px;
+		font-size: 16px;
+		font-weight: bold;		
+		width: 122px;
+		height: 28px;
+		padding-bottom: 3px;		
+		text-transform: uppercase;
+		cursor: hand;
+	}
   </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
 	<div id="loader" style="display:none">
@@ -143,7 +154,7 @@
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
-					<td colspan="2"><input type="button" name="btnShareJobs" id="btnShareJobs" onclick="getJobs();" value="Share Jobs" ></td>
+					<td colspan="2"><input type="button" name="btnShareJobs" id="btnShareJobs" class="button" onclick="getJobs();" value="Share Jobs" ></td>
 					
 				</tr>
 			</table>
