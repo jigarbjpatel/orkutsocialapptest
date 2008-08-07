@@ -102,12 +102,12 @@
    .button
 	{
 		border: 0px;
-		font-size: 16px;
-		font-weight: bold;		
+		font-size: 14px;
+		font-weight: bold;
+		color : blue;
 		width: 122px;
 		height: 28px;
-		padding-bottom: 3px;		
-		text-transform: uppercase;
+		padding-bottom: 3px;				
 		cursor: hand;
 	}
   </style>
@@ -154,7 +154,7 @@
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
-					<td colspan="2"><input type="button" name="btnShareJobs" id="btnShareJobs" class="button" onclick="getJobs();" value="Share Jobs" ></td>
+					<td colspan="2"><input type="button" name="btnShareJobs" id="btnShareJobs" class="button" onclick="getJobs();" value="SHARE JOBS" ></td>
 					
 				</tr>
 			</table>
