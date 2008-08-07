@@ -265,10 +265,25 @@
 	}
 	function makeInitialPOSTRequest() 
 	{  
+		var postdata ={};
+		//Get the app params (if exists)
+		var querydata = gadgets.views.getParams();
+		if(typeof(querydata) != 'undefined' && querydata != null)
+		{
+			companyCode = querydata["cc"]; 
+			postdata = new {
+				id : ownerId,
+				cc : companyCode
+				};
+		}
+		else
+		{
+			postdata = new {
+				id : ownerId
+				};
+		}
 		var params = {};  
-		var postdata = {
-			id : ownerId						
-			};  
+  
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
