@@ -594,7 +594,7 @@
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		var url = "http://talentnow.com/orkutapp/Default.aspx";   
-		gadgets.io.makeRequest(url, jobRecommended, params);	
+		gadgets.io.makeRequest(url, emptyCallback, params);	
 
 		document.getElementById(jpc).innerHTML = "";
 		document.getElementById(jpc+"image").innerHTML = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";
@@ -602,10 +602,10 @@
 		var reqParams = {};  
 		reqParams[opensocial.Activity.Field.TITLE] = "has recommended a job titled " + decodeURIComponent(jobTitle) + " at his company.";		
 		var activity = opensocial.newActivity(reqParams);		
-		opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, jobRecommended);
+		opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, emptyCallback);
 
 	}
-	function jobRecommended()
+	function emptyCallback()
 	{	
 	}
 	function getJobs()
@@ -613,7 +613,6 @@
 		if(trim(document.getElementById('txtCompanyCode').value) != "")
 		{
 			companyCode = trim(document.getElementById('txtCompanyCode').value);			
-			
 			pageSize = parseInt(document.getElementById('selPageSize').options[document.getElementById('selPageSize').selectedIndex].value,10);
 			employeeName = trim(document.getElementById('txtEmployeeName').value);
 			startIndex = 0;			
@@ -634,6 +633,12 @@
 			if(typeof(loadMessage) != 'undefined')
 				msg.dismissMessage(loadMessage);
 			loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+
+			//post updates to owner's friends
+			var reqParams = {};  
+			reqParams[opensocial.Activity.Field.TITLE] = " has shared job openings from his company.";		
+			var activity = opensocial.newActivity(reqParams);		
+			opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, emptyCallback);
 		}
 		else
 		{
