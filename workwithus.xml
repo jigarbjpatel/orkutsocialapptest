@@ -643,7 +643,10 @@
 
 			//post updates to owner's friends
 			var reqParams = {};  
-			reqParams[opensocial.Activity.Field.TITLE] = " has shared job openings from his company.";		
+			if(ownerGender == "MALE")
+				reqParams[opensocial.Activity.Field.TITLE] = " has shared job openings from his company.";		
+			else
+				reqParams[opensocial.Activity.Field.TITLE] = " has shared job openings from her company.";		
 			var activity = opensocial.newActivity(reqParams);		
 			opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, emptyCallback);
 		}
