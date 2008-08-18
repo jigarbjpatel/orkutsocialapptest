@@ -209,6 +209,7 @@
 	var loadMessage;
 	var ownerId = "";
 	var ownerName = "";
+	var ownerGender = "";
 	var pageSize = 5;
 	var companyCode = "";
 	var jobCount = 0;
@@ -253,7 +254,9 @@
 	{    
 		document.getElementById('loader').style.display = "block";	
 		var req = opensocial.newDataRequest();
-		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.OWNER), 'owner');
+		var params = {};
+		params[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] = [opensocial.Person.Field.GENDER];
+		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.OWNER,params), 'owner');
 		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
 		req.send(onGotOwnerId);
 	}
@@ -264,6 +267,7 @@
 			var owner = dataResponse.get('owner').getData();
 			ownerId = owner.getId();
 			ownerName = owner.getDisplayName();	
+			ownerGender = owner.getField(opensocial.Person.Field.GENDER).key;
 			var viewer = dataResponse.get('viewer').getData();
 			if(typeof(viewer) != 'undefined' && viewer != null)
 				viewerId = viewer.getId();
@@ -600,7 +604,10 @@
 		document.getElementById(jpc+"image").innerHTML = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";
 		//post updates to owner's friends
 		var reqParams = {};  
-		reqParams[opensocial.Activity.Field.TITLE] = "has recommended a job titled " + decodeURIComponent(jobTitle) + " at his company.";		
+		if(ownerGender == "MALE")
+			reqParams[opensocial.Activity.Field.TITLE] = "has recommended a job titled " + decodeURIComponent(jobTitle) + " at his company.";		
+		else
+			reqParams[opensocial.Activity.Field.TITLE] = "has recommended a job titled " + decodeURIComponent(jobTitle) + " at her company.";		
 		var activity = opensocial.newActivity(reqParams);		
 		opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, emptyCallback);
 
