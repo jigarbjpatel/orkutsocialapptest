@@ -341,7 +341,7 @@
 		{
 			var ownerFriends = dataResponse.get('ownerFriends').getData();		
 			
-			friendsHtml = '<table>';
+			friendsHtml = '<table width="100%">';
 			ownerFriends.each(function(person){		
 				if(person.getDisplayName() != "")
 				{
@@ -353,7 +353,7 @@
 					
 					var appUrl = makeLink("", stored_app_id, stored_uid);
 
-					friendsHtml += '<tr><td class="imageContainer" id="' + person.getId() + '" width="100%"><a href="' + appUrl + '" target="_top" style="float:left">' +
+					friendsHtml += '<tr><td class="imageContainer" id="' + person.getId() + '" ><a href="' + appUrl + '" target="_top" style="float:left">' +
 							  '<img src="' + thumb + '" border="0"/>' +
 					  '</a><br/>&nbsp;&nbsp;&nbsp;'+ person.getDisplayName() +'</td></tr>';
 					
