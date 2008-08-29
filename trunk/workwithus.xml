@@ -528,9 +528,9 @@
 					  if (node.nodeName == "titleurl")
 					  {
 						if(node.firstChild == null)
-							jobTitleUrl = "http://talentnow.com/shared/viewspecificjob.aspx?jpc="+jobPostingCode+"&rid="+ownerId;
+							jobTitleUrl = encodeURIComponent("http://talentnow.com/shared/viewspecificjob.aspx?jpc="+jobPostingCode+"&rid="+ownerId+"&sna=Orkut Social App");
 						else
-							jobTitleUrl = node.firstChild.nodeValue;						
+							jobTitleUrl = encodeURIComponent(node.firstChild.nodeValue);						
 					  }
 					}
 					
