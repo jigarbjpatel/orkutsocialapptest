@@ -485,6 +485,7 @@
 				var recommended = "";
 				var iRecommendHTML  = "";
 				var iRecommendImage = "";
+				var socialNetworkApp = "Orkut Social App";
 				for (var i = 0; i < jobList.length ; i++) 
 				{ 
 					var nodeList = jobList.item(i).childNodes;	
@@ -528,9 +529,9 @@
 					  if (node.nodeName == "titleurl")
 					  {
 						if(node.firstChild == null)
-							jobTitleUrl = encodeURIComponent("http://talentnow.com/shared/viewspecificjob.aspx?jpc="+jobPostingCode+"&rid="+ownerId+"&sna=Orkut Social App");
+							jobTitleUrl = "http://talentnow.com/shared/viewspecificjob.aspx?jpc="+jobPostingCode+"&rid="+ownerId+"&sna="+encodeURIComponent(socialNetworkApp);
 						else
-							jobTitleUrl = encodeURIComponent(node.firstChild.nodeValue);						
+							jobTitleUrl = node.firstChild.nodeValue;						
 					  }
 					}
 					
