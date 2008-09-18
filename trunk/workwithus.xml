@@ -485,7 +485,7 @@
 				var recommended = "";
 				var iRecommendHTML  = "";
 				var iRecommendImage = "";
-				var socialNetworkApp = "Orkut Social App";
+				var socialNetworkApp = "006";
 				for (var i = 0; i < jobList.length ; i++) 
 				{ 
 					var nodeList = jobList.item(i).childNodes;	
