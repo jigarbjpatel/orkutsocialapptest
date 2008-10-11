@@ -165,7 +165,12 @@
 					<td colspan="2">
 						<div id="jobsTableHeader" ></div>
 					</td>
-				</tr>				
+				</tr>	
+				<tr>
+					<td colspan="2">
+						<div id="companyLinks" ></div>
+					</td>
+				</tr>	
 				<tr>
 					<td colspan="2">
 						<div id="jobsTable"></div>
@@ -297,7 +302,8 @@
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		//params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		params[gadgets.io.RequestParameters.POST_DATA] = postdata;  
-		var url = "http://talentnow.com/orkutapp/Default.aspx";  
+		//var url = "http://talentnow.com/orkutapp/Default.aspx";
+		var url = "http://localhost:2466/Default.aspx";
 		gadgets.io.makeRequest(url, response, params);
 		if (getViewName() == "canvas") 
 		{
@@ -410,7 +416,25 @@
 			msg.dismissMessage(loadMessage);
 
 		var responseText = obj.data;
-		
+		//Get the links count 
+		var companyLinks = responseText.getElementsByTagName("link");
+		var linkName = "";
+		var linkUrl = "";
+		var linksHtml = "";
+		for (var i = 0; i < companyLinks.length ; i++) 
+		{ 
+			linkName = companyLinks.item(i).getAttribute("name");
+			linkUrl = companyLinks.item(i).getAttribute("url");
+			if(linksHtml == "")
+			{
+				linksHtml += "<a href='"+linkUrl+"' target='_blank'>"+linkName+"</a>";
+			}
+			else
+			{
+				linksHtml += " | " + "<a href='"+linkUrl+"' target='_blank'>"+linkName+"</a>";
+			}			
+		}
+		document.getElementById('companyLinks').innerHTML = linksHtml;
 		//Get the jobs count
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
 		if(typeof(jobCount) != 'undefined')
