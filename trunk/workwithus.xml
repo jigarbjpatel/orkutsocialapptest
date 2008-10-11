@@ -415,7 +415,7 @@
 			msg.dismissMessage(loadMessage);
 
 		var responseText = obj.data;
-		//Get the links count 
+		//Get the links  
 		var companyLinks = responseText.getElementsByTagName("link");
 		var linkName = "";
 		var linkUrl = "";
@@ -434,6 +434,7 @@
 			}			
 		}
 		document.getElementById('companyLinks').innerHTML = linksHtml;
+
 		//Get the jobs count
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
 		if(typeof(jobCount) != 'undefined')
