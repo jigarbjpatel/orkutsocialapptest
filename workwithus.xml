@@ -1,730 +1,709 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
  <ModulePrefs title="Talentnow - Let's work together!" title_url="http://www.talentnow.com" description="Share with your friends jobs from your company and your friends' companies. Wouldn't it be fun to work with friends and also earn brownie points in your company helping them find talent? To use this application, your company must have posted jobs on Talentnow. Any company can post jobs on Talentnow absolutely free. So, if your company has not already registered, you can ask them to. This service is currently only for companies in India." author="Talentnow" author_email="jigarbjpatel@gmail.com" thumbnail="http://talentnow.com/orkutapp/images/applogo.jpg" screenshot="http://talentnow.com/orkutapp/images/orkutAppSnapshot.jpg" height="500">
-	<Require feature="opensocial-0.7"/>
-	<Require feature="minimessage"/>
-	<Require feature="tabs" /> 
-	<Require feature="views" />
-	<Locale lang="en" country="us" />
-	<Preload href="http://talentnow.com/orkutapp/images/star.gif" />
-	<Preload href="http://www.talentnow.com/orkutapp/images/loader.gif" />
-	<!--<Require feature="dynamic-height"/>-->
-	<!--<Require feature="settitle"/>-->
+        <Require feature="opensocial-0.7"/>
+        <Require feature="minimessage"/>
+        <Require feature="tabs" />
+        <Require feature="views" />
+        <Locale lang="en" country="us" />
+        <Preload href="http://talentnow.com/orkutapp/images/star.gif" />
+        <Preload href="http://www.talentnow.com/orkutapp/images/loader.gif" />
+        <!--<Require feature="dynamic-height"/>-->
+        <!--<Require feature="settitle"/>-->
  </ModulePrefs>
  <Content type="html" view="canvas,profile">
 
  <![CDATA[
    <style type="text/css">
    td
-	{
-		font-family: Tahoma, "Trebuchet MS", Verdana, Arial, "MS Sans Serif";
-		font-size: 12px;
-		font-weight: normal;
-	}
-	.jobTitle
-	{
-		font-size: 12px;
-		font-weight: bold;
-		color: #1A75D0; 
-		padding-top: 3px;
-		vertical-align: top;
-	}
-	.jobLocation
-	{
-		color: #79BB01;
-	}
-	a, a:visited 
-	{
-		color: #1A75D0; 
-		text-decoration: none;
-	}
-	a:hover 
-	{
-		color: #00468B; 
-		text-decoration: none;
-	}
-	.fieldLabel
-	{
-		text-align: right;
-		padding-right: 5px;
-		vertical-align: top;
-	}
+        {
+                font-family: Tahoma, "Trebuchet MS", Verdana, Arial, "MS Sans Serif";
+                font-size: 12px;
+                font-weight: normal;
+        }
+        .jobTitle
+        {
+                font-size: 12px;
+                font-weight: bold;
+                color: #1A75D0;
+                padding-top: 3px;
+                vertical-align: top;
+        }
+        .jobLocation
+        {
+                color: #79BB01;
+        }
+        a, a:visited
+        {
+                color: #1A75D0;
+                text-decoration: none;
+        }
+        a:hover
+        {
+                color: #00468B;
+                text-decoration: none;
+        }
+        .fieldLabel
+        {
+                text-align: right;
+                padding-right: 5px;
+                vertical-align: top;
+        }
 
-	.field
-	{
-		padding-right: 5px;
-		vertical-align: top;
-	}
+        .field
+        {
+                padding-right: 5px;
+                vertical-align: top;
+        }
 
-	.helpText
-	{
-		font-size: 11px;
-		font-weight: normal;
-		color: #777777;
-		vertical-align: top;
-	}
+        .helpText
+        {
+                font-size: 11px;
+                font-weight: normal;
+                color: #777777;
+                vertical-align: top;
+        }
 
-	input,select
-	{
-		font-family: Tahoma, "Trebuchet MS", Verdana, Arial, "MS Sans Serif";
-		font-size: 12px;
-		font-weight: normal;
-	}
-	.companyName{font-weight:bold;}
-	.imageContainer{
-		padding: 10px;
-	}
-	.friendCompany
-	{
-		color: #86A1C5;
-		font-weight: bold;
-	}
-	.tablib_selected { 
-			font-weight: bold;
-			color: #FFFFFF;
-			background-color: #86A1C5;
-			border-left: #82B0CA 1px solid; 
-			border-top: #82B0CA 1px solid; 
-			border-right: #82B0CA 1px solid; 
-			padding: 3px;
-			width: 200px;}
-   .tablib_unselected { 
-			font-weight: bold;
-			background-color: #E8F0F7;
-			border-left: #BED4E8 1px solid; 
-			border-top: #BED4E8 1px solid; 
-			border-right: #BED4E8 1px solid; 
-			padding: 3px;
-			width: 200px;}
-   .tablib_table { 	 }
+        input,select
+        {
+                font-family: Tahoma, "Trebuchet MS", Verdana, Arial, "MS Sans Serif";
+                font-size: 12px;
+                font-weight: normal;
+        }
+        .companyName{font-weight:bold;}
+        .imageContainer{
+                padding: 10px;
+        }
+        .friendCompany
+        {
+                color: #86A1C5;
+                font-weight: bold;
+        }
+        .tablib_selected {
+                        font-weight: bold;
+                        color: #FFFFFF;
+                        background-color: #86A1C5;
+                        border-left: #82B0CA 1px solid;
+                        border-top: #82B0CA 1px solid;
+                        border-right: #82B0CA 1px solid;
+                        padding: 3px;
+                        width: 200px;}
+   .tablib_unselected {
+                        font-weight: bold;
+                        background-color: #E8F0F7;
+                        border-left: #BED4E8 1px solid;
+                        border-top: #BED4E8 1px solid;
+                        border-right: #BED4E8 1px solid;
+                        padding: 3px;
+                        width: 200px;}
+   .tablib_table {       }
    .tablib_emptyTab { padding:2px 5px; }
    .tablib_spacerTab { padding:0px 5px; }
    .button
-	{
-		border: 0px;
-		font-size: 14px;
-		font-weight: bold;
-		color : blue;
-		width: 122px;
-		height: 28px;
-		padding-bottom: 3px;				
-		cursor: hand;
-	}
+        {
+                border: 0px;
+                font-size: 14px;
+                font-weight: bold;
+                color : blue;
+                width: 122px;
+                height: 28px;
+                padding-bottom: 3px;                            
+                cursor: hand;
+        }
   </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
-	<div id="loader" style="display:none">
-		<img src="http://www.talentnow.com/orkutapp/images/loader.gif" border='0' alt='Please wait while we fetch the jobs' />
-	</div>
-	<div id="workWithMe">
-		<div id="searchForm" style="display:none" onkeydown="checkPost(event);">
-			<table>
-				<tr>
-					<td colspan="3" id="searchFormMessage">&nbsp;</td>
-				</tr>
-				<tr>
-					<td width="25%" class="fieldLabel"><span style='color:red'>*</span> Talentnow Company Code:</td>
-					<td width="20%" class="field"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="15" /></td>
-					<td width="55%" class="helpText">Enter your company code (If you don't have it already, get this from your company). This is what helps you share your company's jobs with your friends.</td>
-				</tr>
-				<tr>
-					<td colspan="3">&nbsp;</td>
-				</tr>
-				<tr>
-					<td class="fieldLabel">Full Name: </td>
-					<td class="field"><input type="text" id="txtEmployeeName" name="txtEmployeeName" maxlength="50" /></td>
-					<td class="helpText">Enter your full name. This helps your company identify you, when your friends apply through your orkut profile and get selected. This makes it easier for you to get referral incentives per your company policy.</td>
-				</tr>
-				<tr>
-					<td colspan="3">&nbsp;</td>
-				</tr>
-				<tr>
-					<td class="fieldLabel">Jobs per Page: </td>
-					<td class="field">
-						<select name="selPageSize" id="selPageSize">
-							<option value="5" id="5">5</option>
-							<option value="10" id="10">10</option>
-							<option value="15" id="15">15</option>
-							<option value="20" id="20">20</option>
-						</select>
-					</td>
-					<td class="helpText">This is the maximum number of jobs you want to display in your application on one page.</td>
-				</tr>
-				<tr>
-					<td colspan="3">&nbsp;</td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td colspan="2"><input type="button" name="btnShareJobs" id="btnShareJobs" style="font-size: 14px;font-weight: bold;cursor: hand;padding-bottom: 3px;" onclick="getJobs();" value="Share Jobs" ></td>
-					
-				</tr>
-			</table>
-		</div>
-		<div id="searchResults" style="display:none">
-			<table>
-				<tr>
-					<td colspan="2">
-						<div id="jobsTableHeader" ></div>
-					</td>
-				</tr>	
-				<tr>
-					<td colspan="2">
-						<div id="companyLinks" ></div>
-					</td>
-				</tr>	
-				<tr>
-					<td colspan="2">
-						<div id="jobsTable"></div>
-					</td>
-				</tr>
-				<tr>
-					<td align="left" width="30%"><div id="pager" ></div></td>
-					<td id="changeSettings" style="display:none" align="right" width="70%"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
-				</tr>
-			</table>		
-		</div>
+        <div id="loader" style="display:none">
+                <img src="http://www.talentnow.com/orkutapp/images/loader.gif" border='0' alt='Please wait while we fetch the jobs' />
+        </div>
+        <div id="workWithMe">
+                <div id="searchForm" style="display:none" onkeydown="checkPost(event);">
+                        <table>
+                                <tr>
+                                        <td colspan="3" id="searchFormMessage"> </td>
+                                </tr>
+                                <tr>
+                                        <td width="25%" class="fieldLabel"><span style='color:red'>*</span> Talentnow Company Code:</td>
+                                        <td width="20%" class="field"><input type="text" id="txtCompanyCode" name="txtCompanyCode" maxlength="15" /></td>
+                                        <td width="55%" class="helpText">Enter your company code (If you don't have it already, get this from your company). This is what helps you share your company's jobs with your friends.</td>
+                                </tr>
+                                <tr>
+                                        <td colspan="3"> </td>
+                                </tr>
+                                <tr>
+                                        <td class="fieldLabel">Full Name: </td>
+                                        <td class="field"><input type="text" id="txtEmployeeName" name="txtEmployeeName" maxlength="50" /></td>
+                                        <td class="helpText">Enter your full name. This helps your company identify you, when your friends apply through your orkut profile and get selected. This makes it easier for you to get referral incentives per your company policy.</td>
+                                </tr>
+                                <tr>
+                                        <td colspan="3"> </td>
+                                </tr>
+                                <tr>
+                                        <td class="fieldLabel">Jobs per Page: </td>
+                                        <td class="field">
+                                                <select name="selPageSize" id="selPageSize">
+                                                        <option value="5" id="5">5</option>
+                                                        <option value="10" id="10">10</option>
+                                                        <option value="15" id="15">15</option>
+                                                        <option value="20" id="20">20</option>
+                                                </select>
+                                        </td>
+                                        <td class="helpText">This is the maximum number of jobs you want to display in your application on one page.</td>
+                                </tr>
+                                <tr>
+                                        <td colspan="3"> </td>
+                                </tr>
+                                <tr>
+                                        <td> </td>
+                                        <td colspan="2"><input type="button" name="btnShareJobs" id="btnShareJobs" style="font-size: 14px;font-weight: bold;cursor: hand;padding-bottom: 3px;" onclick="getJobs();" value="Share Jobs" ></td>
+                                       
+                                </tr>
+                        </table>
+                </div>
+                <div id="searchResults" style="display:none">
+                        <table>
+                                <tr>
+                                        <td colspan="2">
+                                                <div id="jobsTableHeader" ></div>
+                                        </td>
+                                </tr>                          
+                                <tr>
+                                        <td colspan="2">
+                                                <div id="jobsTable"></div>
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td align="left" width="30%"><div id="pager" ></div></td>
+                                        <td id="changeSettings" style="display:none" align="right" width="70%"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
+                                </tr>
+                        </table>                
+                </div>
 
-	</div>
+        </div>
 
-	<div id="workWithMyFriends" style="display:none">
-		<table>
-			<tr>
-				<td>
-					<div id="friendsHeader"></div>
-				</td>
-			</tr>				
-			<tr>
-				<td>
-					<div id="friends"></div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div id="friendsJobs" style="display:none"></div>
-				</td>
-			</tr>
-		</table>
-	</div>
-	 
+        <div id="workWithMyFriends" style="display:none">
+                <table>
+                        <tr>
+                                <td>
+                                        <div id="friendsHeader"></div>
+                                </td>
+                        </tr>                          
+                        <tr>
+                                <td>
+                                        <div id="friends"></div>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                        <div id="friendsJobs" style="display:none"></div>
+                                </td>
+                        </tr>
+                </table>
+        </div>
+         
   </form>
+
 
  <script type="text/javascript">
 
-	var msg = new gadgets.MiniMessage(__MODULE_ID__);
-	var tabs = new gadgets.TabSet(__MODULE_ID__, "Work with me");
-	var loadMessage;
-	var ownerId = "";
-	var ownerName = "";
-	var ownerGender = "";
-	var pageSize = 5;
-	var companyCode = "";
-	var jobCount = 0;
-	var startIndex = 0;
-	var viewerId = "";
-	var employeeName = "";
-	var friendsHtml = "";
-	var appUrls = {};
-	
-	function getViewName() 
-	{
-	 return gadgets.views.getCurrentView().getName();
-	}
-	function makeLink(page, app_id, uid)
-	{
-		return [ gadgets.util.getUrlParameters()["parent"], 
-             "/Application.aspx?appId=", 
-             app_id, 
+        var msg = new gadgets.MiniMessage(__MODULE_ID__);
+        var tabs = new gadgets.TabSet(__MODULE_ID__, "Work with me");
+        var loadMessage;
+        var ownerId = "";
+        var ownerName = "";
+        var ownerGender = "";
+        var pageSize = 5;
+        var companyCode = "";
+        var jobCount = 0;
+        var startIndex = 0;
+        var viewerId = "";
+        var employeeName = "";
+        var friendsHtml = "";
+        var appUrls = {};
+       
+        function getViewName()
+        {
+         return gadgets.views.getCurrentView().getName();
+        }
+        function makeLink(page, app_id, uid)
+        {
+                return [ gadgets.util.getUrlParameters()["parent"],
+             "/Application.aspx?appId=",
+             app_id,
              "&uid=",
              uid].join("");
-	}
-	function checkPost(evt)
-	{
-		var key = (evt.which) ? evt.which : evt.keyCode;
-		if(parseInt(key,10) == 13)
-		{		
-			if(evt.which)
-			{
-				evt.preventDefault();
-			}
-			else
-			{
-				event.returnValue = false;			
-			}
-		}
-	}
-	function trim(str)
+        }
+        function checkPost(evt)
+        {
+                var key = (evt.which) ? evt.which : evt.keyCode;
+                if(parseInt(key,10) == 13)
+                {              
+                        if(evt.which)
+                        {
+                                evt.preventDefault();
+                        }
+                        else
+                        {
+                                event.returnValue = false;                      
+                        }
+                }
+        }
+        function trim(str)
     {
       return str.replace(/^\s+|\s+$/g, '');
     }
-	function getOwnerId() 
-	{    
-		document.getElementById('loader').style.display = "block";	
-		var req = opensocial.newDataRequest();
-		var params = {};
-		params[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] = [opensocial.Person.Field.GENDER];
-		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.OWNER,params), 'owner');
-		req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
-		req.send(onGotOwnerId);
-	}
-	function onGotOwnerId(dataResponse)
-	{
-		if(dataResponse != null && dataResponse.get('owner') != null)
-		{
-			var owner = dataResponse.get('owner').getData();
-			ownerId = owner.getId();
-			ownerName = owner.getDisplayName();	
-			ownerGender = owner.getField(opensocial.Person.Field.GENDER).key;
-			var viewer = dataResponse.get('viewer').getData();
-			if(typeof(viewer) != 'undefined' && viewer != null)
-				viewerId = viewer.getId();
-			makeInitialPOSTRequest();		
-		}
-		else
-		{
-			getOwnerId();
-		}
-	}
-	function makeInitialPOSTRequest() 
-	{  
-		var postdata = "";
-		//Get the app params (if exists)
-		var querydata = gadgets.views.getParams();		
-		if(typeof(querydata["cc"]) != 'undefined')
-		{
-			companyCode = querydata["cc"]; 
-			postdata = "id=" + ownerId + "&cc=" + companyCode;
-		}
-		else
-		{
-			postdata = "id=" + ownerId;
-		}
-		var params = {};    
-		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
-		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
-		//params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		params[gadgets.io.RequestParameters.POST_DATA] = postdata;  
-		var url = "http://talentnow.com/orkutapp/Default.aspx";		
-		gadgets.io.makeRequest(url, response, params);
-		if (getViewName() == "canvas") 
-		{
-			//Add tabs
-			tabs.addTab("Work with me", {            
-					contentContainer: document.getElementById("workWithMe"),
-					callback: callback,            
-					tooltip: "Check out job openings at my company"          
-					});
-			tabs.addTab("Work with my friends", {            
-				contentContainer: document.getElementById("workWithMyFriends"),
-				callback: callback,            
-				tooltip: "Check out job openings at my friend's company"          
-				});
-			tabs.alignTabs("left");
-		}
-	}
-	function callback(tabId)
-	{	
-		if(tabId == "workWithMyFriends")
-		{//Get all the friends		
-			document.getElementById('loader').style.display = "block";	
-			document.getElementById('friendsHeader').innerHTML = "";
-			document.getElementById('friends').innerHTML  = "";
-			var req = opensocial.newDataRequest();
-			var req_params = {}; 
-			req_params[opensocial.DataRequest.PeopleRequestFields.FILTER] = opensocial.DataRequest.FilterType.HAS_APP;
-			req_params[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] = [opensocial.Person.Field.PROFILE_URL];
-			req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS,req_params),'ownerFriends'); 
-			req.send(onLoadFriends);
-		}
-	}
-	function onLoadFriends(dataResponse)
-	{	
-		var parentUrl = gadgets.util.getUrlParameters()["parent"];
-		var stored_app_id = gadgets.util.getUrlParameters()["gadgetId"];
-		var regex = /uid=([^&#]+)/;
+        function getOwnerId()
+        {    
+                document.getElementById('loader').style.display = "block";      
+                var req = opensocial.newDataRequest();
+                var params = {};
+                params[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] = [opensocial.Person.Field.GENDER];
+                req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.OWNER,params), 'owner');
+                req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), 'viewer');
+                req.send(onGotOwnerId);
+        }
+        function onGotOwnerId(dataResponse)
+        {
+                if(dataResponse != null && dataResponse.get('owner') != null)
+                {
+                        var owner = dataResponse.get('owner').getData();
+                        ownerId = owner.getId();
+                        ownerName = owner.getDisplayName();    
+                        ownerGender = owner.getField(opensocial.Person.Field.GENDER).key;
+                        var viewer = dataResponse.get('viewer').getData();
+                        if(typeof(viewer) != 'undefined' && viewer != null)
+                                viewerId = viewer.getId();
+                        makeInitialPOSTRequest();              
+                }
+                else
+                {
+                        getOwnerId();
+                }
+        }
+        function makeInitialPOSTRequest()
+        {  
+                var postdata = "";
+                //Get the app params (if exists)
+                var querydata = gadgets.views.getParams();              
+                if(typeof(querydata["cc"]) != 'undefined')
+                {
+                        companyCode = querydata["cc"];
+                        postdata = "id=" + ownerId + "&cc=" + companyCode;
+                }
+                else
+                {
+                        postdata = "id=" + ownerId;
+                }
+                var params = {};    
+                params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+                params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+                //params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+                params[gadgets.io.RequestParameters.POST_DATA] = postdata;  
+                var url = "http://talentnow.com/orkutapp/Default.aspx";  
+                gadgets.io.makeRequest(url, response, params);
+                if (getViewName() == "canvas")
+                {
+                        //Add tabs
+                        tabs.addTab("Work with me", {            
+                                        contentContainer: document.getElementById("workWithMe"),
+                                        callback: callback,            
+                                        tooltip: "Check out job openings at my company"          
+                                        });
+                        tabs.addTab("Work with my friends", {            
+                                contentContainer: document.getElementById("workWithMyFriends"),
+                                callback: callback,            
+                                tooltip: "Check out job openings at my friend's company"          
+                                });
+                        tabs.alignTabs("left");
+                }
+        }
+        function callback(tabId)
+        {      
+                if(tabId == "workWithMyFriends")
+                {//Get all the friends          
+                        document.getElementById('loader').style.display = "block";      
+                        document.getElementById('friendsHeader').innerHTML = "";
+                        document.getElementById('friends').innerHTML  = "";
+                        var req = opensocial.newDataRequest();
+                        var req_params = {};
+                        req_params[opensocial.DataRequest.PeopleRequestFields.FILTER] = opensocial.DataRequest.FilterType.HAS_APP;
+                        req_params[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] = [opensocial.Person.Field.PROFILE_URL];
+                        req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS,req_params),'ownerFriends');
+                        req.send(onLoadFriends);
+                }
+        }
+        function onLoadFriends(dataResponse)
+        {      
+                var parentUrl = gadgets.util.getUrlParameters()["parent"];
+                var stored_app_id = gadgets.util.getUrlParameters()["gadgetId"];
+                var regex = /uid=([^&#]+)/;
 
-		var friendsWhoHaveInstalledApp = "";
-		if(dataResponse != null && dataResponse.get('ownerFriends') != null)
-		{
-			var ownerFriends = dataResponse.get('ownerFriends').getData();		
-			
-			friendsHtml = '<table width="100%">';
-			ownerFriends.each(function(person){		
-				if(person.getDisplayName() != "")
-				{
-					var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
-					var profileUrl = person.getField(opensocial.Person.Field.PROFILE_URL);
-					var result = profileUrl.match(regex);
-					if (result.length == 2) 
-						var stored_uid = result[1];					  
-					
-					var appUrl = makeLink("", stored_app_id, stored_uid);
+                var friendsWhoHaveInstalledApp = "";
+                if(dataResponse != null && dataResponse.get('ownerFriends') != null)
+                {
+                        var ownerFriends = dataResponse.get('ownerFriends').getData();          
+                       
+                        friendsHtml = '<table width="100%">';
+                        ownerFriends.each(function(person){            
+                                if(person.getDisplayName() != "")
+                                {
+                                        var thumb = person.getField(opensocial.Person.Field.THUMBNAIL_URL);
+                                        var profileUrl = person.getField(opensocial.Person.Field.PROFILE_URL);
+                                        var result = profileUrl.match(regex);
+                                        if (result.length == 2)
+                                                var stored_uid = result[1];                                      
+                                       
+                                        var appUrl = makeLink("", stored_app_id, stored_uid);
 
-					friendsHtml += '<tr><td class="imageContainer" id="' + person.getId() + '" ><a href="' + appUrl + '" target="_top" style="float:left">' +
-							  '<img src="' + thumb + '" border="0"/>' +
-					  '</a><br/>&nbsp;&nbsp;&nbsp;'+ person.getDisplayName() +'</td></tr>';
-					
-					//store app urls 
-					appUrls[person.getId()] = appUrl;
+                                        friendsHtml += '<tr><td class="imageContainer" id="' + person.getId() + '" ><a href="' + appUrl + '" target="_top" style="float:left">' +
+                                                          '<img src="' + thumb + '" border="0"/>' +
+                                          '</a><br/>   '+ person.getDisplayName() +'</td></tr>';
+                                       
+                                        //store app urls
+                                        appUrls[person.getId()] = appUrl;
 
-					if(friendsWhoHaveInstalledApp == "")
-						friendsWhoHaveInstalledApp += "'" + person.getId() + "'";
-					else
-						friendsWhoHaveInstalledApp += "," + "'" + person.getId() + "'";
-				}
-			});
-			friendsHtml += '</table>';
-		}
-		if(friendsWhoHaveInstalledApp != "")
-		{
-			//Get company names of the friends who have installed this app		
-			var params = {};  
-			var postdata = {
-				ids : friendsWhoHaveInstalledApp
-				};  
-			params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
-			params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
-			params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-			var url = "http://talentnow.com/orkutapp/Default.aspx"; 
-			gadgets.io.makeRequest(url, gotCompanyNames, params);
-		}
-		else
-		{
-			//Write some text saying no friends have this app installed
-			document.getElementById('loader').style.display = "none";	
-			document.getElementById('friendsHeader').innerHTML = "";
-			document.getElementById('friends').innerHTML  = "<table><tr><td>Sorry, none of my friends are sharing jobs from their companies.</td></tr></table>";
-		}
-	}
-	
-	function gotCompanyNames(obj)
-	{
-		document.getElementById('loader').style.display = "none";	
-		var responseText = obj.data;
-		var userList = responseText.getElementsByTagName("user");
-		document.getElementById('friendsHeader').innerHTML = "<table><tr><td >You can also check out jobs from companies where some of my friends work. Click on the profile picture or company name to see the jobs. I can help you connect with them to find out additional information you may need.</td></tr></table>";
-		document.getElementById('friends').innerHTML = friendsHtml;
-		for (var i = 0; i < userList.length ; i++) 
-		{ 
-			var friendId = userList.item(i).getAttribute("id");
-			document.getElementById(friendId).innerHTML += " working at <a href='"+appUrls[friendId]+"' target='_top'>" + userList.item(i).getAttribute("companyName") + "</a>";
-		}		
-	}	
-	
-	function response(obj) 
-	{
-		if(typeof(loadMessage) != 'undefined')
-			msg.dismissMessage(loadMessage);
+                                        if(friendsWhoHaveInstalledApp == "")
+                                                friendsWhoHaveInstalledApp += "'" + person.getId() + "'";
+                                        else
+                                                friendsWhoHaveInstalledApp += "," + "'" + person.getId() + "'";
+                                }
+                        });
+                        friendsHtml += '</table>';
+                }
+                if(friendsWhoHaveInstalledApp != "")
+                {
+                        //Get company names of the friends who have installed this app          
+                        var params = {};  
+                        var postdata = {
+                                ids : friendsWhoHaveInstalledApp
+                                };  
+                        params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+                        params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+                        params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+                        var url = "http://talentnow.com/orkutapp/Default.aspx";
+                        gadgets.io.makeRequest(url, gotCompanyNames, params);
+                }
+                else
+                {
+                        //Write some text saying no friends have this app installed
+                        document.getElementById('loader').style.display = "none";      
+                        document.getElementById('friendsHeader').innerHTML = "";
+                        document.getElementById('friends').innerHTML  = "<table><tr><td>Sorry, none of my friends are sharing jobs from their companies.</td></tr></table>";
+                }
+        }
+       
+        function gotCompanyNames(obj)
+        {
+                document.getElementById('loader').style.display = "none";      
+                var responseText = obj.data;
+                var userList = responseText.getElementsByTagName("user");
+                document.getElementById('friendsHeader').innerHTML = "<table><tr><td >You can also check out jobs from companies where some of my friends work. Click on the profile picture or company name to see the jobs. I can help you connect with them to find out additional information you may need.</td></tr></table>";
+                document.getElementById('friends').innerHTML = friendsHtml;
+                for (var i = 0; i < userList.length ; i++)
+                {
+                        var friendId = userList.item(i).getAttribute("id");
+                        document.getElementById(friendId).innerHTML += " working at <a href='"+appUrls[friendId]+"' target='_top'>" + userList.item(i).getAttribute("companyName") + "</a>";
+                }              
+        }      
+       
+        function response(obj)
+        {
+                if(typeof(loadMessage) != 'undefined')
+                        msg.dismissMessage(loadMessage);
 
-		var responseText = obj.data;
-		//Get the links  
-		var companyLinks = responseText.getElementsByTagName("link");
-		var linkName = "";
-		var linkUrl = "";
-		var linksHtml = "";
-		for (var i = 0; i < companyLinks.length ; i++) 
-		{ 
-			linkName = companyLinks.item(i).getAttribute("name");
-			linkUrl = companyLinks.item(i).getAttribute("url");
-			if(linksHtml == "")
-			{
-				linksHtml += "<a href='"+linkUrl+"' target='_blank'>"+linkName+"</a>";
-			}
-			else
-			{
-				linksHtml += " | " + "<a href='"+linkUrl+"' target='_blank'>"+linkName+"</a>";
-			}			
-		}
-		document.getElementById('companyLinks').innerHTML = linksHtml;
 
-		//Get the jobs count
-		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
-		if(typeof(jobCount) != 'undefined')
-				jobCount = parseInt(jobCount,10);
-			else
-				jobCount = -1;
-		
-		if(parseInt(jobCount,10) == -1)
-		{
-			//Coming for very first time
-			document.getElementById('loader').style.display = "none";
-			if(viewerId != ownerId)
-			{
-				document.getElementById('searchForm').style.display = "none";	
-				document.getElementById('searchResults').style.display = "block";
-				document.getElementById('jobsTableHeader').innerHTML ="Sorry, we do not currently have jobs posted by the company.";
-				document.getElementById('pager').innerHTML = "";
-				document.getElementById('jobsTable').innerHTML = "";				
-			}
-			else
-			{
-				document.getElementById('searchForm').style.display = "block";	
-				document.getElementById('searchResults').style.display = "none";
-			}			
-			document.getElementById('changeSettings').style.display = "none";
-		}
-		else 
-		{
-			startIndex = responseText.getElementsByTagName("jobs").item(0).getAttribute("startIndex");
-			if(typeof(startIndex) != 'undefined')
-				startIndex = parseInt(startIndex,10);
-			else
-				startIndex = 0;
-			
-			pageSize = responseText.getElementsByTagName("jobs").item(0).getAttribute("pageSize");
-			if(typeof(pageSize) != 'undefined')
-				pageSize = parseInt(pageSize,10);
-			else
-				pageSize = 5;
+                var responseText = obj.data;
+               
+                //Get the jobs count
+                jobCount =      responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
+                if(typeof(jobCount) != 'undefined')
+                                jobCount = parseInt(jobCount,10);
+                        else
+                                jobCount = -1;
+               
+                if(parseInt(jobCount,10) == -1)
+                {
+                        //Coming for very first time
+                        document.getElementById('loader').style.display = "none";
+                        if(viewerId != ownerId)
+                        {
+                                document.getElementById('searchForm').style.display = "none";  
+                                document.getElementById('searchResults').style.display = "block";
+                                document.getElementById('jobsTableHeader').innerHTML ="Sorry, we do not currently have jobs posted by the company.";
+                                document.getElementById('pager').innerHTML = "";
+                                document.getElementById('jobsTable').innerHTML = "";                            
+                        }
+                        else
+                        {
+                                document.getElementById('searchForm').style.display = "block";  
+                                document.getElementById('searchResults').style.display = "none";
+                        }                      
+                        document.getElementById('changeSettings').style.display = "none";
+                }
+                else
+                {
+                        startIndex = responseText.getElementsByTagName("jobs").item(0).getAttribute("startIndex");
+                        if(typeof(startIndex) != 'undefined')
+                                startIndex = parseInt(startIndex,10);
+                        else
+                                startIndex = 0;
+                       
+                        pageSize = responseText.getElementsByTagName("jobs").item(0).getAttribute("pageSize");
+                        if(typeof(pageSize) != 'undefined')
+                                pageSize = parseInt(pageSize,10);
+                        else
+                                pageSize = 5;
 
-			companyCode = responseText.getElementsByTagName("jobs").item(0).getAttribute("searchString");
-			employeeName = responseText.getElementsByTagName("jobs").item(0).getAttribute("userName");
-			//Create html for jobsTable
-			var html = "";			
-			if(parseInt(jobCount,10) != 0)
-			{
-				//Based on job count show prev and next
-				if(parseInt(startIndex,10) >= parseInt(pageSize,10)) 
-				{
-					document.getElementById('pager').innerHTML = "<a id='prev' href='#' onclick='getPrevJobs();' >&lt;&nbsp;Prev</a>"; 
-				}
-				else
-				{
-					document.getElementById('pager').innerHTML = "&lt;&nbsp;Prev"; 
-				}				
-				if((parseInt(startIndex,10) + parseInt(pageSize,10)) < parseInt(jobCount,10))
-				{
-					document.getElementById('pager').innerHTML += " | " + "<a id='next' href='#' onclick='getNextJobs();' >Next&nbsp;&gt;</a>"; 
-				}
-				else
-				{
-					document.getElementById('pager').innerHTML += " | " + "Next&nbsp;&gt;";
-				}
-					
-				var jobList = responseText.getElementsByTagName("job");
-				var jobPostingCode = "";
-				var jobTitle = "";
-				var jobLocation = "";
-				var jobCompany = "";
-				var jobPostedOn = "";
-				var jobTitleUrl = "";
-				var recommended = "";
-				var iRecommendHTML  = "";
-				var iRecommendImage = "";
-				var socialNetworkApp = "006";
-				for (var i = 0; i < jobList.length ; i++) 
-				{ 
-					var nodeList = jobList.item(i).childNodes;	
-					jobPostingCode = jobList.item(i).getAttribute("id");
-					jobTitle = "";
-					jobLocation = "";
-					jobCompany = "";
-					jobPostedOn = "";
-					jobTitleUrl = "";
-					recommended = "";
-					iRecommendHTML ="";
-					iRecommendImage = "";
-					for (var j = 0; j < nodeList.length ; j++) 
-					{
-					  var node = nodeList.item(j);
-					  if (node.nodeName == "title") 
-					  {
-						if(node.firstChild != null)
-							jobTitle = node.firstChild.nodeValue;						
-					  }
-					  if (node.nodeName == "location") 
-					  {
-						if(node.firstChild != null)
-							jobLocation = node.firstChild.nodeValue;				
-					  }
-					  if (node.nodeName == "company") 
-					  {
-						  if(node.firstChild != null)
-							jobCompany = node.firstChild.nodeValue; 
-					  }
-					  if (node.nodeName == "postedon") 
-					  {
-						if(node.firstChild != null)
-							jobPostedOn = node.firstChild.nodeValue; 
-					  }
-					  if (node.nodeName == "recommended") 
-					  {
-						if(node.firstChild != null)
-							recommended = node.firstChild.nodeValue; 
-					  }
-					  if (node.nodeName == "titleurl")
-					  {
-						if(node.firstChild == null)
-							jobTitleUrl = "http://talentnow.com/shared/viewspecificjob.aspx?jpc="+jobPostingCode+"&rid="+ownerId+"&sna="+encodeURIComponent(socialNetworkApp);
-						else
-							jobTitleUrl = node.firstChild.nodeValue;						
-					  }
-					}
-					
-					if(recommended != "")
-					{
-						if(viewerId == ownerId)
-						{
-							if(recommended == "false")
-								iRecommendHTML = "<a href='#' onclick=recommendJob('"+jobPostingCode+"','"+encodeURIComponent(jobTitle)+"');>Recommend this job</a>";							
-							else
-								iRecommendImage = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended' hspace='2'/>";
-						}
-						else
-						{
-							if(recommended == "true")
-							{
-								iRecommendImage  = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended' hspace='2'/>";	
-							}
-						}
-					}
-					// Append extracted data to the HTML string					
-					html += "<tr><td width='1%'><span id='"+jobPostingCode+"image'>"+iRecommendImage+"</span></td><td class='jobTitle' ><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td>&nbsp;</td><td> at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +"&nbsp;<span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td></tr>";
+                        companyCode = responseText.getElementsByTagName("jobs").item(0).getAttribute("searchString");
+                        employeeName = responseText.getElementsByTagName("jobs").item(0).getAttribute("userName");
+                        //Create html for jobsTable
+                        var html = "";                  
+                        if(parseInt(jobCount,10) != 0)
+                        {
+                                //Based on job count show prev and next
+                                if(parseInt(startIndex,10) >= parseInt(pageSize,10))
+                                {
+                                        document.getElementById('pager').innerHTML = "<a id='prev' href='#' onclick='getPrevJobs();' >&lt; Prev</a>";
+                                }
+                                else
+                                {
+                                        document.getElementById('pager').innerHTML = "&lt; Prev";
+                                }                              
+                                if((parseInt(startIndex,10) + parseInt(pageSize,10)) < parseInt(jobCount,10))
+                                {
+                                        document.getElementById('pager').innerHTML += " | " + "<a id='next' href='#' onclick='getNextJobs();' >Next &gt;</a>";
+                                }
+                                else
+                                {
+                                        document.getElementById('pager').innerHTML += " | " + "Next &gt;";
+                                }
+                                       
+                                var jobList = responseText.getElementsByTagName("job");
+                                var jobPostingCode = "";
+                                var jobTitle = "";
+                                var jobLocation = "";
+                                var jobCompany = "";
+                                var jobPostedOn = "";
+                                var jobTitleUrl = "";
+                                var recommended = "";
+                                var iRecommendHTML  = "";
+                                var iRecommendImage = "";
+                                var socialNetworkApp = "006";
+                                for (var i = 0; i < jobList.length ; i++)
+                                {
+                                        var nodeList = jobList.item(i).childNodes;      
+                                        jobPostingCode = jobList.item(i).getAttribute("id");
+                                        jobTitle = "";
+                                        jobLocation = "";
+                                        jobCompany = "";
+                                        jobPostedOn = "";
+                                        jobTitleUrl = "";
+                                        recommended = "";
+                                        iRecommendHTML ="";
+                                        iRecommendImage = "";
+                                        for (var j = 0; j < nodeList.length ; j++)
+                                        {
+                                          var node = nodeList.item(j);
+                                          if (node.nodeName == "title")
+                                          {
+                                                if(node.firstChild != null)
+                                                        jobTitle = node.firstChild.nodeValue;                                          
+                                          }
+                                          if (node.nodeName == "location")
+                                          {
+                                                if(node.firstChild != null)
+                                                        jobLocation = node.firstChild.nodeValue;                                
+                                          }
+                                          if (node.nodeName == "company")
+                                          {
+                                                  if(node.firstChild != null)
+                                                        jobCompany = node.firstChild.nodeValue;
+                                          }
+                                          if (node.nodeName == "postedon")
+                                          {
+                                                if(node.firstChild != null)
+                                                        jobPostedOn = node.firstChild.nodeValue;
+                                          }
+                                          if (node.nodeName == "recommended")
+                                          {
+                                                if(node.firstChild != null)
+                                                        recommended = node.firstChild.nodeValue;
+                                          }
+                                          if (node.nodeName == "titleurl")
+                                          {
+                                                if(node.firstChild == null)
+                                                        jobTitleUrl = "http://talentnow.com/shared/viewspecificjob.aspx?jpc="+jobPostingCode+"&rid="+ownerId+"&sna="+encodeURIComponent(socialNetworkApp);
+                                                else
+                                                        jobTitleUrl = node.firstChild.nodeValue;                                                
+                                          }
+                                        }
+                                       
+                                        if(recommended != "")
+                                        {
+                                                if(viewerId == ownerId)
+                                                {
+                                                        if(recommended == "false")
+                                                                iRecommendHTML = "<a href='#' onclick=recommendJob('"+jobPostingCode+"','"+encodeURIComponent(jobTitle)+"');>Recommend this job</a>";                                                  
+                                                        else
+                                                                iRecommendImage = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended' hspace='2'/>";
+                                                }
+                                                else
+                                                {
+                                                        if(recommended == "true")
+                                                        {
+                                                                iRecommendImage  = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended' hspace='2'/>";        
+                                                        }
+                                                }
+                                        }
+                                        // Append extracted data to the HTML string                                    
+                                        html += "<tr><td width='1%'><span id='"+jobPostingCode+"image'>"+iRecommendImage+"</span></td><td class='jobTitle' ><a href='" + jobTitleUrl + "' target='_blank'>"+jobTitle+"</a> </td></tr><tr><td> </td><td> at <span class='jobLocation'>" + jobLocation + "</span> posted on "+ jobPostedOn +" <span id='"+jobPostingCode+"'>"+iRecommendHTML+"</span></td></tr>";
 
-				}
-				html = "<table>" + html + "</table>";
-				//Set the header
-				document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td >Friends, check out some cool job openings in my company, <span class='companyName'>"+ jobCompany +"</span>.  I would be more than happy to provide you additional information about these jobs. It will be fun to work together. </td></tr></table>";
-				
-			}
-			else
-			{
-				document.getElementById('jobsTableHeader').innerHTML ="";
-				document.getElementById('pager').innerHTML = "";
-				if(viewerId == ownerId)
-					html += "<table><tr><td >Either we don't have any jobs posted by your company or the company code you entered is incorrect.</td></tr></table>";			
-				else
-					html += "<table><tr><td >Sorry, we currently do not have any jobs posted by your friend's company.</td></tr></table>";			
-			}
-			
-			//var newTitle = "Hot Jobs at " + jobCompany;
-			//gadgets.window.setTitle(newTitle);
-			
-			document.getElementById('jobsTable').innerHTML = html;			
-			document.getElementById('loader').style.display = "none";	
-			document.getElementById('searchResults').style.display = "block";		
+                                }
+                                html = "<table>" + html + "</table>";
+                                //Set the header
+                                document.getElementById('jobsTableHeader').innerHTML = "<table><tr><td >Friends, check out some cool job openings in my company, <span class='companyName'>"+ jobCompany +"</span>.  I would be more than happy to provide you additional information about these jobs. It will be fun to work together. </td></tr></table>";
+                               
+                        }
+                        else
+                        {
+                                document.getElementById('jobsTableHeader').innerHTML ="";
+                                document.getElementById('pager').innerHTML = "";
+                                if(viewerId == ownerId)
+                                        html += "<table><tr><td >Either we don't have any jobs posted by your company or the company code you entered is incorrect.</td></tr></table>";                
+                                else
+                                        html += "<table><tr><td >Sorry, we currently do not have any jobs posted by your friend's company.</td></tr></table>";                  
+                        }
+                       
+                        //var newTitle = "Hot Jobs at " + jobCompany;
+                        //gadgets.window.setTitle(newTitle);
+                       
+                        document.getElementById('jobsTable').innerHTML = html;                  
+                        document.getElementById('loader').style.display = "none";      
+                        document.getElementById('searchResults').style.display = "block";              
 
-			if(viewerId == ownerId)
-			{
-				document.getElementById('changeSettings').style.display = "block";
-			}	
-			document.getElementById('searchForm').style.display = "none";			
-		}		
-	}
-	function recommendJob(jpc,jobTitle)
-	{
-		//request in pipeline
-		document.getElementById(jpc).innerHTML = "recommending...";
-		//store the user preferences
-		var params = {};  
-		var postdata = {
-			id : ownerId,
-			rj : jpc
-			};  
-		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
-		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
-		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://talentnow.com/orkutapp/Default.aspx";   
-		gadgets.io.makeRequest(url, emptyCallback, params);	
+                        if(viewerId == ownerId)
+                        {
+                                document.getElementById('changeSettings').style.display = "block";
+                        }      
+                        document.getElementById('searchForm').style.display = "none";                  
+                }              
+        }
+        function recommendJob(jpc,jobTitle)
+        {
+                //request in pipeline
+                document.getElementById(jpc).innerHTML = "recommending...";
+                //store the user preferences
+                var params = {};  
+                var postdata = {
+                        id : ownerId,
+                        rj : jpc
+                        };  
+                params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+                params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+                params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+                var url = "http://talentnow.com/orkutapp/Default.aspx";  
+                gadgets.io.makeRequest(url, emptyCallback, params);    
 
-		document.getElementById(jpc).innerHTML = "";
-		document.getElementById(jpc+"image").innerHTML = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";
-		//post updates to owner's friends
-		var reqParams = {};  
-		if(ownerGender == "MALE")
-			reqParams[opensocial.Activity.Field.TITLE] = "has recommended a job titled " + decodeURIComponent(jobTitle) + " at his company.";		
-		else
-			reqParams[opensocial.Activity.Field.TITLE] = "has recommended a job titled " + decodeURIComponent(jobTitle) + " at her company.";		
-		var activity = opensocial.newActivity(reqParams);		
-		opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, emptyCallback);
+                document.getElementById(jpc).innerHTML = "";
+                document.getElementById(jpc+"image").innerHTML = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended Job'/>";
+                //post updates to owner's friends
+                var reqParams = {};  
+                if(ownerGender == "MALE")
+                        reqParams[opensocial.Activity.Field.TITLE] = "has recommended a job titled " + decodeURIComponent(jobTitle) + " at his company.";              
+                else
+                        reqParams[opensocial.Activity.Field.TITLE] = "has recommended a job titled " + decodeURIComponent(jobTitle) + " at her company.";              
+                var activity = opensocial.newActivity(reqParams);              
+                opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, emptyCallback);
 
-	}
-	function emptyCallback()
-	{	
-	}
-	function getJobs()
-	{
-		if(trim(document.getElementById('txtCompanyCode').value) != "")
-		{
-			companyCode = trim(document.getElementById('txtCompanyCode').value);			
-			pageSize = parseInt(document.getElementById('selPageSize').options[document.getElementById('selPageSize').selectedIndex].value,10);
-			employeeName = trim(document.getElementById('txtEmployeeName').value);
-			startIndex = 0;			
-			var params = {};  
-			var postdata = {
-				id : ownerId,
-				name : gadgets.util.escapeString(employeeName),
-				cc : gadgets.util.escapeString(companyCode),
-				si : startIndex,
-				ps : pageSize
-				};  
-			params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
-			params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
-			params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-			var url = "http://talentnow.com/orkutapp/Default.aspx";   
-			gadgets.io.makeRequest(url, response, params);
 
-			if(typeof(loadMessage) != 'undefined')
-				msg.dismissMessage(loadMessage);
-			loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+        }
+        function emptyCallback()
+        {      
+        }
+        function getJobs()
+        {
+                if(trim(document.getElementById('txtCompanyCode').value) != "")
+                {
+                        companyCode = trim(document.getElementById('txtCompanyCode').value);                    
+                        pageSize = parseInt(document.getElementById('selPageSize').options[document.getElementById('selPageSize').selectedIndex].value,10);
+                        employeeName = trim(document.getElementById('txtEmployeeName').value);
+                        startIndex = 0;                
+                        var params = {};  
+                        var postdata = {
+                                id : ownerId,
+                                name : gadgets.util.escapeString(employeeName),
+                                cc : gadgets.util.escapeString(companyCode),
+                                si : startIndex,
+                                ps : pageSize
+                                };  
+                        params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+                        params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+                        params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+                        var url = "http://talentnow.com/orkutapp/Default.aspx";  
+                        gadgets.io.makeRequest(url, response, params);
 
-			//post updates to owner's friends
-			var reqParams = {};  
-			if(ownerGender == "MALE")
-				reqParams[opensocial.Activity.Field.TITLE] = " has shared job openings from his company.";		
-			else
-				reqParams[opensocial.Activity.Field.TITLE] = " has shared job openings from her company.";		
-			var activity = opensocial.newActivity(reqParams);		
-			opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, emptyCallback);
-		}
-		else
-		{
-			if(typeof(loadMessage) != 'undefined')
-				msg.dismissMessage(loadMessage);
-			loadMessage = msg.createStaticMessage("Please enter the company code.");			
-		}
-	}
-	//Show the search Form
-	function changeSearhCriteria()
-	{
-		document.getElementById('searchResults').style.display = "none";
-		document.getElementById('changeSettings').style.display = "none";
-		document.getElementById('searchForm').style.display = "block";
-		document.getElementById('txtCompanyCode').value = companyCode;
-		document.getElementById('txtEmployeeName').value = employeeName;
-		document.getElementById('selPageSize').options[document.getElementById('selPageSize').selectedIndex].value = pageSize;
-	}
-	function getPrevJobs()
-	{
-		startIndex = startIndex - pageSize;
-		var params = {};  
-		var postdata = {
-			id : ownerId,
-			si : startIndex
-			};  
-		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
-		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
-		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://talentnow.com/orkutapp/Default.aspx";    
-		gadgets.io.makeRequest(url, response, params);
-		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
-	}
-	function getNextJobs()
-	{
-		startIndex = startIndex + pageSize;
-		var params = {};  
-		var postdata = {
-			id : ownerId,
-			si : startIndex			
-			};  
-		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
-		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
-		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://talentnow.com/orkutapp/Default.aspx";  
-		gadgets.io.makeRequest(url, response, params);
-		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
-	}
-	
-	
-	gadgets.util.registerOnLoadHandler(getOwnerId);
+                        if(typeof(loadMessage) != 'undefined')
+                                msg.dismissMessage(loadMessage);
+                        loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+
+                        //post updates to owner's friends
+                        var reqParams = {};  
+                        if(ownerGender == "MALE")
+                                reqParams[opensocial.Activity.Field.TITLE] = " has shared job openings from his company.";              
+                        else
+                                reqParams[opensocial.Activity.Field.TITLE] = " has shared job openings from her company.";              
+                        var activity = opensocial.newActivity(reqParams);              
+                        opensocial.requestCreateActivity(activity, opensocial.CreateActivityPriority.HIGH, emptyCallback);
+                }
+                else
+                {
+                        if(typeof(loadMessage) != 'undefined')
+                                msg.dismissMessage(loadMessage);
+                        loadMessage = msg.createStaticMessage("Please enter the company code.");                        
+                }
+        }
+        //Show the search Form
+        function changeSearhCriteria()
+        {
+                document.getElementById('searchResults').style.display = "none";
+                document.getElementById('changeSettings').style.display = "none";
+                document.getElementById('searchForm').style.display = "block";
+                document.getElementById('txtCompanyCode').value = companyCode;
+                document.getElementById('txtEmployeeName').value = employeeName;
+                document.getElementById('selPageSize').options[document.getElementById('selPageSize').selectedIndex].value = pageSize;
+        }
+        function getPrevJobs()
+        {
+                startIndex = startIndex - pageSize;
+                var params = {};  
+                var postdata = {
+                        id : ownerId,
+                        si : startIndex
+                        };  
+                params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+                params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+                params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+                var url = "http://talentnow.com/orkutapp/Default.aspx";    
+                gadgets.io.makeRequest(url, response, params);
+                loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");        
+        }
+        function getNextJobs()
+        {
+                startIndex = startIndex + pageSize;
+                var params = {};  
+                var postdata = {
+                        id : ownerId,
+                        si : startIndex                
+                        };  
+                params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+                params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
+                params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
+                var url = "http://talentnow.com/orkutapp/Default.aspx";  
+                gadgets.io.makeRequest(url, response, params);
+                loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
+        }
+       
+       
+        gadgets.util.registerOnLoadHandler(getOwnerId);
   </script>
  
   ]]>
