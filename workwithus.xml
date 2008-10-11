@@ -302,8 +302,7 @@
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		//params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		params[gadgets.io.RequestParameters.POST_DATA] = postdata;  
-		//var url = "http://talentnow.com/orkutapp/Default.aspx";
-		var url = "http://localhost:2466/Default.aspx";
+		var url = "http://talentnow.com/orkutapp/Default.aspx";		
 		gadgets.io.makeRequest(url, response, params);
 		if (getViewName() == "canvas") 
 		{
