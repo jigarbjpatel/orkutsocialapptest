@@ -114,10 +114,10 @@
 	{
 		width: 99%;
 		text-align: left;
-		border-top: solid 1px #F7CBBD; 
-		border-bottom: solid 1px #F7CBBD; 
+		border-top: solid 1px #F7F7F7; 
+		border-bottom: solid 1px #F7F7F7; 
 		color: #499424; 
-		background-color: #FFEBE7; 
+		background-color: #F3F3F3; 
 	}
   </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
@@ -435,7 +435,7 @@
 			linkUrl = companyLinks.item(i).getAttribute("url");
 			if(linksHtml == "")
 			{
-				linksHtml += "<a href='"+linkUrl+"' target='_blank'>"+linkName+"</a>";
+				linksHtml += "&nbsp;&nbsp;<a href='"+linkUrl+"' target='_blank'>"+linkName+"</a>";
 			}
 			else
 			{
@@ -443,7 +443,10 @@
 			}			
 		}
 		document.getElementById('companyLinks').innerHTML = linksHtml;
-
+		if(companyLinks.length ==0)
+		{
+			document.getElementById('companyLinks').style.display = "none";
+		}
 		//Get the jobs count
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
 		if(typeof(jobCount) != 'undefined')
