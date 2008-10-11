@@ -110,6 +110,15 @@
 		padding-bottom: 3px;				
 		cursor: hand;
 	}
+	.linkHolder
+	{
+		width: 99%;
+		text-align: left;
+		border-top: solid 1px #F7CBBD; 
+		border-bottom: solid 1px #F7CBBD; 
+		color: #499424; 
+		background-color: #FFEBE7; 
+	}
   </style>
  <form name="frmJobs" id="frmJobs" action="" method="POST">
 	<div id="loader" style="display:none">
@@ -168,7 +177,7 @@
 				</tr>	
 				<tr>
 					<td colspan="2">
-						<div id="companyLinks" ></div>
+						<div id="companyLinks" class="linkHolder"></div>
 					</td>
 				</tr>	
 				<tr>
