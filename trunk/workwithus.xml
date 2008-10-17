@@ -511,7 +511,7 @@
 				//Based on job count show prev and next
 				if(parseInt(startIndex,10) >= parseInt(pageSize,10)) 
 				{
-					document.getElementById('pager').innerHTML = "<a id='prev' href='#' onclick='getPrevJobs();' >&lt;&nbsp;Prev</a>"; 
+					document.getElementById('pager').innerHTML = "<a id='prev' href='javascript:getPrevJobs();' >&lt;&nbsp;Prev</a>"; 
 				}
 				else
 				{
@@ -519,7 +519,7 @@
 				}				
 				if((parseInt(startIndex,10) + parseInt(pageSize,10)) < parseInt(jobCount,10))
 				{
-					document.getElementById('pager').innerHTML += " | " + "<a id='next' href='#' onclick='getNextJobs();' >Next&nbsp;&gt;</a>"; 
+					document.getElementById('pager').innerHTML += " | " + "<a id='next' href='javascript:getNextJobs();' >Next&nbsp;&gt;</a>"; 
 				}
 				else
 				{
@@ -591,7 +591,7 @@
 						if(viewerId == ownerId)
 						{
 							if(recommended == "false")
-								iRecommendHTML = "<a href='#' onclick=recommendJob('"+jobPostingCode+"','"+encodeURIComponent(jobTitle)+"');>Recommend this job</a>";							
+								iRecommendHTML = "<a href=\"javascript:recommendJob('"+jobPostingCode+"','"+encodeURIComponent(jobTitle)+"');\">Recommend this job</a>";							
 							else
 								iRecommendImage = "<img src='http://talentnow.com/orkutapp/images/star.gif' border='0' alt='Recommended Job' title='Recommended' hspace='2'/>";
 						}
