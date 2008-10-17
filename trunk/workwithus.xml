@@ -196,7 +196,7 @@
 				</tr>
 				<tr>
 					<td align="left" width="30%"><div id="pager" ></div></td>
-					<td id="changeSettings" style="display:none" align="right" width="70%"><a href="#" onclick="changeSearhCriteria();" >Change App Settings</a></td>
+					<td id="changeSettings" style="display:none" align="right" width="70%"><a href="javascript:changeSearhCriteria();" >Change App Settings</a></td>
 				</tr>
 			</table>		
 		</div>
