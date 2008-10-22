@@ -469,8 +469,8 @@
 		}
 		//Get the company header
 		var companyHeader = responseText.getElementsByTagName("companyHeader").item(0);
-alert(companyHeader.nodeValue);
-alert(companyHeader.innerText);
+alert(companyHeader);
+alert(companyHeader.childNodes[0].nodeValue);
 		if(companyHeader.nodeValue == "")
 		{
 			document.getElementById('companyHeader').style.display = "none";
