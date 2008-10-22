@@ -468,16 +468,17 @@
 			document.getElementById('companyLinks').style.display = "none";
 		}
 		//Get the company header
+		document.getElementById('companyHeader').style.display = "none";
 		var companyHeader = responseText.getElementsByTagName("companyHeader").item(0);
-		if(companyHeader.childNodes.length != 0 && companyHeader.childNodes[0].nodeValue == "")
+		if(companyHeader.childNodes.length != 0)
 		{
-			document.getElementById('companyHeader').style.display = "none";
+			if(companyHeader.childNodes[0].nodeValue != "")
+			{
+				document.getElementById('companyHeader').style.display = "block";
+				document.getElementById('companyHeader').innerHTML = companyHeader.childNodes[0].nodeValue;
+			}	
 		}
-		else
-		{
-			document.getElementById('companyHeader').style.display = "block";
-			document.getElementById('companyHeader').innerHTML = companyHeader.childNodes[0].nodeValue;
-		}
+		
 		//Get the jobs count
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
 		if(typeof(jobCount) != 'undefined')
