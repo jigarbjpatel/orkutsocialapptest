@@ -469,7 +469,7 @@
 		}
 		//Get the company header
 		var companyHeader = responseText.getElementsByTagName("companyHeader").item(0);
-		if(companyHeader.childNodes[0].nodeValue == "")
+		if(companyHeader.childNodes.length != 0 && companyHeader.childNodes[0].nodeValue == "")
 		{
 			document.getElementById('companyHeader').style.display = "none";
 		}
