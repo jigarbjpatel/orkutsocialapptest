@@ -174,11 +174,7 @@
 		</div>
 		<div id="searchResults" style="display:none">
 			<table>
-				<tr>
-					<td colspan="2">
-						&nbsp;
-					</td>
-				</tr>
+				
 				<tr>
 					<td colspan="2">
 						<div id="companyHeader"></div>
