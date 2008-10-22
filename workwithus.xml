@@ -469,16 +469,14 @@
 		}
 		//Get the company header
 		var companyHeader = responseText.getElementsByTagName("companyHeader").item(0);
-alert(companyHeader);
-alert(companyHeader.childNodes[0].nodeValue);
-		if(companyHeader.nodeValue == "")
+		if(companyHeader.childNodes[0].nodeValue == "")
 		{
 			document.getElementById('companyHeader').style.display = "none";
 		}
 		else
 		{
 			document.getElementById('companyHeader').style.display = "block";
-			document.getElementById('companyHeader').innerHTML = companyHeader.nodeValue;
+			document.getElementById('companyHeader').innerHTML = companyHeader.childNodes[0].nodeValue;
 		}
 		//Get the jobs count
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
