@@ -178,6 +178,11 @@
 					<td colspan="2">
 						&nbsp;
 					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div id="companyHeader"></div>
+					</td>
 				</tr>	
 				<tr>
 					<td colspan="2">
@@ -326,7 +331,7 @@
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		//params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		params[gadgets.io.RequestParameters.POST_DATA] = postdata;  
-		var url = "http://talentnow.com/orkutapp/Default.aspx";		
+		var url = "http://developer.talentnow.com/orkutapp/Default.aspx";		
 		gadgets.io.makeRequest(url, response, params);
 		if (getViewName() == "canvas") 
 		{
@@ -407,7 +412,7 @@
 			params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 			params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 			params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-			var url = "http://talentnow.com/orkutapp/Default.aspx"; 
+			var url = "http://developer.talentnow.com/orkutapp/Default.aspx"; 
 			gadgets.io.makeRequest(url, gotCompanyNames, params);
 		}
 		else
@@ -461,6 +466,17 @@
 		if(companyLinks.length ==0)
 		{
 			document.getElementById('companyLinks').style.display = "none";
+		}
+		//Get the company header
+		var companyHeader = responseText.getElementsByTagName("companyHeader").item(0);
+		if(companyHeader.nodeValue == "")
+		{
+			document.getElementById('companyHeader').style.display = "none";
+		}
+		else
+		{
+			document.getElementById('companyHeader').style.display = "block";
+			document.getElementById('companyHeader').innerHTML = companyHeader.nodeValue;
 		}
 		//Get the jobs count
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
@@ -649,7 +665,7 @@
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://talentnow.com/orkutapp/Default.aspx";   
+		var url = "http://developer.talentnow.com/orkutapp/Default.aspx";   
 		gadgets.io.makeRequest(url, emptyCallback, params);	
 
 		document.getElementById(jpc).innerHTML = "";
@@ -686,7 +702,7 @@
 			params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 			params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 			params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-			var url = "http://talentnow.com/orkutapp/Default.aspx";   
+			var url = "http://developer.talentnow.com/orkutapp/Default.aspx";   
 			gadgets.io.makeRequest(url, response, params);
 
 			if(typeof(loadMessage) != 'undefined')
@@ -730,7 +746,7 @@
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://talentnow.com/orkutapp/Default.aspx";    
+		var url = "http://developer.talentnow.com/orkutapp/Default.aspx";    
 		gadgets.io.makeRequest(url, response, params);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
 	}
@@ -745,7 +761,7 @@
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://talentnow.com/orkutapp/Default.aspx";  
+		var url = "http://developer.talentnow.com/orkutapp/Default.aspx";  
 		gadgets.io.makeRequest(url, response, params);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 	}
