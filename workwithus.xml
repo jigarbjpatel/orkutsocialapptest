@@ -173,8 +173,7 @@
 			</table>
 		</div>
 		<div id="searchResults" style="display:none">
-			<table>
-				
+			<table>				
 				<tr>
 					<td colspan="2">
 						<div id="companyHeader"></div>
@@ -327,7 +326,7 @@
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		//params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
 		params[gadgets.io.RequestParameters.POST_DATA] = postdata;  
-		var url = "http://developer.talentnow.com/orkutapp/Default.aspx";		
+		var url = "http://talentnow.com/orkutapp/Default.aspx";		
 		gadgets.io.makeRequest(url, response, params);
 		if (getViewName() == "canvas") 
 		{
@@ -408,7 +407,7 @@
 			params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 			params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 			params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-			var url = "http://developer.talentnow.com/orkutapp/Default.aspx"; 
+			var url = "http://talentnow.com/orkutapp/Default.aspx"; 
 			gadgets.io.makeRequest(url, gotCompanyNames, params);
 		}
 		else
@@ -441,40 +440,45 @@
 
 		var responseText = obj.data;
 		//Get the links  
-		var companyLinks = responseText.getElementsByTagName("link");
-		var linkName = "";
-		var linkUrl = "";
-		var linksHtml = "";
-		for (var i = 0; i < companyLinks.length ; i++) 
-		{ 
-			linkName = companyLinks.item(i).getAttribute("name");
-			linkUrl = companyLinks.item(i).getAttribute("url");
-			if(linksHtml == "")
-			{
-				linksHtml += "&nbsp;&nbsp;<a href='"+linkUrl+"' target='_blank'>"+linkName+"</a>";
-			}
-			else
-			{
-				linksHtml += " &nbsp;|&nbsp; " + "<a href='"+linkUrl+"' target='_blank'>"+linkName+"</a>";
-			}			
-		}
-		document.getElementById('companyLinks').innerHTML = linksHtml;
-		if(companyLinks.length ==0)
+		var companyLinks = responseText.getElementsByTagName("link");		
+		if(companyLinks.length==0)
 		{
 			document.getElementById('companyLinks').style.display = "none";
 		}
+		else
+		{
+			var linkName = "";
+			var linkUrl = "";
+			var linksHtml = "";
+			for (var i = 0; i < companyLinks.length ; i++) 
+			{ 
+				linkName = companyLinks.item(i).getAttribute("name");
+				linkUrl = companyLinks.item(i).getAttribute("url");
+				if(linksHtml == "")
+				{
+					linksHtml += "&nbsp;&nbsp;<a href='"+linkUrl+"' target='_blank'>"+linkName+"</a>";
+				}
+				else
+				{
+					linksHtml += " &nbsp;|&nbsp; " + "<a href='"+linkUrl+"' target='_blank'>"+linkName+"</a>";
+				}			
+			}		
+			document.getElementById('companyLinks').innerHTML = linksHtml;
+		}
 		//Get the company header
 		document.getElementById('companyHeader').style.display = "none";
-		var companyHeader = responseText.getElementsByTagName("companyHeader").item(0);
-		if(companyHeader.childNodes.length != 0)
+		if(responseText.getElementsByTagName("companyHeader").length != 0)
 		{
-			if(companyHeader.childNodes[0].nodeValue != "")
+			var companyHeader = responseText.getElementsByTagName("companyHeader").item(0);
+			if(companyHeader.childNodes.length != 0)
 			{
-				document.getElementById('companyHeader').style.display = "block";
-				document.getElementById('companyHeader').innerHTML = companyHeader.childNodes[0].nodeValue;
-			}	
+				if(companyHeader.childNodes[0].nodeValue != "")
+				{
+					document.getElementById('companyHeader').style.display = "block";
+					document.getElementById('companyHeader').innerHTML = companyHeader.childNodes[0].nodeValue;
+				}	
+			}
 		}
-		
 		//Get the jobs count
 		jobCount =	responseText.getElementsByTagName("jobs").item(0).getAttribute("count");
 		if(typeof(jobCount) != 'undefined')
@@ -483,8 +487,7 @@
 				jobCount = -1;
 		
 		if(parseInt(jobCount,10) == -1)
-		{
-			//Coming for very first time
+		{			
 			document.getElementById('loader').style.display = "none";
 			if(viewerId != ownerId)
 			{
@@ -495,7 +498,7 @@
 				document.getElementById('jobsTable').innerHTML = "";				
 			}
 			else
-			{
+			{//Coming for very first time
 				document.getElementById('searchForm').style.display = "block";	
 				document.getElementById('searchResults').style.display = "none";
 			}			
@@ -662,7 +665,7 @@
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://developer.talentnow.com/orkutapp/Default.aspx";   
+		var url = "http://talentnow.com/orkutapp/Default.aspx";   
 		gadgets.io.makeRequest(url, emptyCallback, params);	
 
 		document.getElementById(jpc).innerHTML = "";
@@ -699,7 +702,7 @@
 			params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 			params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 			params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-			var url = "http://developer.talentnow.com/orkutapp/Default.aspx";   
+			var url = "http://talentnow.com/orkutapp/Default.aspx";   
 			gadgets.io.makeRequest(url, response, params);
 
 			if(typeof(loadMessage) != 'undefined')
@@ -743,7 +746,7 @@
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://developer.talentnow.com/orkutapp/Default.aspx";    
+		var url = "http://talentnow.com/orkutapp/Default.aspx";    
 		gadgets.io.makeRequest(url, response, params);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");	
 	}
@@ -758,7 +761,7 @@
 		params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 		params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.POST;  
 		params[gadgets.io.RequestParameters.POST_DATA] = gadgets.io.encodeValues(postdata);  
-		var url = "http://developer.talentnow.com/orkutapp/Default.aspx";  
+		var url = "http://talentnow.com/orkutapp/Default.aspx";  
 		gadgets.io.makeRequest(url, response, params);
 		loadMessage = msg.createStaticMessage("Please wait while we fetch the jobs...");
 	}
