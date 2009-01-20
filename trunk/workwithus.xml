@@ -12,8 +12,8 @@
 	<!--<Require feature="settitle"/>-->
  </ModulePrefs>
  <Content type="html" view="canvas,profile">
-
  <![CDATA[
+  <!-- ALm6fM04PoAWuXzDvqclxFlnU7dqvjobGtbp4qHetrqiGmPlX1Cc3_ClfGFND1CLdFyRSB9L9QMy7MnN4Pw6rzKkBZca3Kr33ZRF1YX91f8FJW8JV9E9Rq37RgZthJsCHnMz-aS0wzB4 -->
    <style type="text/css">
    td
 	{
@@ -425,7 +425,7 @@
 		var responseText = obj.data;
 		var userList = responseText.getElementsByTagName("user");
 		document.getElementById('friendsHeader').innerHTML = "<table><tr><td >You can also check out jobs from companies where some of my friends work. Click on the profile picture or company name to see the jobs. I can help you connect with them to find out additional information you may need.</td></tr></table>";
-		document.getElementById('friends').innerHTML = friendsHtml;
+		document.getElementById('friends').innerHTML = gadgets.util.escapeString(friendsHtml);
 		for (var i = 0; i < userList.length ; i++) 
 		{ 
 			var friendId = userList.item(i).getAttribute("id");
@@ -463,7 +463,7 @@
 					linksHtml += " &nbsp;|&nbsp; " + "<a href='"+linkUrl+"' target='_blank'>"+linkName+"</a>";
 				}			
 			}		
-			document.getElementById('companyLinks').innerHTML = linksHtml;
+			document.getElementById('companyLinks').innerHTML = gadgets.util.escapeString(linksHtml);
 		}
 		//Get the company header
 		document.getElementById('companyHeader').style.display = "none";
@@ -475,7 +475,7 @@
 				if(companyHeader.childNodes[0].nodeValue != "")
 				{
 					document.getElementById('companyHeader').style.display = "block";
-					document.getElementById('companyHeader').innerHTML = companyHeader.childNodes[0].nodeValue;
+					document.getElementById('companyHeader').innerHTML = gadgets.util.escapeString(companyHeader.childNodes[0].nodeValue);
 				}	
 			}
 		}
@@ -641,7 +641,7 @@
 			//var newTitle = "Hot Jobs at " + jobCompany;
 			//gadgets.window.setTitle(newTitle);
 			
-			document.getElementById('jobsTable').innerHTML = html;			
+			document.getElementById('jobsTable').innerHTML = gadgets.util.escapeString(html);			
 			document.getElementById('loader').style.display = "none";	
 			document.getElementById('searchResults').style.display = "block";		
 
